@@ -1,0 +1,35 @@
+{
+  "name": "Wireframe",
+  "version": "0.0.1",
+  "summary": "Absctraction of UI framework",
+  "homepage": "https://github.com/remirobert/diary",
+  "license": {
+    "type": "MIT"
+  },
+  "authors": "Remi ROBERT",
+  "platforms": {
+    "ios": "10",
+    "osx": "10.10"
+  },
+  "source": {
+    "path": "."
+  },
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "3.0"
+  },
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "Core/**/*"
+    },
+    {
+      "name": "UIKit",
+      "source_files": "UIKit/**/*",
+      "dependencies": {
+        "Wireframe/Core": [
+
+        ]
+      }
+    }
+  ]
+}

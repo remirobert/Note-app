@@ -1,0 +1,48 @@
+{
+  "name": "Domain",
+  "version": "0.0.1",
+  "summary": "Shared entity models and logic",
+  "homepage": "https://github.com/remirobert/diary",
+  "license": {
+    "type": "Private"
+  },
+  "authors": "Remi ROBERT",
+  "platforms": {
+    "ios": "10",
+    "osx": "10.10"
+  },
+  "source": {
+    "path": "."
+  },
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "3.0"
+  },
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "Core/**/*"
+    },
+    {
+      "name": "Tests",
+      "platforms": {
+        "osx": "10.10"
+      },
+      "frameworks": "XCTest",
+      "source_files": "Tests/**/*",
+      "dependencies": {
+        "Domain/Core": [
+
+        ],
+        "Quick": [
+
+        ],
+        "Nimble": [
+
+        ]
+      },
+      "pod_target_xcconfig": {
+        "ENABLE_BITCODE": "NO"
+      }
+    }
+  ]
+}
