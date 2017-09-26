@@ -29,7 +29,7 @@
         func contentSize() -> CGSize {
             let heightTitle = post.titlePost.size(textAttributes: TextAttributes.postCreationTitle).height
             let heightDescription = post.descriptionPost.size(textAttributes: TextAttributes.postCreationContent).height
-            let heightCell = heightTitle + heightDescription + GalleryViewComponent.height(imagesCount: post.images.count)
+            let heightCell = heightTitle + heightDescription + GalleryViewComponent.heightComponent(imagesCount: post.images.count)
             return CGSize(width: UIScreen.main.bounds.size.width, height: heightCell)
         }
     }
@@ -56,7 +56,7 @@
             title.bind(string: viewModel.title)
             content.bind(string: viewModel.descriptionPost)
             gallery.bind(images: viewModel.images)
-            let newGalleryHeight = GalleryViewComponent.height(imagesCount: viewModel.images.count)
+            let newGalleryHeight = GalleryViewComponent.heightComponent(imagesCount: viewModel.images.count)
             heightGalleryConstraint?.update(offset: newGalleryHeight)
         }
     }
@@ -83,5 +83,7 @@
             }
         }
 
-        fileprivate func setupViews() {}
+        fileprivate func setupViews() {
+            gallery.backgroundColor = UIColor.white
+        }
     }

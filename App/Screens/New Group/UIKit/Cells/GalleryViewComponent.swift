@@ -104,8 +104,14 @@ extension GalleryViewComponent {
             height = UIScreen.main.bounds.size.width
         case 2:
             height = UIScreen.main.bounds.size.width / 2
-        default:
+        case 3:
             height = UIScreen.main.bounds.size.width / 3
+        case 4..<6:
+            height = UIScreen.main.bounds.size.width / 3 * 2
+        case 7..<9:
+            height = UIScreen.main.bounds.size.width / 3 * 3
+        default:
+            break
         }
         return height
     }
