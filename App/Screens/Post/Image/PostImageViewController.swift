@@ -48,7 +48,9 @@ class PostImageViewController: PostViewController {
         let title = titleCell.textView.text ?? ""
         let text = contentCell.textView.text ?? ""
         viewModel.create(images: images, titlePost: title, descriptionPost: text)
-        delegate?.didPost()
+        DispatchQueue.main.async {
+            self.delegate?.didPost()
+        }
     }
 }
 

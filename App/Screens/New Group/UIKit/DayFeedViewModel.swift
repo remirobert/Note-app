@@ -9,32 +9,49 @@
 import Foundation
 import Domain
 
+protocol DayFeedViewModelDelegate: class {
+    func didLoadPosts()
+}
+
 class DayFeedViewModel {
-    private(set) var section = [Section]()
-    private let allPostUseCase: AllPostUseCase
+    fileprivate(set) var section = [Section]()
+    fileprivate let postsOperationProvider: FetchOperationProvider
+    fileprivate var postsOperation: FetchPostOperation?
+    private let operationQueue: OperationQueue
     let day: Day
 
-    init(day: Day, allPostUseCase: AllPostUseCase) {
+    weak var delegate: DayFeedViewModelDelegate?
+
+    init(day: Day,
+         postsOperationProvider: FetchOperationProvider,
+         operationQueue: OperationQueue = OperationQueue()) {
         self.day = day
-        self.allPostUseCase = allPostUseCase
+        self.postsOperationProvider = postsOperationProvider
+        self.operationQueue = operationQueue
+        self.operationQueue.qualityOfService = .background
         reloadSections()
     }
 
     func reloadSections() {
-        let datas = allPostUseCase.get()
-        print("get datas : \(datas.count)")
-        let models = (0...5).map { _ in
-            return PostCellViewModel(post: PostImage(images: [UIImagePNGRepresentation(#imageLiteral(resourceName: "image"))!, UIImagePNGRepresentation(#imageLiteral(resourceName: "image"))!, UIImagePNGRepresentation(#imageLiteral(resourceName: "image"))!, UIImagePNGRepresentation(#imageLiteral(resourceName: "image"))! ], titlePost: "Ladybug", descriptionPost: "Ladybug makes it easy to write a model or data-model layer in Swift 4. Full Codable conformance without the headache."))
-        }
-//        let models = datas.map { (post: Post) -> CellViewModel? in
-//            if let image = post as? PostImage {
-//                return ImagePostCellViewModel(imageData: image.images.first!)
-//            }
-//            if let text = post as? PostText {
-//                return TextPostCellViewModel(text: text.text)
-//            }
-//            return nil
-//            }.flatMap { $0 }
+        print("🙏 reload sections")
+        let operation = postsOperationProvider.makeFetchAll()
+        postsOperation = operation
+        postsOperation?.delegate = self
+        operationQueue.cancelAllOperations()
+        operationQueue.addOperation(operation)
+    }
+}
+
+extension DayFeedViewModel: FetchPostOperationDelegate {
+    func didFetchPosts(posts: [Post]) {
+        print("🎃 get posts : \(posts)")
+        let models = posts.map { (post: Post) -> CellViewModel? in
+            if let image = post as? PostImage {
+                return PostCellViewModel(post: image)
+            }
+            return nil
+            }.flatMap { $0 }
         section = [Section(models: models, header: nil)]
+        self.delegate?.didLoadPosts()
     }
 }

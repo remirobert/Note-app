@@ -8,4 +8,14 @@
 
 public protocol AddPostUseCase {
     func add(post: Post)
+    func addPostImage(images: [Data], title: String, description: String)
+}
+
+open class AddPostOperation: Operation {
+    public var imagesData = [Data]()
+    public var post: Post?
+}
+
+public protocol AddPostOperationFactory {
+    func make() -> AddPostOperation
 }

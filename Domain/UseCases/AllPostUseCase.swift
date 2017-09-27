@@ -9,3 +9,12 @@
 public protocol AllPostUseCase {
     func get() -> [Post]
 }
+
+public protocol FetchPostOperationDelegate: class {
+    func didFetchPosts(posts: [Post])
+}
+
+open class FetchPostOperation: Operation {
+    public var posts = [Post]()
+    public weak var delegate: FetchPostOperationDelegate?
+}

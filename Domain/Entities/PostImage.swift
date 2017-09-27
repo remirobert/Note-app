@@ -9,13 +9,13 @@
 import Foundation
 
 public class PostImage: Post {
-    public let images: [Data]
+    public let images: [String]
     public let titlePost: String
     public let descriptionPost: String
 
     public init(date: Date = Date(),
                 id: String = UUID().uuidString,
-                images: [Data],
+                images: [String],
                 titlePost: String = "",
                 descriptionPost: String = "") {
         self.images = images

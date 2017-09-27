@@ -10,27 +10,27 @@ import Foundation
 import RealmSwift
 import Domain
 
-public class RMDataImage: Object {
-    public dynamic var data = Data()
+public class RMPathImage: Object {
+    public dynamic var url = String()
 
-    public convenience init(data: Data) {
+    public convenience init(url: String) {
         self.init()
-        self.data = data
+        self.url = url
     }
 }
 
 public class RMPostImage: RMPost {
-    public var images = List<RMDataImage>()
-    public dynamic var titlePost: String = ""
-    public dynamic var descriptionPost: String = ""
+    public var images = List<RMPathImage>()
+    public dynamic var titlePost = String()
+    public dynamic var descriptionPost = String()
 
     public convenience init(date: Date = Date(),
                             id: String = UUID().uuidString,
-                            images: [Data],
-                            titlePost: String = "",
-                            descriptionPost: String = "") {
+                            images: [String],
+                            titlePost: String = String(),
+                            descriptionPost: String = String()) {
         self.init(date: date, id: id, type: .image)
-        self.images = List(images.map({ return RMDataImage(data: $0) }))
+        self.images = List(images.map({ return RMPathImage(url: $0) }))
         self.descriptionPost = descriptionPost
         self.titlePost = titlePost
     }
@@ -48,10 +48,10 @@ extension PostImage {
 
 extension RMPostImage {
     public func toPostImage() -> PostImage {
-        let imagesData = Array(self.images.map { return $0.data })
+        let imagesUrls = Array(self.images.map { return $0.url })
         return PostImage(date: self.date,
                          id: self.id,
-                         images: imagesData,
+                         images: imagesUrls,
                          titlePost: titlePost,
                          descriptionPost: descriptionPost)
     }

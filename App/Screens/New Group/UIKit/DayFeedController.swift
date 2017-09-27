@@ -14,8 +14,8 @@ import Domain
 class DayFeedController: UIViewController, DayFeedView {
     fileprivate let collectionView: UICollectionView
     fileprivate let toolbar = UIToolbar(frame: CGRect.zero)
-    private let collectionDataSource: CollectionDataSource
-    private let viewModel: DayFeedViewModel
+    fileprivate let collectionDataSource: CollectionDataSource
+    fileprivate let viewModel: DayFeedViewModel
 
     weak var delegate: DayFeedViewDelegate?
 
@@ -25,7 +25,7 @@ class DayFeedController: UIViewController, DayFeedView {
                                           collectionViewLayout: VerticalCollectionViewLayout())
         collectionDataSource = CollectionDataSource(collectionView: collectionView)
         super.init(nibName: nil, bundle: nil)
-        collectionDataSource.sections = self.viewModel.section
+        self.viewModel.delegate = self
         setupViews()
         setupHierarchy()
         setupLayout()
@@ -65,6 +65,14 @@ class DayFeedController: UIViewController, DayFeedView {
     }
 }
 
+extension DayFeedController: DayFeedViewModelDelegate {
+    func didLoadPosts() {
+        DispatchQueue.main.async {
+            self.collectionDataSource.sections = self.viewModel.section
+        }
+    }
+}
+
 extension DayFeedController {
     fileprivate func setupHierarchy() {
         view.addSubview(collectionView)
@@ -82,6 +90,7 @@ extension DayFeedController {
     }
 
     fileprivate func setupViews() {
+        collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = UIColor.white
         collectionView.register(cellType: TextPostCell.self)
         collectionView.register(cellType: ImagePostCell.self)

@@ -10,17 +10,17 @@ import UIKit
 import Domain
 
 class PostImageViewControllerFactory: PostViewFactory {
-    private let addPostUseCase: AddPostUseCase
+    private let addPostOperation: AddPostOperation
     private let photoPickerProvider: PhotoPickerProvider
 
-    init(addPostUseCase: AddPostUseCase,
+    init(addPostOperation: AddPostOperation,
          photoPickerProvider: PhotoPickerProvider = UIImagePicker()) {
-        self.addPostUseCase = addPostUseCase
+        self.addPostOperation = addPostOperation
         self.photoPickerProvider = photoPickerProvider
     }
 
     func make() -> PostView {
-        let viewModel = PostImageViewModel(addPostUseCase: addPostUseCase)
+        let viewModel = PostImageViewModel(addOperation: addPostOperation)
         return PostImageViewController(photoPickerProvider: photoPickerProvider, viewModel: viewModel)
     }
 }

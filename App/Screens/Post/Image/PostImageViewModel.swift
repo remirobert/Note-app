@@ -9,18 +9,58 @@
 import UIKit
 import Domain
 
-class PostImageViewModel {
-    private let addPostUseCase: AddPostUseCase
+class ImageDataConvertOperation: Operation {
+    private(set) var imagesData = [Data]()
+    private let images: [UIImage]
 
-    init(addPostUseCase: AddPostUseCase) {
-        self.addPostUseCase = addPostUseCase
+    init(images: [UIImage]) {
+        self.images = images
+    }
+
+    override func main() {
+        if isCancelled {
+            return
+        }
+        imagesData = images.map {
+            if isCancelled {
+                return nil
+            }
+            return UIImageJPEGRepresentation($0, 1)
+            }
+            .flatMap {
+                $0
+        }
+    }
+}
+
+class PostImageViewModel {
+    private let addOperation: AddPostOperation
+    private let operationQueue: OperationQueue
+
+    init(addOperation: AddPostOperation,
+         operationQueue: OperationQueue = OperationQueue()) {
+        self.addOperation = addOperation
+        self.operationQueue = operationQueue
+        self.operationQueue.qualityOfService = .background
     }
 
     func create(images: [UIImage], titlePost: String, descriptionPost: String) {
-        let imagesData = images.map { UIImagePNGRepresentation($0) ?? Data() }
-        let imagePost = PostImage(images: imagesData,
+        let convertOperation = ImageDataConvertOperation(images: images)
+        let imagePost = PostImage(images: [],
                                   titlePost: titlePost,
                                   descriptionPost: descriptionPost)
-        addPostUseCase.add(post: imagePost)
+
+
+        addOperation.post = imagePost
+
+        let adapterOperation = BlockOperation() {
+            [unowned convertOperation, unowned addOperation] in
+            addOperation.imagesData = convertOperation.imagesData
+        }
+
+        adapterOperation.addDependency(convertOperation)
+        addOperation.addDependency(adapterOperation)
+
+        operationQueue.addOperations([convertOperation, adapterOperation, addOperation], waitUntilFinished: false)
     }
 }

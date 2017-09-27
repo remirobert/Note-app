@@ -36,8 +36,9 @@ class CalendarCoordinator {
 extension CalendarCoordinator: CalendarViewDelegate {
     func didSelectDay(date: Date) {
         let day = getDayUseCase.get(forDate: date)
-        let allPostUseCase = RMAllPostUseCase(day: day)
-        let viewModel = DayFeedViewModel(day: day, allPostUseCase: allPostUseCase)
+
+        let op = RMFetchPostOperationFactory(day: day)
+        let viewModel = DayFeedViewModel(day: day, postsOperationProvider: op)
         let deps = DayFeedCoordinator.Dependencies(day: day,
                                                    parentView: calendarView,
                                                    dayFeedFactory: DayFeedViewControllerFactory(viewModel: viewModel),

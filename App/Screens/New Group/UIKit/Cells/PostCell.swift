@@ -16,10 +16,8 @@
 
         var title: String { return post.titlePost}
         var descriptionPost: String { return post.descriptionPost }
-        var images: [UIImage] {
-            return post.images.map {
-                UIImage(data: $0) ?? UIImage()
-            }
+        var imagesUrl: [String] {
+            return post.images.map { $0 }
         }
 
         init(post: PostImage) {
@@ -55,8 +53,8 @@
             guard let viewModel = cellData as? PostCellViewModel else { return }
             title.bind(string: viewModel.title)
             content.bind(string: viewModel.descriptionPost)
-            gallery.bind(images: viewModel.images)
-            let newGalleryHeight = GalleryViewComponent.heightComponent(imagesCount: viewModel.images.count)
+            gallery.bind(imagesUrl: viewModel.imagesUrl)
+            let newGalleryHeight = GalleryViewComponent.heightComponent(imagesCount: viewModel.imagesUrl.count)
             heightGalleryConstraint?.update(offset: newGalleryHeight)
         }
     }

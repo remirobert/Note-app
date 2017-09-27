@@ -26,7 +26,8 @@ class PostCoordinator {
     init(day: Day, parentView: View) {
         self.day = day
         self.parentView = parentView
-        viewFactory = PostImageViewControllerFactory(addPostUseCase: RMAddPostUseCase(day: day))
+        let op = RMAddPostOperation(day: day)
+        viewFactory = PostImageViewControllerFactory(addPostOperation: op)
         navigationViewFactory = PostNavigationViewControllerFactory()
         postView = viewFactory.make()
     }

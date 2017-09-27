@@ -50,6 +50,9 @@
 		BB3B07671F5350880085C239 /* RMPostTextSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07661F5350880085C239 /* RMPostTextSpec.swift */; };
 		BB3B07691F5352BB0085C239 /* AllPostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07681F5352BB0085C239 /* AllPostUseCase.swift */; };
 		BB3C72871F6AD76600C90BEC /* UIKitSpikeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C72861F6AD76600C90BEC /* UIKitSpikeData.swift */; };
+		BB41DD031F7A94F000EB6A13 /* FileManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41DD021F7A94F000EB6A13 /* FileManagerProvider.swift */; };
+		BB41DD071F7A9E4500EB6A13 /* RMAddPostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41DD061F7A9E4500EB6A13 /* RMAddPostOperation.swift */; };
+		BB41DD091F7AB5D600EB6A13 /* FetchPostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41DD081F7AB5D600EB6A13 /* FetchPostOperation.swift */; };
 		BB42D0511F5455F800B40C3A /* AnyDaySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB42D0501F5455F800B40C3A /* AnyDaySpec.swift */; };
 		BB473E311F72677A00F63270 /* GalleryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB473E301F72677A00F63270 /* GalleryCellViewModel.swift */; };
 		BB473E361F729A0F00F63270 /* GalleryImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB473E351F729A0F00F63270 /* GalleryImageCell.swift */; };
@@ -274,6 +277,9 @@
 		BB3B07661F5350880085C239 /* RMPostTextSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPostTextSpec.swift; sourceTree = "<group>"; };
 		BB3B07681F5352BB0085C239 /* AllPostUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostUseCase.swift; sourceTree = "<group>"; };
 		BB3C72861F6AD76600C90BEC /* UIKitSpikeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitSpikeData.swift; sourceTree = "<group>"; };
+		BB41DD021F7A94F000EB6A13 /* FileManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerProvider.swift; sourceTree = "<group>"; };
+		BB41DD061F7A9E4500EB6A13 /* RMAddPostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAddPostOperation.swift; sourceTree = "<group>"; };
+		BB41DD081F7AB5D600EB6A13 /* FetchPostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostOperation.swift; sourceTree = "<group>"; };
 		BB42D0501F5455F800B40C3A /* AnyDaySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDaySpec.swift; sourceTree = "<group>"; };
 		BB473E301F72677A00F63270 /* GalleryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCellViewModel.swift; sourceTree = "<group>"; };
 		BB473E351F729A0F00F63270 /* GalleryImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImageCell.swift; sourceTree = "<group>"; };
@@ -620,6 +626,16 @@
 			path = RealmPlatformTests;
 			sourceTree = "<group>";
 		};
+		BB41DCFF1F7A93EF00EB6A13 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				BB41DD021F7A94F000EB6A13 /* FileManagerProvider.swift */,
+				BB41DD061F7A9E4500EB6A13 /* RMAddPostOperation.swift */,
+				BB41DD081F7AB5D600EB6A13 /* FetchPostOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		BB473E341F7299C900F63270 /* GalleryImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,6 +671,7 @@
 		BB63E7CA1F536B0F0047C15A /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				BB41DCFF1F7A93EF00EB6A13 /* Operations */,
 				BB63E7D11F536CC40047C15A /* AddPostUseCase.swift */,
 				BB63E7CB1F536B430047C15A /* AllPostUseCase.swift */,
 				BB63E7CF1F536C3E0047C15A /* PostUseCaseProvider.swift */,
@@ -1722,8 +1739,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB41DD091F7AB5D600EB6A13 /* FetchPostOperation.swift in Sources */,
 				BB3B075D1F534AEB0085C239 /* RMPostImage.swift in Sources */,
 				BBE5B0991F73DB1D00D8B112 /* GetDayUseCase.swift in Sources */,
+				BB41DD031F7A94F000EB6A13 /* FileManagerProvider.swift in Sources */,
 				BB3B075F1F534AEB0085C239 /* RMPostText.swift in Sources */,
 				BB63E7D21F536CC40047C15A /* AddPostUseCase.swift in Sources */,
 				BBA23D5F1F543C76003D4F32 /* RMDay.swift in Sources */,
@@ -1731,6 +1750,7 @@
 				BBA23D611F543CB3003D4F32 /* AnyPost.swift in Sources */,
 				BB3B075E1F534AEB0085C239 /* RMPostLocation.swift in Sources */,
 				BB63E7D01F536C3E0047C15A /* PostUseCaseProvider.swift in Sources */,
+				BB41DD071F7A9E4500EB6A13 /* RMAddPostOperation.swift in Sources */,
 				BB63E7CC1F536B430047C15A /* AllPostUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

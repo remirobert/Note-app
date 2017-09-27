@@ -10,3 +10,7 @@ public protocol PostUseCaseProvider {
     func makeAllPostUseCase() -> AllPostUseCase
     func makeAddPostUseCase() -> AddPostUseCase
 }
+
+public protocol FetchOperationProvider {
+    func makeFetchAll() -> FetchPostOperation
+}
