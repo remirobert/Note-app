@@ -6,6 +6,21 @@ PODS:
     - FBSnapshotTestCase/Core
   - IQKeyboardManagerSwift (4.0.13)
   - Nimble (7.0.1)
+  - PINCache (3.0.1-beta.5):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.5)
+    - PINCache/Core (= 3.0.1-beta.5)
+  - PINCache/Arc-exception-safe (3.0.1-beta.5):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.5):
+    - PINOperation (= 1.0.3)
+  - PINOperation (1.0.3)
+  - PINRemoteImage/Core (3.0.0-beta.11):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.0-beta.11):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.0-beta.11):
+    - PINCache (= 3.0.1-beta.5)
+    - PINRemoteImage/Core
   - Quick (1.1.0)
   - Realm (2.10.0):
     - Realm/Headers (= 2.10.0)
@@ -13,6 +28,13 @@ PODS:
   - RealmSwift (2.10.0):
     - Realm (= 2.10.0)
   - SnapKit (3.2.0)
+  - Texture (2.4):
+    - Texture/PINRemoteImage (= 2.4)
+  - Texture/Core (2.4)
+  - Texture/PINRemoteImage (2.4):
+    - PINRemoteImage/iOS (= 3.0.0-beta.11)
+    - PINRemoteImage/PINCache
+    - Texture/Core
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -21,16 +43,21 @@ DEPENDENCIES:
   - Quick
   - RealmSwift
   - SnapKit
+  - Texture
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
+  PINCache: 98e7b1ef782824ad231ade51987c218b758c30d8
+  PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
+  PINRemoteImage: d71988f11914a050d6d4cf51efc4ad1de8c0a9d8
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Realm: 98b3a25643cf6b3e07d2b99fb43fe0eb9c801dec
   RealmSwift: 34073ad3a31232bbaf7c0db898c037940284cba2
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  Texture: a5526314780eab35f642d956627f09316b9514e8
 
-PODFILE CHECKSUM: 3a2df3abe4865084387f6c64e820680d4e72321e
+PODFILE CHECKSUM: c2637c4bbe9c4d74e2a94845c6977c703e829739
 
 COCOAPODS: 1.3.1

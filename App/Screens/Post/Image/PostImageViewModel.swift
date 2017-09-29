@@ -34,12 +34,12 @@ class ImageDataConvertOperation: Operation {
 }
 
 class PostImageViewModel {
-    private let addOperation: AddPostOperation
+    private let addOperationProvider: AddOperationProvider
     private let operationQueue: OperationQueue
 
-    init(addOperation: AddPostOperation,
+    init(addOperationProvider: AddOperationProvider,
          operationQueue: OperationQueue = OperationQueue()) {
-        self.addOperation = addOperation
+        self.addOperationProvider = addOperationProvider
         self.operationQueue = operationQueue
         self.operationQueue.qualityOfService = .background
     }
@@ -50,7 +50,7 @@ class PostImageViewModel {
                                   titlePost: titlePost,
                                   descriptionPost: descriptionPost)
 
-
+        let addOperation = addOperationProvider.makeAdd()
         addOperation.post = imagePost
 
         let adapterOperation = BlockOperation() {

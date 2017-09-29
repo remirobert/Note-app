@@ -8,12 +8,13 @@
 
 import Wireframe
 import Domain
+import RealmPlatform
 
 class DayFeedCoordinator {
     fileprivate let dependencies: Dependencies
     fileprivate let dayFeedView: DayFeedView
     fileprivate let navigationDayFeed: NavigationView
-    fileprivate let postCoordinator: PostCoordinator
+    fileprivate var postCoordinator: PostCoordinator!
 
     struct Dependencies {
         let day: Day
@@ -26,8 +27,6 @@ class DayFeedCoordinator {
         self.dependencies = dependencies
         self.dayFeedView = dependencies.dayFeedFactory.make()
         self.navigationDayFeed = dependencies.dayNavigationFactory.make(rootView: dayFeedView)
-        postCoordinator = PostCoordinator(day: dependencies.day,
-                                          parentView: dayFeedView)
     }
 
     func start() {
@@ -42,13 +41,8 @@ extension DayFeedCoordinator: DayFeedViewDelegate {
     }
 
     func addPost() {
+        postCoordinator = PostCoordinator(day: dependencies.day,
+                                          parentView: dayFeedView)
         postCoordinator.start()
-        postCoordinator.delegate = self
-    }
-}
-
-extension DayFeedCoordinator: PostCoordinatorDelegate {
-    func didPostSuccess() {
-        dayFeedView.reload()
     }
 }

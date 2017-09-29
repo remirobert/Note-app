@@ -9,6 +9,21 @@
 import RealmSwift
 import Domain
 
+public class RMAddPostFactory: AddOperationProvider {
+    private let day: Day
+    private let fileManagerProvider: FileManagerProvider
+
+    public init(day: Day,
+         fileManagerProvider: FileManagerProvider = DefaultFileManager()) {
+        self.day = day
+        self.fileManagerProvider = fileManagerProvider
+    }
+
+    public func makeAdd() -> AddPostOperation {
+        return RMAddPostOperation(day: day, fileManagerProvider: fileManagerProvider)
+    }
+}
+
 public class RMAddPostOperation: AddPostOperation {
     private let day: Day
     private let configuration: Realm.Configuration
@@ -23,22 +38,12 @@ public class RMAddPostOperation: AddPostOperation {
     }
 
     override public func main() {
-        print("add operation")
         if isCancelled {
-            print("canncelled")
             return
         }
-        print("not canncelled")
-        guard let realm = try? Realm(configuration: configuration) else {
-            print("error realm")
-            return
-        }
-        guard let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id) else {
-            print("rm day error")
-            return
-        }
-        guard let rmPost = (post as? PostImage)?.toRMPostImage() else {
-            print("post error")
+        guard let realm = try? Realm(configuration: configuration),
+            let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id),
+            let rmPost = (post as? PostImage)?.toRMPostImage() else {
             return
         }
         let filesNames = imagesData.map {
@@ -50,7 +55,6 @@ public class RMAddPostOperation: AddPostOperation {
             .map {
                 RMPathImage(url: $0)
         }
-        print("saved images : \(filesNames)")
         rmPost.images = List<RMPathImage>(filesNames)
         save(object: rmPost, realm: realm, rmDay: rmDay)
     }

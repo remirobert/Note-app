@@ -10,10 +10,6 @@ import Wireframe
 import Domain
 import RealmPlatform
 
-protocol PostCoordinatorDelegate: class {
-    func didPostSuccess()
-}
-
 class PostCoordinator {
     private let day: Day
     private let parentView: View
@@ -21,13 +17,11 @@ class PostCoordinator {
     private let navigationViewFactory: NavigationViewFactory
     fileprivate let postView: PostView
 
-    weak var delegate: PostCoordinatorDelegate?
-
     init(day: Day, parentView: View) {
         self.day = day
         self.parentView = parentView
-        let op = RMAddPostOperation(day: day)
-        viewFactory = PostImageViewControllerFactory(addPostOperation: op)
+        let op = RMAddPostFactory(day: day)
+        viewFactory = PostImageViewControllerFactory(addOperationProvider: op)
         navigationViewFactory = PostNavigationViewControllerFactory()
         postView = viewFactory.make()
     }
@@ -46,6 +40,5 @@ extension PostCoordinator: PostViewDelegate {
 
     func didPost() {
         postView.dismiss()
-        delegate?.didPostSuccess()
     }
 }

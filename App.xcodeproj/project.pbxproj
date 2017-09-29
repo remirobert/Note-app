@@ -75,6 +75,10 @@
 		BB6EF9471F520AE800B95B08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6EF9451F520AE800B95B08 /* LaunchScreen.storyboard */; };
 		BB7770C31F6D1130009A1B28 /* UIImage+forceLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7770C21F6D1130009A1B28 /* UIImage+forceLoad.swift */; };
 		BB7770C51F6D144B009A1B28 /* UICollectionView+register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7770C41F6D144B009A1B28 /* UICollectionView+register.swift */; };
+		BB77E1D91F7D35D100C009D6 /* PostUpdateSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1D81F7D35D100C009D6 /* PostUpdateSubscriber.swift */; };
+		BB77E1DC1F7E4CD400C009D6 /* DayTextureFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DB1F7E4CD400C009D6 /* DayTextureFeedController.swift */; };
+		BB77E1DE1F7E4D5600C009D6 /* PostCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DD1F7E4D5600C009D6 /* PostCellNode.swift */; };
+		BB77E1E01F7E50E700C009D6 /* DayTextureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */; };
 		BB9BF5EE1F560BA900C28C9C /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */; };
 		BB9BF5F41F574D1B00C28C9C /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */; };
 		BB9BF5FA1F5759D800C28C9C /* WorkSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB9BF5F91F5759D800C28C9C /* WorkSans-Regular.ttf */; };
@@ -120,6 +124,7 @@
 		BBD552121F6FC61B00828B63 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD552111F6FC61B00828B63 /* DayCell.swift */; };
 		BBD552141F6FC6CF00828B63 /* HeaderMonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD552131F6FC6CF00828B63 /* HeaderMonthCell.swift */; };
 		BBD552161F6FC75400828B63 /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD552151F6FC75400828B63 /* CalendarController.swift */; };
+		BBD817601F7E7A1700C6B7C8 /* ImageGalleryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD8175F1F7E7A1700C6B7C8 /* ImageGalleryNode.swift */; };
 		BBE5B0931F72AC0300D8B112 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE5B0921F72AC0300D8B112 /* PostViewController.swift */; };
 		BBE5B0951F73D63000D8B112 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE5B0941F73D62F00D8B112 /* PostViewModel.swift */; };
 		BBE5B0971F73DAD300D8B112 /* GetDayUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE5B0961F73DAD300D8B112 /* GetDayUseCase.swift */; };
@@ -305,6 +310,10 @@
 		BB6EF9561F520B1100B95B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB7770C21F6D1130009A1B28 /* UIImage+forceLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+forceLoad.swift"; sourceTree = "<group>"; };
 		BB7770C41F6D144B009A1B28 /* UICollectionView+register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+register.swift"; sourceTree = "<group>"; };
+		BB77E1D81F7D35D100C009D6 /* PostUpdateSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUpdateSubscriber.swift; sourceTree = "<group>"; };
+		BB77E1DB1F7E4CD400C009D6 /* DayTextureFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTextureFeedController.swift; sourceTree = "<group>"; };
+		BB77E1DD1F7E4D5600C009D6 /* PostCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellNode.swift; sourceTree = "<group>"; };
+		BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTextureViewModel.swift; sourceTree = "<group>"; };
 		BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		BB9BF5F91F5759D800C28C9C /* WorkSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -347,6 +356,7 @@
 		BBD552111F6FC61B00828B63 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		BBD552131F6FC6CF00828B63 /* HeaderMonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderMonthCell.swift; sourceTree = "<group>"; };
 		BBD552151F6FC75400828B63 /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		BBD8175F1F7E7A1700C6B7C8 /* ImageGalleryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryNode.swift; sourceTree = "<group>"; };
 		BBE5B0921F72AC0300D8B112 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BBE5B0941F73D62F00D8B112 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		BBE5B0961F73DAD300D8B112 /* GetDayUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDayUseCase.swift; sourceTree = "<group>"; };
@@ -632,6 +642,7 @@
 				BB41DD021F7A94F000EB6A13 /* FileManagerProvider.swift */,
 				BB41DD061F7A9E4500EB6A13 /* RMAddPostOperation.swift */,
 				BB41DD081F7AB5D600EB6A13 /* FetchPostOperation.swift */,
+				BB77E1D81F7D35D100C009D6 /* PostUpdateSubscriber.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -758,6 +769,17 @@
 			path = AppTests;
 			sourceTree = "<group>";
 		};
+		BB77E1DA1F7E4CBD00C009D6 /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				BB77E1DB1F7E4CD400C009D6 /* DayTextureFeedController.swift */,
+				BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */,
+				BB77E1DD1F7E4D5600C009D6 /* PostCellNode.swift */,
+				BBD8175F1F7E7A1700C6B7C8 /* ImageGalleryNode.swift */,
+			);
+			path = Texture;
+			sourceTree = "<group>";
+		};
 		BB9BF5DE1F54BB8A00C28C9C /* SnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +801,7 @@
 		BBA1C24A1F6ECC2900B86F8E /* DayFeed */ = {
 			isa = PBXGroup;
 			children = (
+				BB77E1DA1F7E4CBD00C009D6 /* Texture */,
 				BBA1C2591F6EEA9900B86F8E /* UIKit */,
 				BBD552001F6EEAE400828B63 /* DayFeedView.swift */,
 			);
@@ -1286,9 +1309,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RealmPlatformTests/Pods-RealmPlatformTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -1296,9 +1323,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
@@ -1397,9 +1428,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WireframeTests/Pods-WireframeTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -1407,9 +1442,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
@@ -1460,16 +1499,24 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-App/Pods-App-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1571,9 +1618,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DomainTests/Pods-DomainTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -1581,9 +1632,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
@@ -1664,9 +1719,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AppTests/Pods-AppTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -1674,9 +1733,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
@@ -1739,6 +1802,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB77E1D91F7D35D100C009D6 /* PostUpdateSubscriber.swift in Sources */,
 				BB41DD091F7AB5D600EB6A13 /* FetchPostOperation.swift in Sources */,
 				BB3B075D1F534AEB0085C239 /* RMPostImage.swift in Sources */,
 				BBE5B0991F73DB1D00D8B112 /* GetDayUseCase.swift in Sources */,
@@ -1779,6 +1843,7 @@
 				BBAE88951F65A12F003F2908 /* PhotoPickerProvider.swift in Sources */,
 				BBC907CB1F79680D001AC9FE /* String+size.swift in Sources */,
 				BBD5520B1F6FC4FF00828B63 /* CalendarCoordinator.swift in Sources */,
+				BB77E1DE1F7E4D5600C009D6 /* PostCellNode.swift in Sources */,
 				BBC179DA1F6D0FFE00C0E07F /* VerticalCollectionViewLayout.swift in Sources */,
 				BB473E361F729A0F00F63270 /* GalleryImageCell.swift in Sources */,
 				BBD552121F6FC61B00828B63 /* DayCell.swift in Sources */,
@@ -1803,11 +1868,14 @@
 				BB9BF5EE1F560BA900C28C9C /* TextAttributes.swift in Sources */,
 				BB473E311F72677A00F63270 /* GalleryCellViewModel.swift in Sources */,
 				BBC179DE1F6D103900C0E07F /* CellViewModel.swift in Sources */,
+				BBD817601F7E7A1700C6B7C8 /* ImageGalleryNode.swift in Sources */,
 				BBA1C24D1F6ECC5800B86F8E /* ImagePostCell.swift in Sources */,
+				BB77E1E01F7E50E700C009D6 /* DayTextureViewModel.swift in Sources */,
 				BBC77B5C1F79266C0091DC2D /* PostImageViewControllerFactory.swift in Sources */,
 				BBE5B09B1F73FA3B00D8B112 /* PostCoordinator.swift in Sources */,
 				BBA808D51F71847D00567D54 /* GalleryCell.swift in Sources */,
 				BB3C72871F6AD76600C90BEC /* UIKitSpikeData.swift in Sources */,
+				BB77E1DC1F7E4CD400C009D6 /* DayTextureFeedController.swift in Sources */,
 				BB07B2721F6BD21B00355CEE /* DayFeedController.swift in Sources */,
 				BB5634AE1F6FC99F0031228A /* CalendarViewControllerFactory.swift in Sources */,
 				BB9BF5F41F574D1B00C28C9C /* UIFont+.swift in Sources */,

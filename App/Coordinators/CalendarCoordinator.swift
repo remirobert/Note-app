@@ -15,6 +15,7 @@ class CalendarCoordinator {
     fileprivate let calendarView: CalendarView
     fileprivate var dayFeedCoordinator: DayFeedCoordinator!
     fileprivate let getDayUseCase: GetDayUseCase
+    fileprivate let subscriber = PostUpdateSubscriber()
 
     struct Dependencies {
         let window: Window
@@ -38,10 +39,10 @@ extension CalendarCoordinator: CalendarViewDelegate {
         let day = getDayUseCase.get(forDate: date)
 
         let op = RMFetchPostOperationFactory(day: day)
-        let viewModel = DayFeedViewModel(day: day, postsOperationProvider: op)
+        let viewModel = DayTextureViewModel(day: day, postsOperationProvider: op, subscriber: subscriber)
         let deps = DayFeedCoordinator.Dependencies(day: day,
                                                    parentView: calendarView,
-                                                   dayFeedFactory: DayFeedViewControllerFactory(viewModel: viewModel),
+                                                   dayFeedFactory: DayTextureControllerFactory(viewModel: viewModel),
                                                    dayNavigationFactory: DayFeedNavigationViewFactory())
         dayFeedCoordinator = DayFeedCoordinator(dependencies: deps)
         dayFeedCoordinator.start()

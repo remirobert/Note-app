@@ -24,7 +24,13 @@ class DayFeedNavigationViewController: UINavigationController {
         super.viewDidLoad()
         navigationBar.isTranslucent = false
         navigationBar.tintColor = UIColor(red:0.35, green:0.63, blue:0.93, alpha:1.00)
-        navigationBar.barTintColor = UIColor.white
+        navigationBar.barTintColor = UIColor.black//UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00),
+                                             NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)]
+        if #available(iOS 11.0, *) {
+            navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00),
+                                                      NSFontAttributeName: UIFont.systemFont(ofSize: 30, weight: UIFontWeightHeavy)]
+        }
         navigationBar.shadowImage = UIImage()
         if #available(iOS 11.0, *) {
             navigationBar.prefersLargeTitles = true

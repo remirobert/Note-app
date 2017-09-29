@@ -17,6 +17,7 @@ class DayFeedViewModel {
     fileprivate(set) var section = [Section]()
     fileprivate let postsOperationProvider: FetchOperationProvider
     fileprivate var postsOperation: FetchPostOperation?
+    fileprivate let subscriber: PostSubscriber
     private let operationQueue: OperationQueue
     let day: Day
 
@@ -24,11 +25,14 @@ class DayFeedViewModel {
 
     init(day: Day,
          postsOperationProvider: FetchOperationProvider,
-         operationQueue: OperationQueue = OperationQueue()) {
+         operationQueue: OperationQueue = OperationQueue(),
+         subscriber: PostSubscriber) {
         self.day = day
         self.postsOperationProvider = postsOperationProvider
         self.operationQueue = operationQueue
         self.operationQueue.qualityOfService = .background
+        self.subscriber = subscriber
+        self.subscriber.addSubscriber(object: self)
         reloadSections()
     }
 
@@ -42,8 +46,15 @@ class DayFeedViewModel {
     }
 }
 
+extension DayFeedViewModel: PostUpdateSubscriberDelegate {
+    func dataDidUpdate() {
+        reloadSections()
+    }
+}
+
 extension DayFeedViewModel: FetchPostOperationDelegate {
     func didFetchPosts(posts: [Post]) {
+        print("🤜 post coiunt : \(posts.count)")
         print("🎃 get posts : \(posts)")
         let models = posts.map { (post: Post) -> CellViewModel? in
             if let image = post as? PostImage {

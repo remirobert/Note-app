@@ -14,3 +14,7 @@ public protocol PostUseCaseProvider {
 public protocol FetchOperationProvider {
     func makeFetchAll() -> FetchPostOperation
 }
+
+public protocol AddOperationProvider {
+    func makeAdd() -> AddPostOperation
+}

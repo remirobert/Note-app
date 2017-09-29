@@ -16,6 +16,7 @@ def shared_pods
     pod 'RealmSwift'
     pod 'SnapKit'
     pod 'IQKeyboardManagerSwift'
+    pod 'Texture'
 end
 
 def shared_tests_pods
