@@ -36,6 +36,10 @@ class DayFeedCoordinator {
 }
 
 extension DayFeedCoordinator: DayFeedViewDelegate {
+    func displaySlider(post: PostImage) {
+
+    }
+    
     func displayCalendarView() {
         navigationDayFeed.dismiss()
     }

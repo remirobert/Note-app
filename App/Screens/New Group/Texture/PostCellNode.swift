@@ -9,6 +9,10 @@
 import AsyncDisplayKit
 import Domain
 
+protocol PostCellNodeDelegate: class {
+    func displaySlider(post: PostImage)
+}
+
 class BackgroundPostCellNode: ASDisplayNode {
     override init() {
         super.init()
@@ -27,18 +31,23 @@ class BackgroundPostCellNode: ASDisplayNode {
 }
 
 class PostCellNode: ASCellNode {
+    fileprivate let post: PostImage
     fileprivate let titleTextNode = ASTextNode()
     fileprivate let contentTextNode = ASTextNode()
     fileprivate let galleryNode: ImageGalleryNode
     fileprivate let background = BackgroundPostCellNode()
     fileprivate let timeTextNode = ASTextNode()
 
+    weak var delgate: PostCellNodeDelegate?
+
     init(post: PostImage) {
-        galleryNode = ImageGalleryNode(images: [UIImage(named: "image")!, UIImage(named: "image")!, UIImage(named: "image")!, UIImage(named: "image")!, UIImage(named: "image")!, UIImage(named: "image")!])
+        self.post = post
+        galleryNode = ImageGalleryNode(images: post.images)
         super.init()
         setupHierarchy()
         setupNodes(post: post)
         selectionStyle = .none
+        galleryNode.delegate = self
     }
 }
 
@@ -55,6 +64,12 @@ extension PostCellNode {
         titleTextNode.attributedText = NSAttributedString(string: post.titlePost, attributes: TextAttributes.postCreationTitle)
         contentTextNode.attributedText = NSAttributedString(string: post.descriptionPost, attributes: TextAttributes.postCreationContent)
         timeTextNode.attributedText = NSAttributedString(string: "10 mins ago", attributes: TextAttributes.postCreationContent)
+    }
+}
+
+extension PostCellNode: ImageGalleryCellNodeDelegate {
+    func didSelectImage(index: Int) {
+        self.delgate?.displaySlider(post: post)
     }
 }
 

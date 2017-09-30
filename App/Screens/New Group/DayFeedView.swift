@@ -7,9 +7,11 @@
 //
 
 import Wireframe
+import Domain
 
 protocol DayFeedViewDelegate: class {
     func displayCalendarView()
+    func displaySlider(post: PostImage)
     func addPost()
 }
 

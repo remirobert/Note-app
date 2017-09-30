@@ -51,15 +51,15 @@ extension DayTextureViewModel: FetchPostOperationDelegate {
     func didFetchPosts(posts: [Post]) {
         print("🤜 post coiunt : \(posts.count)")
         print("🎃 get posts : \(posts)")
-        models = (0...1000).map { _ in
-            return PostImage(images: [], titlePost: "title", descriptionPost: "I seriously cannot study without this studio gibli music, it helps me concentrate a lot. I love this music, I wish I can thumbs up more than once.﻿")
-        }
-//        models = posts.map { (post: Post) -> PostImage? in
-//            if let image = post as? PostImage {
-//                return image
-//            }
-//            return nil
-//            }.flatMap { $0 }
+//        models = (0...1000).map { _ in
+//            return PostImage(images: [], titlePost: "title", descriptionPost: "I seriously cannot study without this studio gibli music, it helps me concentrate a lot. I love this music, I wish I can thumbs up more than once.﻿")
+//        }
+        models = posts.map { (post: Post) -> PostImage? in
+            if let image = post as? PostImage {
+                return image
+            }
+            return nil
+            }.flatMap { $0 }
         self.delegate?.didLoadPosts()
     }
 }

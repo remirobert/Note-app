@@ -7,6 +7,7 @@
 //
 
 import AsyncDisplayKit
+import Domain
 
 class DayTextureControllerFactory: DayFeedViewFactory {
     private let viewModel: DayTextureViewModel
@@ -46,6 +47,17 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
         title = dateFormatter.string(from: viewModel.day.date)
         tableNode.view.separatorStyle = .none
         view.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "calendar"), style: .done, target: self, action: #selector(displayCalendarView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "calendar"), style: .done, target: self, action: #selector(addPost))
+    }
+
+    @objc private func displayCalendarView() {
+        delegate?.displayCalendarView()
+    }
+
+    @objc private func addPost() {
+        delegate?.addPost()
     }
 }
 
@@ -57,6 +69,12 @@ extension DayTextureFeedController: DayFeedViewModelDelegate {
     }
 }
 
+extension DayTextureFeedController: PostCellNodeDelegate {
+    func displaySlider(post: PostImage) {
+        print("image post : \(post)")
+    }
+}
+
 extension DayTextureFeedController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return viewModel.models.count
@@ -65,7 +83,9 @@ extension DayTextureFeedController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = viewModel.models[indexPath.row]
         return {
-            PostCellNode(post: model)
+            let cell = PostCellNode(post: model)
+            cell.delgate = self
+            return cell
         }
     }
 }

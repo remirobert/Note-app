@@ -9,6 +9,11 @@
 //
 
 import AsyncDisplayKit
+import RealmPlatform
+
+protocol ImageGalleryCellNodeDelegate: class {
+    func didSelectImage(index: Int)
+}
 
 class ImageGalleryNodeLayout: UICollectionViewFlowLayout {
     override init() {
@@ -27,10 +32,22 @@ class ImageGalleryNodeLayout: UICollectionViewFlowLayout {
 
 class ImageGalleryCellNode: ASCellNode {
     private let imageNode = ASImageNode()
-    init(image: UIImage) {
+    private let operationQueue = OperationQueue()
+
+    init(image: String) {
         super.init()
         addSubnode(imageNode)
-        imageNode.image = image
+
+        var path = DefaultFileManager.documentUrl
+        path?.appendPathComponent(image)
+        guard let pathUrl = path else {
+            return
+        }
+
+        operationQueue.addOperation { [weak self] in
+            guard let image = UIImage(contentsOfFile: pathUrl.absoluteString) else { return }
+            self?.imageNode.image = image
+        }
         imageNode.placeholderColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.00)
         imageNode.imageModificationBlock = { image in
             return image.round(cornerSize: CGSize(width: 15, height: 15))
@@ -40,18 +57,25 @@ class ImageGalleryCellNode: ASCellNode {
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         return ASWrapperLayoutSpec(layoutElement: imageNode)
-        //return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), child: imageNode)
     }
 }
 
 class ImageGalleryNode: ASDisplayNode {
     fileprivate let collectionNode = ASCollectionNode(collectionViewLayout: ImageGalleryNodeLayout())
-    fileprivate let images: [UIImage]
+    fileprivate let images: [String]
     let height: CGFloat
 
-    init(images: [UIImage]) {
+    weak var delegate: ImageGalleryCellNodeDelegate?
+
+    init(images: [String]) {
         self.images = images
-        height = CGFloat(UIScreen.main.bounds.size.width - 100) / 3 * 2 + 10
+        if images.count >= 1 && images.count <= 3 {
+            height = CGFloat(UIScreen.main.bounds.size.width - 100) / 3
+        } else if images.count > 3 && images.count <= 6 {
+            height = CGFloat(UIScreen.main.bounds.size.width - 100) / 3 * 2 + 10
+        } else {
+            height = 0
+        }
         super.init()
         setupHierarchy()
         setupNodes()
@@ -70,6 +94,7 @@ extension ImageGalleryNode {
 
     fileprivate func setupNodes() {
         collectionNode.dataSource = self
+        collectionNode.delegate = self
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -87,5 +112,11 @@ extension ImageGalleryNode: ASCollectionDataSource {
         return {
             ImageGalleryCellNode(image: image)
         }
+    }
+}
+
+extension ImageGalleryNode: ASCollectionDelegate {
+    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        self.delegate?.didSelectImage(index: indexPath.row)
     }
 }

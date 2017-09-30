@@ -15,6 +15,12 @@
 		7229221CF6D5350B852E0FE0 /* Pods_RealmPlatformTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A48C5CBDA65C8157A9EFEB /* Pods_RealmPlatformTests.framework */; };
 		BB07B2721F6BD21B00355CEE /* DayFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB07B2711F6BD21B00355CEE /* DayFeedController.swift */; };
 		BB1870D11F70277D001BA294 /* PostTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1870D01F70277D001BA294 /* PostTextViewController.swift */; };
+		BB252CF81F802C1A009A1818 /* SliderNodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CF71F802C1A009A1818 /* SliderNodeController.swift */; };
+		BB252CFA1F802C95009A1818 /* SliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CF91F802C95009A1818 /* SliderViewModel.swift */; };
+		BB252CFC1F802D07009A1818 /* SliderCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CFB1F802D07009A1818 /* SliderCellNode.swift */; };
+		BB252CFE1F802E75009A1818 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CFD1F802E75009A1818 /* SliderView.swift */; };
+		BB252D001F8030E3009A1818 /* SliderCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CFF1F8030E3009A1818 /* SliderCoordinator.swift */; };
+		BB252D021F80314C009A1818 /* SliderViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252D011F80314C009A1818 /* SliderViewFactory.swift */; };
 		BB2E1BA91F5C0084001D7A92 /* UIImage+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E1BA81F5C0084001D7A92 /* UIImage+rounded.swift */; };
 		BB3B06E11F5347D70085C239 /* Wireframe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B06D81F5347D70085C239 /* Wireframe.framework */; };
 		BB3B06EA1F5347D70085C239 /* Wireframe.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3B06DA1F5347D70085C239 /* Wireframe.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -244,6 +250,12 @@
 		B6EEF88E4EC0D45D1CDCCEE0 /* Pods-RealmPlatformTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmPlatformTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmPlatformTests/Pods-RealmPlatformTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB07B2711F6BD21B00355CEE /* DayFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFeedController.swift; sourceTree = "<group>"; };
 		BB1870D01F70277D001BA294 /* PostTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextViewController.swift; sourceTree = "<group>"; };
+		BB252CF71F802C1A009A1818 /* SliderNodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderNodeController.swift; sourceTree = "<group>"; };
+		BB252CF91F802C95009A1818 /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
+		BB252CFB1F802D07009A1818 /* SliderCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCellNode.swift; sourceTree = "<group>"; };
+		BB252CFD1F802E75009A1818 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		BB252CFF1F8030E3009A1818 /* SliderCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCoordinator.swift; sourceTree = "<group>"; };
+		BB252D011F80314C009A1818 /* SliderViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewFactory.swift; sourceTree = "<group>"; };
 		BB2E1BA81F5C0084001D7A92 /* UIImage+rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+rounded.swift"; sourceTree = "<group>"; };
 		BB3B06D81F5347D70085C239 /* Wireframe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Wireframe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B06DA1F5347D70085C239 /* Wireframe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wireframe.h; sourceTree = "<group>"; };
@@ -488,6 +500,26 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		BB252CF51F802BCB009A1818 /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				BB252CF61F802C0D009A1818 /* Texture */,
+				BB252CFD1F802E75009A1818 /* SliderView.swift */,
+				BB252D011F80314C009A1818 /* SliderViewFactory.swift */,
+			);
+			path = Slider;
+			sourceTree = "<group>";
+		};
+		BB252CF61F802C0D009A1818 /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				BB252CF71F802C1A009A1818 /* SliderNodeController.swift */,
+				BB252CFB1F802D07009A1818 /* SliderCellNode.swift */,
+				BB252CF91F802C95009A1818 /* SliderViewModel.swift */,
+			);
+			path = Texture;
+			sourceTree = "<group>";
+		};
 		BB2E1BA61F5C0052001D7A92 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,6 +544,7 @@
 		BB2E1BAA1F5C0149001D7A92 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				BB252CF51F802BCB009A1818 /* Slider */,
 				BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */,
 				BB1870CF1F702761001BA294 /* Post */,
 				BBD5520C1F6FC57000828B63 /* Calendar */,
@@ -835,6 +868,7 @@
 				BBD5520A1F6FC4FF00828B63 /* CalendarCoordinator.swift */,
 				BBA1C2551F6EDC6600B86F8E /* DayFeedCoordinator.swift */,
 				BBE5B09A1F73FA3B00D8B112 /* PostCoordinator.swift */,
+				BB252CFF1F8030E3009A1818 /* SliderCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1853,17 +1887,21 @@
 				BB7770C51F6D144B009A1B28 /* UICollectionView+register.swift in Sources */,
 				BBE5B0931F72AC0300D8B112 /* PostViewController.swift in Sources */,
 				BBA808CC1F71771D00567D54 /* TextViewCell.swift in Sources */,
+				BB252CFA1F802C95009A1818 /* SliderViewModel.swift in Sources */,
 				BBC179E01F6D106A00C0E07F /* Section.swift in Sources */,
 				BB5634B21F7004E00031228A /* Date+daysCount.swift in Sources */,
 				BBA808C61F710E3000567D54 /* PostNavigationViewController.swift in Sources */,
 				BBD552031F6EEE7A00828B63 /* DayFeedViewControllerFactory.swift in Sources */,
 				BBD552161F6FC75400828B63 /* CalendarController.swift in Sources */,
+				BB252CF81F802C1A009A1818 /* SliderNodeController.swift in Sources */,
 				BB4812D41F70090D009C4B70 /* DateData.swift in Sources */,
+				BB252D001F8030E3009A1818 /* SliderCoordinator.swift in Sources */,
 				BBA808D31F717A6400567D54 /* PostImageViewController.swift in Sources */,
 				BBC77B5E1F79467D0091DC2D /* PostCell.swift in Sources */,
 				BBA808CE1F71777B00567D54 /* StaticCellType.swift in Sources */,
 				BBA808C81F71105300567D54 /* EditPostKeyboardView.swift in Sources */,
 				BBE5B09D1F73FAF900D8B112 /* PostTextView.swift in Sources */,
+				BB252CFC1F802D07009A1818 /* SliderCellNode.swift in Sources */,
 				BBA808CA1F71763C00567D54 /* ButtonPost.swift in Sources */,
 				BB9BF5EE1F560BA900C28C9C /* TextAttributes.swift in Sources */,
 				BB473E311F72677A00F63270 /* GalleryCellViewModel.swift in Sources */,
@@ -1878,6 +1916,8 @@
 				BB77E1DC1F7E4CD400C009D6 /* DayTextureFeedController.swift in Sources */,
 				BB07B2721F6BD21B00355CEE /* DayFeedController.swift in Sources */,
 				BB5634AE1F6FC99F0031228A /* CalendarViewControllerFactory.swift in Sources */,
+				BB252D021F80314C009A1818 /* SliderViewFactory.swift in Sources */,
+				BB252CFE1F802E75009A1818 /* SliderView.swift in Sources */,
 				BB9BF5F41F574D1B00C28C9C /* UIFont+.swift in Sources */,
 				BBC179D71F6C63E400C0E07F /* CollectionDataSource.swift in Sources */,
 				BBE5B09F1F73FBA200D8B112 /* PostTextViewControllerFactory.swift in Sources */,
