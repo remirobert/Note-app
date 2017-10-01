@@ -7,7 +7,19 @@
 //
 
 import Wireframe
+import Domain
 
 class SliderCoordinator {
-    
+    fileprivate let viewFactory: SliderViewFactory
+    fileprivate let parentView: View
+
+    init(post: PostImage, parentView: View) {
+        viewFactory = SliderViewControllerFactory(post: post)
+        self.parentView = parentView
+    }
+
+    func start() {
+        let sliderView = viewFactory.make()
+        parentView.present(view: sliderView)
+    }
 }

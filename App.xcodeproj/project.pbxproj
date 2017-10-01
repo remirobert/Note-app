@@ -69,6 +69,8 @@
 		BB5634AE1F6FC99F0031228A /* CalendarViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5634AD1F6FC99F0031228A /* CalendarViewControllerFactory.swift */; };
 		BB5634B01F6FF0000031228A /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5634AF1F6FF0000031228A /* CalendarViewModel.swift */; };
 		BB5634B21F7004E00031228A /* Date+daysCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5634B11F7004E00031228A /* Date+daysCount.swift */; };
+		BB6366601F80D9E500137599 /* FooterSliderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63665F1F80D9E500137599 /* FooterSliderNode.swift */; };
+		BB6366621F80E53900137599 /* HeaderSliderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6366611F80E53900137599 /* HeaderSliderNode.swift */; };
 		BB63E7C81F536A550047C15A /* AddPostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63E7C71F536A550047C15A /* AddPostUseCase.swift */; };
 		BB63E7CC1F536B430047C15A /* AllPostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63E7CB1F536B430047C15A /* AllPostUseCase.swift */; };
 		BB63E7CE1F536B9A0047C15A /* PostUseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB63E7CD1F536B9A0047C15A /* PostUseCaseProvider.swift */; };
@@ -306,6 +308,8 @@
 		BB5634AD1F6FC99F0031228A /* CalendarViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerFactory.swift; sourceTree = "<group>"; };
 		BB5634AF1F6FF0000031228A /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		BB5634B11F7004E00031228A /* Date+daysCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+daysCount.swift"; sourceTree = "<group>"; };
+		BB63665F1F80D9E500137599 /* FooterSliderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterSliderNode.swift; sourceTree = "<group>"; };
+		BB6366611F80E53900137599 /* HeaderSliderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSliderNode.swift; sourceTree = "<group>"; };
 		BB63E7C71F536A550047C15A /* AddPostUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostUseCase.swift; sourceTree = "<group>"; };
 		BB63E7CB1F536B430047C15A /* AllPostUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostUseCase.swift; sourceTree = "<group>"; };
 		BB63E7CD1F536B9A0047C15A /* PostUseCaseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostUseCaseProvider.swift; sourceTree = "<group>"; };
@@ -515,6 +519,8 @@
 			children = (
 				BB252CF71F802C1A009A1818 /* SliderNodeController.swift */,
 				BB252CFB1F802D07009A1818 /* SliderCellNode.swift */,
+				BB6366611F80E53900137599 /* HeaderSliderNode.swift */,
+				BB63665F1F80D9E500137599 /* FooterSliderNode.swift */,
 				BB252CF91F802C95009A1818 /* SliderViewModel.swift */,
 			);
 			path = Texture;
@@ -1881,6 +1887,7 @@
 				BBC179DA1F6D0FFE00C0E07F /* VerticalCollectionViewLayout.swift in Sources */,
 				BB473E361F729A0F00F63270 /* GalleryImageCell.swift in Sources */,
 				BBD552121F6FC61B00828B63 /* DayCell.swift in Sources */,
+				BB6366601F80D9E500137599 /* FooterSliderNode.swift in Sources */,
 				BBA1C2581F6EE67500B86F8E /* DayFeedViewModel.swift in Sources */,
 				BBD5520E1F6FC58600828B63 /* CalendarView.swift in Sources */,
 				BBA1C24F1F6ECD7900B86F8E /* TextPostCell.swift in Sources */,
@@ -1908,6 +1915,7 @@
 				BBC179DE1F6D103900C0E07F /* CellViewModel.swift in Sources */,
 				BBD817601F7E7A1700C6B7C8 /* ImageGalleryNode.swift in Sources */,
 				BBA1C24D1F6ECC5800B86F8E /* ImagePostCell.swift in Sources */,
+				BB6366621F80E53900137599 /* HeaderSliderNode.swift in Sources */,
 				BB77E1E01F7E50E700C009D6 /* DayTextureViewModel.swift in Sources */,
 				BBC77B5C1F79266C0091DC2D /* PostImageViewControllerFactory.swift in Sources */,
 				BBE5B09B1F73FA3B00D8B112 /* PostCoordinator.swift in Sources */,

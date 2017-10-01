@@ -8,6 +8,7 @@
 
 import AsyncDisplayKit
 import RealmPlatform
+import Domain
 
 class SliderCellNode: ASCellNode {
     private let operationQueue = OperationQueue()
@@ -16,6 +17,9 @@ class SliderCellNode: ASCellNode {
     init(image: String) {
         super.init()
         addSubnode(imageNode)
+        imageNode.imageModificationBlock = { image in
+            return image.round(cornerSize: CGSize(width: 15, height: 15))
+        }
         imageNode.contentMode = .scaleAspectFit
         backgroundColor = UIColor.black
 
@@ -32,6 +36,7 @@ class SliderCellNode: ASCellNode {
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASWrapperLayoutSpec(layoutElement: imageNode)
+        let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return ASInsetLayoutSpec(insets: insets, child: imageNode)
     }
 }

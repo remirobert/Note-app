@@ -32,6 +32,15 @@ class TextAttributes {
                 NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)]
     }
 
+    static var sliderFooter: [String:Any] {
+        let titleParagraphStyle = NSMutableParagraphStyle()
+        titleParagraphStyle.alignment = .left
+        return [NSParagraphStyleAttributeName: titleParagraphStyle,
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold)]
+
+    }
+
     static var descriptionImage: [String:Any] {
         let titleParagraphStyle = NSMutableParagraphStyle()
         titleParagraphStyle.alignment = .right

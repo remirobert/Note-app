@@ -6,12 +6,14 @@
 //  Copyright © 2017 Remi Robert. All rights reserved.
 //
 
-import UIKit
+import Domain
 
 class SliderViewModel {
+    let post: PostImage
     let images: [String]
 
-    init(images: [String]) {
-        self.images = images
+    init(post: PostImage) {
+        self.post = post
+        self.images = post.images
     }
 }
