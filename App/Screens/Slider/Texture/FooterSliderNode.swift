@@ -27,7 +27,7 @@ class FooterSliderNode: ASDisplayNode {
         addSubnode(titleTextNode)
         addSubnode(dateTextNode)
         addSubnode(topBorder)
-        topBorder.backgroundColor = UIColor.white
+        topBorder.backgroundColor = UIColor.lightGray
         backgroundColor = UIColor.clear
     }
 

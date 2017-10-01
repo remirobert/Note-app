@@ -12,6 +12,7 @@ import Domain
 class SliderCoordinator {
     fileprivate let viewFactory: SliderViewFactory
     fileprivate let parentView: View
+    fileprivate var sliderView: SliderView!
 
     init(post: PostImage, parentView: View) {
         viewFactory = SliderViewControllerFactory(post: post)
@@ -19,7 +20,14 @@ class SliderCoordinator {
     }
 
     func start() {
-        let sliderView = viewFactory.make()
+        sliderView = viewFactory.make()
+        sliderView.delegate = self
         parentView.present(view: sliderView)
+    }
+}
+
+extension SliderCoordinator: SliderViewDelegate {
+    func dismiss() {
+        sliderView.dismiss()
     }
 }

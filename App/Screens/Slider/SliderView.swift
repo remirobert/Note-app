@@ -8,4 +8,10 @@
 
 import Wireframe
 
-protocol SliderView: View {}
+protocol SliderViewDelegate: class {
+    func dismiss()
+}
+
+protocol SliderView: View {
+    weak var delegate: SliderViewDelegate? { get set }
+}

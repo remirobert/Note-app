@@ -17,21 +17,20 @@ class SliderCellNode: ASCellNode {
     init(image: String) {
         super.init()
         addSubnode(imageNode)
-        imageNode.imageModificationBlock = { image in
-            return image.round(cornerSize: CGSize(width: 15, height: 15))
-        }
         imageNode.contentMode = .scaleAspectFit
-        backgroundColor = UIColor.black
+        backgroundColor = UIColor.white
 
         var path = DefaultFileManager.documentUrl
         path?.appendPathComponent(image)
         guard let pathUrl = path else {
             return
         }
-
         operationQueue.addOperation { [weak self] in
             guard let image = UIImage(contentsOfFile: pathUrl.absoluteString) else { return }
             self?.imageNode.image = image
+        }
+        imageNode.imageModificationBlock = { image in
+            return image.round(cornerSize: CGSize(width: 15, height: 15))
         }
     }
 

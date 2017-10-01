@@ -45,36 +45,16 @@ class SliderNode: ASDisplayNode {
         addSubnode(pagerNode)
         addSubnode(footerDetails)
         addSubnode(headerControls)
-        pagerNode.backgroundColor = UIColor.black
-        backgroundColor = UIColor.black
-        headerControls.backgroundColor = UIColor.lightGray
+        backgroundColor = UIColor.white
+        headerControls.backgroundColor = UIColor.white
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let sliderLayout = ASWrapperLayoutSpec(layoutElement: pagerNode)
+        pagerNode.style.flexGrow = 1
         let stackLayout = ASStackLayoutSpec.vertical()
         stackLayout.alignContent = .center
-        headerControls.style.flexGrow = 1
-        footerDetails.style.flexGrow = 1
-        stackLayout.children = [headerControls, sliderLayout, footerDetails]
+        stackLayout.children = [headerControls, pagerNode, footerDetails]
         return stackLayout
-
-
-//        let layoutPager = ASWrapperLayoutSpec(layoutElement: pagerNode)
-//        let headerLayout = ASRelativeLayoutSpec(horizontalPosition: ASRelativeLayoutSpecPosition.start,
-//                                                verticalPosition: ASRelativeLayoutSpecPosition.start,
-//                                                sizingOption: ASRelativeLayoutSpecSizingOption.minimumWidth,
-//                                                child: headerControls)
-//        let footerLayout = ASRelativeLayoutSpec(horizontalPosition: ASRelativeLayoutSpecPosition.start,
-//                                                verticalPosition: ASRelativeLayoutSpecPosition.end,
-//                                                sizingOption: ASRelativeLayoutSpecSizingOption.minimumWidth,
-//                                                child: footerDetails)
-//
-//        let stackLayoutControls = ASStackLayoutSpec.vertical()
-//        stackLayoutControls.alignContent = .spaceBetween
-//        stackLayoutControls.flexWrap = .noWrap
-//        stackLayoutControls.children = [headerLayout, footerLayout]
-//        return ASBackgroundLayoutSpec(child: layoutPager, background: stackLayoutControls)
     }
 }
 
@@ -82,11 +62,14 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView {
     fileprivate let sliderNode: SliderNode
     fileprivate let viewModel: SliderViewModel
 
+    weak var delegate: SliderViewDelegate?
+
     init(viewModel: SliderViewModel) {
         sliderNode = SliderNode(post: viewModel.post)
         self.viewModel = viewModel
         super.init(node: sliderNode)
         sliderNode.pagerNode.setDataSource(self)
+        sliderNode.headerControls.closeButtonNode.addTarget(self, action: #selector(self.close), forControlEvents: .touchUpInside)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -95,7 +78,10 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.black
+    }
+
+    @objc func close() {
+        delegate?.dismiss()
     }
 }
 
