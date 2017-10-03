@@ -29,6 +29,30 @@ struct DateData {
     }
 }
 
+extension DateData {
+    func previousMonth() -> DateData {
+        if month - 1 <= 0 {
+            return DateData(day: day,
+                            month: calendar.monthSymbols.count,
+                            year: year - 1)
+        }
+        return DateData(day: day,
+                        month: month - 1,
+                        year: year)
+    }
+
+    func nextMonth() -> DateData {
+        if month + 1 > calendar.monthSymbols.count {
+            return DateData(day: day,
+                            month: 0,
+                            year: year + 1)
+        }
+        return DateData(day: day,
+                        month: month + 1,
+                        year: year)
+    }
+}
+
 extension DateData: Equatable {
     static func ==(lhs: DateData, rhs: DateData) -> Bool {
         return lhs.year == rhs.year && lhs.month == rhs.month && lhs.day == rhs.day

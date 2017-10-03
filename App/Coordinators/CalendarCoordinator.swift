@@ -16,6 +16,7 @@ class CalendarCoordinator {
     fileprivate var dayFeedCoordinator: DayFeedCoordinator!
     fileprivate let getDayUseCase: GetDayUseCase
     fileprivate let subscriber = PostUpdateSubscriber()
+    fileprivate let navigationView: NavigationView
 
     struct Dependencies {
         let window: Window
@@ -25,12 +26,14 @@ class CalendarCoordinator {
     init(dependencies: Dependencies) {
         self.getDayUseCase = RMGetDayUseCase()
         self.dependencies = dependencies
-        calendarView = dependencies.calendarViewFactory.make()
+        let controller = CalendarTextureController()
+        calendarView = controller
+        navigationView = CalendarNavigationController(rootViewController: controller)
     }
 
     func start() {
         calendarView.delegate = self
-        dependencies.window.rootView = calendarView
+        dependencies.window.rootView = navigationView
     }
 }
 

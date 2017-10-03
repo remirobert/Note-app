@@ -68,7 +68,7 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView {
         sliderNode = SliderNode(post: viewModel.post)
         self.viewModel = viewModel
         super.init(node: sliderNode)
-        sliderNode.pagerNode.setDataSource(self)
+//        sliderNode.pagerNode.setDataSource(self)
         sliderNode.headerControls.closeButtonNode.addTarget(self, action: #selector(self.close), forControlEvents: .touchUpInside)
     }
 

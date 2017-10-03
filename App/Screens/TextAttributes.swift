@@ -20,16 +20,24 @@ class TextAttributes {
     }
 
     static var postCreationTitle: [String:Any] {
-        return [NSForegroundColorAttributeName: UIColor.black,
+        return [NSForegroundColorAttributeName: UIColor(red:0.20, green:0.84, blue:0.61, alpha:1.00),
                 NSFontAttributeName: UIFont.systemFont(ofSize: 22, weight: UIFontWeightBold)]
     }
 
     static var footerDate: [String:Any] {
         let titleParagraphStyle = NSMutableParagraphStyle()
-        titleParagraphStyle.alignment = .center
+        titleParagraphStyle.alignment = .left
         return [NSParagraphStyleAttributeName: titleParagraphStyle,
                 NSForegroundColorAttributeName: UIColor.lightGray,
                 NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)]
+    }
+
+    static var calendarDay: [String:Any] {
+        let titleParagraphStyle = NSMutableParagraphStyle()
+        titleParagraphStyle.alignment = .center
+        return [NSParagraphStyleAttributeName: titleParagraphStyle,
+                NSForegroundColorAttributeName: UIColor.black,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightHeavy)]
     }
 
     static var sliderFooter: [String:Any] {

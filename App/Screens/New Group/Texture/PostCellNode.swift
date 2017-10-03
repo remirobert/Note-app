@@ -19,9 +19,9 @@ class BackgroundPostCellNode: ASDisplayNode {
         backgroundColor = UIColor.white
         cornerRadius = 5
         shadowColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
-        shadowRadius = 15
+        shadowRadius = 5
         shadowOpacity = 1
-        shadowOffset = CGSize(width: 2, height: 2)
+        shadowOffset = CGSize(width: 1, height: 1)
     }
 
     override func didLoad() {
@@ -38,11 +38,25 @@ class PostCellNode: ASCellNode {
     fileprivate let background = BackgroundPostCellNode()
     fileprivate let timeTextNode = ASTextNode()
 
+    fileprivate var nodes = [ASDisplayNode]()
+
     weak var delgate: PostCellNodeDelegate?
 
     init(post: PostImage) {
         self.post = post
         galleryNode = ImageGalleryNode(images: post.images)
+
+        if !post.titlePost.isEmpty {
+            nodes.append(titleTextNode)
+        }
+        if !post.descriptionPost.isEmpty {
+            nodes.append(contentTextNode)
+        }
+        if post.images.count > 0 {
+            nodes.append(galleryNode)
+        }
+        nodes.append(timeTextNode)
+
         super.init()
         setupHierarchy()
         setupNodes(post: post)
@@ -54,16 +68,16 @@ class PostCellNode: ASCellNode {
 extension PostCellNode {
     fileprivate func setupHierarchy() {
         addSubnode(background)
-        addSubnode(titleTextNode)
-        addSubnode(contentTextNode)
-        addSubnode(galleryNode)
-        addSubnode(timeTextNode)
+        nodes.forEach {
+            addSubnode($0)
+        }
     }
 
     fileprivate func setupNodes(post: PostImage) {
+        galleryNode.style.preferredSize = CGSize(width: UIScreen.main.bounds.size.width - 80, height: galleryNode.height)
         titleTextNode.attributedText = NSAttributedString(string: post.titlePost, attributes: TextAttributes.postCreationTitle)
         contentTextNode.attributedText = NSAttributedString(string: post.descriptionPost, attributes: TextAttributes.postCreationContent)
-        timeTextNode.attributedText = NSAttributedString(string: "10 mins ago", attributes: TextAttributes.postCreationContent)
+        timeTextNode.attributedText = NSAttributedString(string: "10 mins ago", attributes: TextAttributes.footerDate)
     }
 }
 
@@ -78,11 +92,9 @@ extension PostCellNode {
         let stackLayout = ASStackLayoutSpec.vertical()
         stackLayout.spacing = 10
         let insets = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
-        galleryNode.style.preferredSize = CGSize(width: UIScreen.main.bounds.size.width - 80, height: galleryNode.height)
-        stackLayout.children = [titleTextNode, contentTextNode, galleryNode, timeTextNode]
-
+        stackLayout.children = nodes
         let insetsStackLayout = ASInsetLayoutSpec(insets: insets, child: stackLayout)
-        let insetsBackground = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        let insetsBackground = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         return ASBackgroundLayoutSpec(child: insetsStackLayout, background: ASInsetLayoutSpec(insets: insetsBackground, child: background))
     }
 }

@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window.rootViewController = navigation
 
 
-        let factory = CalendarViewControllerFactory()
+        let factory = CalendarTextureControllerFactory()
         let deps = CalendarCoordinator.Dependencies(window: window, calendarViewFactory: factory)
         coordinator = CalendarCoordinator(dependencies: deps)
         coordinator.start()

@@ -8,6 +8,7 @@
 
 import AsyncDisplayKit
 import Domain
+import SnapKit
 
 class DayTextureControllerFactory: DayFeedViewFactory {
     private let viewModel: DayTextureViewModel
@@ -21,9 +22,26 @@ class DayTextureControllerFactory: DayFeedViewFactory {
     }
 }
 
+class DayFeedNode: ASDisplayNode {
+    let tableNode = ASTableNode()
+    private let backgroundImageNode = ASImageNode()
+
+    override init() {
+        super.init()
+        backgroundImageNode.imageModificationBlock = { image in
+            let newImage = image.applyBlurWithRadius(30, tintColor: UIColor(white: 0.5, alpha: 0.3),
+                                                     saturationDeltaFactor: 1.8,
+                                                     maskImage: nil)
+            return (newImage != nil) ? newImage : image
+        }
+        backgroundImageNode.image = #imageLiteral(resourceName: "background")
+    }
+}
+
 class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
     fileprivate let tableNode = ASTableNode()
     fileprivate let viewModel: DayTextureViewModel
+    fileprivate let toolBar = UIToolbar(frame: CGRect.zero)
 
     weak var delegate: DayFeedViewDelegate?
     func reload() {}
@@ -46,10 +64,15 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
         dateFormatter.dateStyle = .long
         title = dateFormatter.string(from: viewModel.day.date)
         tableNode.view.separatorStyle = .none
+        tableNode.view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
+        tableNode.view.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         view.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "calendar"), style: .done, target: self, action: #selector(displayCalendarView))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "calendar"), style: .done, target: self, action: #selector(addPost))
+
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addPost))
+        (navigationController as? DayFeedNavigationViewController)?.toolBarActions.setItems([space, button], animated: true)
     }
 
     @objc private func displayCalendarView() {
