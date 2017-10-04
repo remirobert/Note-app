@@ -33,7 +33,7 @@ extension DateData {
     func previousMonth() -> DateData {
         if month - 1 <= 0 {
             return DateData(day: day,
-                            month: calendar.monthSymbols.count,
+                            month: calendar.monthSymbols.count - 1,
                             year: year - 1)
         }
         return DateData(day: day,
@@ -42,7 +42,7 @@ extension DateData {
     }
 
     func nextMonth() -> DateData {
-        if month + 1 > calendar.monthSymbols.count {
+        if month + 1 >= calendar.monthSymbols.count {
             return DateData(day: day,
                             month: 0,
                             year: year + 1)

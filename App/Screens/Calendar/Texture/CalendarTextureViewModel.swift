@@ -36,8 +36,10 @@ class SectionCalendar {
     }
 }
 
-func ==(lhs: SectionCalendar, rhs: SectionCalendar) -> Bool {
-    return lhs.month == rhs.month && lhs.year == rhs.year
+extension SectionCalendar: Equatable {
+    static func ==(lhs: SectionCalendar, rhs: SectionCalendar) -> Bool {
+        return lhs.month == rhs.month && lhs.year == rhs.year
+    }
 }
 
 class CalendarTextureViewModel {
@@ -50,6 +52,7 @@ class CalendarTextureViewModel {
     }
 
     private(set) var sections = [SectionCalendar]()
+    private(set) var todaySection: SectionCalendar!
     private(set) var currentSection = IndexPath(row: 0, section: 0)
 
     init(currentDate: Date = Date(), calendar: Calendar = Calendar.current) {
@@ -60,13 +63,19 @@ class CalendarTextureViewModel {
 
     private func initInitialData() {
         let currentDateData = DateData(date: currentDate, calendar: calendar)
-        sections.append(SectionCalendar(dateData: currentDateData))
+        let section = SectionCalendar(dateData: currentDateData)
+        todaySection = section
+        sections.append(section)
+        (0...6).forEach({ _ in
+            loadPreviousMonth()
+            loadNextMonth()
+        })
     }
 
     func loadPreviousMonth() {
         guard let first = sections.first else { return }
-        let newSection = SectionCalendar(dateData: first.dateData.previousMonth())
-        sections.insert(newSection, at: 0)
+        let sectionCalendar = SectionCalendar(dateData: first.dateData.previousMonth())
+        sections.insert(sectionCalendar, at: 0)
     }
 
     func loadNextMonth() {

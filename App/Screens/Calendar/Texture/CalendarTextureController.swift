@@ -8,23 +8,26 @@
 
 import AsyncDisplayKit
 
-class CalendarTextureController: ASViewController<ASPagerNode>, CalendarView {
-    fileprivate let pagerNode: ASPagerNode
+class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarView {
+    fileprivate let collectionNode: ASCollectionNode
     fileprivate let viewModel: CalendarTextureViewModel
+    fileprivate var currentSectionCalendar: SectionCalendar!
+    fileprivate var performUpdate = true
 
     weak var delegate: CalendarViewDelegate?
 
     init(viewModel: CalendarTextureViewModel = CalendarTextureViewModel()) {
         self.viewModel = viewModel
-        let layout = ASPagerFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        pagerNode = ASPagerNode(collectionViewLayout: layout)
-        super.init(node: pagerNode)
-        pagerNode.setDelegate(self)
-        pagerNode.setDataSource(self)
-        pagerNode.invalidateCalculatedLayout()
+        let collectionViewLayout = VerticalCollectionViewLayout()
+        collectionViewLayout.minimumLineSpacing = 10
+        collectionViewLayout.minimumInteritemSpacing = 10
+        collectionNode = ASCollectionNode(collectionViewLayout: collectionViewLayout)
+        super.init(node: collectionNode)
+        currentSectionCalendar = viewModel.todaySection
+        collectionNode.registerSupplementaryNode(ofKind: UICollectionElementKindSectionHeader)
+        collectionNode.dataSource = self
+        collectionNode.delegate = self
+        collectionNode.reloadData()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -34,9 +37,7 @@ class CalendarTextureController: ASViewController<ASPagerNode>, CalendarView {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Takagi"
-        viewModel.loadNextMonth()
-        viewModel.loadPreviousMonth()
-        pagerNode.reloadData()
+        collectionNode.view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +45,10 @@ class CalendarTextureController: ASViewController<ASPagerNode>, CalendarView {
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let todayButton = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.scrollToToday))
         (navigationController as? CalendarNavigationController)?.toolBarActions.items = [space, todayButton]
+
+        viewModel.sections.forEach { section in
+            print("section : \(section.year) - \(section.month)")
+        }
     }
 
     @objc private func scrollToToday() {
@@ -51,36 +56,40 @@ class CalendarTextureController: ASViewController<ASPagerNode>, CalendarView {
     }
 }
 
-extension CalendarTextureController: ASPagerDataSource, ASPagerDelegate {
-    func numberOfPages(in pagerNode: ASPagerNode) -> Int {
+extension CalendarTextureController: ASCollectionDataSource {
+    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
         return viewModel.sections.count
     }
 
-    func pagerNode(_ pagerNode: ASPagerNode, nodeBlockAt index: Int) -> ASCellNodeBlock {
-        let sectionCalendar = viewModel.sections[index]
+    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.sections[section].days.count
+    }
+
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let dayData = viewModel.sections[indexPath.section].days[indexPath.row]
         return {
-            OverviewMonthCellNode(sectionCalendar: sectionCalendar)
+            return CalendarCellNode(dateData: dayData)
         }
     }
 
-    func collectionNode(_ collectionNode: ASCollectionNode, willDisplayItemWith node: ASCellNode) {
-        guard let overviewNode = node as? OverviewMonthCellNode else { return }
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> ASCellNodeBlock {
+        let sectionCalendar = viewModel.sections[indexPath.section]
+        return {
+            return HeaderCellNode(dateData: sectionCalendar)
+        }
+    }
+}
 
-        if let last = viewModel.sections.last {
-            if overviewNode.sectionCalendar == last {
-                viewModel.loadNextMonth()
-                pagerNode.reloadData()
-            }
-        }
-        if let first = viewModel.sections.first {
-            print("💚 reload next : \(overviewNode.sectionCalendar.year)/\(overviewNode.sectionCalendar.month)")
-            print("💙 reload next : \(first.year)/\(first.month)")
-            if overviewNode.sectionCalendar == first {
-                pagerNode.performBatchUpdates({
-                    viewModel.loadPreviousMonth()
-                }, completion: nil)
-//                pagerNode.reloadData()
-            }
-        }
+extension CalendarTextureController: ASCollectionDelegate, ASCollectionDelegateFlowLayout {
+    func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
+        let size = CGSize(width: (UIScreen.main.bounds.size.width - 70) / 5,
+                          height: (UIScreen.main.bounds.size.width - 70) / 5)
+        return ASSizeRange(min: size, max: size)
+    }
+
+    func collectionNode(_ collectionNode: ASCollectionNode, sizeRangeForHeaderInSection section: Int) -> ASSizeRange {
+        let size = CGSize(width: UIScreen.main.bounds.size.width,
+                          height: 70)
+        return ASSizeRange(min: size, max: size)
     }
 }

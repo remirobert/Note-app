@@ -15,10 +15,15 @@ class HeaderCellNode: ASCellNode {
         super.init()
         addSubnode(textNode)
         let text = "\(calendar.monthSymbols[dateData.month]) \(dateData.year)"
-        textNode.attributedText = NSAttributedString(string: text)
+        textNode.attributedText = NSAttributedString(string: text, attributes: TextAttributes.calendarHeader)
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        return ASWrapperLayoutSpec(layoutElement: textNode)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        let insetsLayout = ASInsetLayoutSpec(insets: insets, child: textNode)
+        return ASRelativeLayoutSpec(horizontalPosition: .end,
+                                    verticalPosition: .end,
+                                    sizingOption: .minimumHeight,
+                                    child: insetsLayout)
     }
 }

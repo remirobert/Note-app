@@ -32,12 +32,20 @@ class TextAttributes {
                 NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)]
     }
 
+    static var calendarHeader: [String:Any] {
+        let titleParagraphStyle = NSMutableParagraphStyle()
+        titleParagraphStyle.alignment = .right
+        return [NSParagraphStyleAttributeName: titleParagraphStyle,
+                NSForegroundColorAttributeName: UIColor.black,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 25, weight: UIFontWeightHeavy)]
+    }
+
     static var calendarDay: [String:Any] {
         let titleParagraphStyle = NSMutableParagraphStyle()
         titleParagraphStyle.alignment = .center
         return [NSParagraphStyleAttributeName: titleParagraphStyle,
                 NSForegroundColorAttributeName: UIColor.black,
-                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightHeavy)]
+                NSFontAttributeName: UIFont.systemFont(ofSize: 18, weight: UIFontWeightHeavy)]
     }
 
     static var sliderFooter: [String:Any] {
