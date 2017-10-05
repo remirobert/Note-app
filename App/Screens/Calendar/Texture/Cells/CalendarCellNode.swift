@@ -8,16 +8,31 @@
 
 import AsyncDisplayKit
 
+class NumberPostDayNode: ASDisplayNode {
+    private let numberTextNode = ASTextNode()
+
+    init(numberPost: Int) {
+        super.init()
+        backgroundColor = UIColor.black
+        cornerRadius = 10
+        style.preferredSize = CGSize(width: 20, height: 20)
+        numberTextNode.attributedText = NSAttributedString(string: "\(numberPost)", attributes: TextAttributes.numberPostDay)
+        addSubnode(numberTextNode)
+    }
+
+    func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .minimumXY, child: numberTextNode)
+    }
+}
+
 class CalendarCellNode: ASCellNode {
-    fileprivate let numberPostsNode = ASTextNode()
+    fileprivate let numberPostsNode = NumberPostDayNode(numberPost: 3)
     fileprivate let dayTextNode = ASTextNode()
 
     init(dateData: DateData) {
         super.init()
         addSubnode(dayTextNode)
         addSubnode(numberPostsNode)
-//        numberPostsNode.cornerRadius = 10
-        numberPostsNode.backgroundColor = UIColor.cyan
         borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         borderWidth = 1
         cornerRadius = 5
@@ -26,16 +41,19 @@ class CalendarCellNode: ASCellNode {
         numberPostsNode.attributedText = NSAttributedString(string: "4")
     }
 
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+    override func didLoad() {
+        super.didLoad()
+        numberPostsNode.layer.masksToBounds = true
+    }
 
+    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let centerLayout = ASCenterLayoutSpec(centeringOptions: .XY,
                                               sizingOptions: .minimumXY,
                                               child: dayTextNode)
-        let insets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        let insetsTextLayout = ASInsetLayoutSpec(insets: insets, child: centerLayout)
-
-        numberPostsNode.style.layoutPosition = CGPoint(x: 50, y: 0)
-        numberPostsNode.style.preferredSize = CGSize(width: 10, height: 10)
-        return ASAbsoluteLayoutSpec(sizing: .default, children: [insetsTextLayout, numberPostsNode])
+        let numberPostLayout = ASRelativeLayoutSpec(horizontalPosition: .end,
+                                                    verticalPosition: .start,
+                                                    sizingOption: .minimumSize,
+                                                    child: numberPostsNode)
+        return ASOverlayLayoutSpec(child: centerLayout, overlay: numberPostLayout)
     }
 }

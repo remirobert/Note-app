@@ -40,6 +40,14 @@ class TextAttributes {
                 NSFontAttributeName: UIFont.systemFont(ofSize: 25, weight: UIFontWeightHeavy)]
     }
 
+    static var numberPostDay: [String:Any] {
+        let titleParagraphStyle = NSMutableParagraphStyle()
+        titleParagraphStyle.alignment = .center
+        return [NSParagraphStyleAttributeName: titleParagraphStyle,
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBlack)]
+    }
+
     static var calendarDay: [String:Any] {
         let titleParagraphStyle = NSMutableParagraphStyle()
         titleParagraphStyle.alignment = .center
