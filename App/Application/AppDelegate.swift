@@ -9,6 +9,10 @@
 import UIKit
 import IQKeyboardManagerSwift
 
+//remove that dependencies only the coordinator know the plateform implementation
+import Domain
+import RealmPlatform
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window.rootViewController = navigation
 
 
-        let factory = CalendarTextureControllerFactory()
+        let calendarViewModel = CalendarTextureViewModel(getDayUseCase: RMGetDayUseCase())
+        let factory = CalendarTextureControllerFactory(viewModel: calendarViewModel)
         let deps = CalendarCoordinator.Dependencies(window: window, calendarViewFactory: factory)
         coordinator = CalendarCoordinator(dependencies: deps)
         coordinator.start()

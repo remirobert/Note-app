@@ -16,7 +16,7 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
 
     weak var delegate: CalendarViewDelegate?
 
-    init(viewModel: CalendarTextureViewModel = CalendarTextureViewModel()) {
+    init(viewModel: CalendarTextureViewModel) {
         self.viewModel = viewModel
         let collectionViewLayout = VerticalCollectionViewLayout()
         collectionViewLayout.minimumLineSpacing = 10
@@ -45,10 +45,6 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let todayButton = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.scrollToToday))
         (navigationController as? CalendarNavigationController)?.toolBarActions.items = [space, todayButton]
-
-        viewModel.sections.forEach { section in
-            print("section : \(section.year) - \(section.month)")
-        }
     }
 
     @objc private func scrollToToday() {
@@ -81,6 +77,11 @@ extension CalendarTextureController: ASCollectionDataSource {
 }
 
 extension CalendarTextureController: ASCollectionDelegate, ASCollectionDelegateFlowLayout {
+    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        let date = viewModel.sections[indexPath.section].days[indexPath.row].toDate()
+        delegate?.didSelectDay(date: date)
+    }
+
     func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
         let size = CGSize(width: (UIScreen.main.bounds.size.width - 70) / 5,
                           height: (UIScreen.main.bounds.size.width - 70) / 5)

@@ -7,21 +7,25 @@
 //
 
 import Foundation
+import Domain
 
 struct DateData {
     fileprivate let calendar: Calendar
+    let dayModel: Day?
     let day: Int
     let month: Int
     let year: Int
 
-    init(date: Date, calendar: Calendar = Calendar.current) {
+    init(date: Date, calendar: Calendar = Calendar.current, dayModel: Day? = nil) {
+        self.dayModel = dayModel
         self.calendar = calendar
         self.day = calendar.component(type(of: calendar).Component.day, from: date)
         self.month = calendar.component(type(of: calendar).Component.month, from: date) - 1
         self.year = calendar.component(type(of: calendar).Component.year, from: date)
     }
 
-    init(day: Int, month: Int, year: Int, calendar: Calendar = Calendar.current) {
+    init(day: Int = 0, month: Int, year: Int, calendar: Calendar = Calendar.current, dayModel: Day? = nil) {
+        self.dayModel = dayModel
         self.calendar = calendar
         self.day = day
         self.month = month
@@ -30,26 +34,18 @@ struct DateData {
 }
 
 extension DateData {
-    func previousMonth() -> DateData {
+    func previousMonth() -> (month: Int, year: Int) {
         if month - 1 <= 0 {
-            return DateData(day: day,
-                            month: calendar.monthSymbols.count - 1,
-                            year: year - 1)
+            return (month: calendar.monthSymbols.count - 1, year: year - 1)
         }
-        return DateData(day: day,
-                        month: month - 1,
-                        year: year)
+        return (month: month - 1, year: year)
     }
 
-    func nextMonth() -> DateData {
+    func nextMonth() -> (month: Int, year: Int) {
         if month + 1 >= calendar.monthSymbols.count {
-            return DateData(day: day,
-                            month: 0,
-                            year: year + 1)
+            return (month: 0, year: year + 1)
         }
-        return DateData(day: day,
-                        month: month + 1,
-                        year: year)
+        return (month: month + 1, year: year)
     }
 }
 

@@ -7,7 +7,13 @@
 //
 
 class CalendarTextureControllerFactory: CalendarViewFactory {
+    private let viewModel: CalendarTextureViewModel
+
+    init(viewModel: CalendarTextureViewModel) {
+        self.viewModel = viewModel
+    }
+
     func make() -> CalendarView {
-        return CalendarTextureController()
+        return CalendarTextureController(viewModel: viewModel)
     }
 }

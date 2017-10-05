@@ -95,6 +95,7 @@
 		BB77E1DC1F7E4CD400C009D6 /* DayTextureFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DB1F7E4CD400C009D6 /* DayTextureFeedController.swift */; };
 		BB77E1DE1F7E4D5600C009D6 /* PostCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DD1F7E4D5600C009D6 /* PostCellNode.swift */; };
 		BB77E1E01F7E50E700C009D6 /* DayTextureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */; };
+		BB8EEC041F864C480064309C /* Date+FromComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8EEC031F864C480064309C /* Date+FromComponents.swift */; };
 		BB9BF5EE1F560BA900C28C9C /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */; };
 		BB9BF5F41F574D1B00C28C9C /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */; };
 		BB9BF5FA1F5759D800C28C9C /* WorkSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB9BF5F91F5759D800C28C9C /* WorkSans-Regular.ttf */; };
@@ -346,6 +347,7 @@
 		BB77E1DB1F7E4CD400C009D6 /* DayTextureFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTextureFeedController.swift; sourceTree = "<group>"; };
 		BB77E1DD1F7E4D5600C009D6 /* PostCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellNode.swift; sourceTree = "<group>"; };
 		BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTextureViewModel.swift; sourceTree = "<group>"; };
+		BB8EEC031F864C480064309C /* Date+FromComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FromComponents.swift"; sourceTree = "<group>"; };
 		BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		BB9BF5F91F5759D800C28C9C /* WorkSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				BB3C24A31F80F45E0073C414 /* UIImage+applyBlur.swift */,
 				BB7770C41F6D144B009A1B28 /* UICollectionView+register.swift */,
 				BB5634B11F7004E00031228A /* Date+daysCount.swift */,
+				BB8EEC031F864C480064309C /* Date+FromComponents.swift */,
 				BBC907CA1F79680D001AC9FE /* String+size.swift */,
 			);
 			path = Extensions;
@@ -1933,6 +1936,7 @@
 				BBA1C24F1F6ECD7900B86F8E /* TextPostCell.swift in Sources */,
 				BB7770C51F6D144B009A1B28 /* UICollectionView+register.swift in Sources */,
 				BBE5B0931F72AC0300D8B112 /* PostViewController.swift in Sources */,
+				BB8EEC041F864C480064309C /* Date+FromComponents.swift in Sources */,
 				BBA808CC1F71771D00567D54 /* TextViewCell.swift in Sources */,
 				BB252CFA1F802C95009A1818 /* SliderViewModel.swift in Sources */,
 				BBC179E01F6D106A00C0E07F /* Section.swift in Sources */,

@@ -7,22 +7,26 @@
 //
 
 import Foundation
+import Domain
 
 class SectionCalendar {
     let month: Int
     let year: Int
     private(set) var days = [DateData]()
+    private let getDayUseCase: GetDayUseCase
     var dateData: DateData {
         return DateData(day: 0, month: month, year: year)
     }
 
-    init(month: Int, year: Int) {
+    init(month: Int, year: Int, getDayUseCase: GetDayUseCase) {
+        self.getDayUseCase = getDayUseCase
         self.month = month
         self.year = year
         initDaysData()
     }
 
-    init(dateData: DateData) {
+    init(dateData: DateData, getDayUseCase: GetDayUseCase) {
+        self.getDayUseCase = getDayUseCase
         self.month = dateData.month
         self.year = dateData.year
         initDaysData()
@@ -31,7 +35,9 @@ class SectionCalendar {
     private func initDaysData() {
         let dayCount = Date.daysCount(year: year, month: month + 1)
         days = (1...dayCount).map({ (day: Int) -> DateData in
-            return DateData(day: day, month: month, year: year)
+            let date = Date.fromComponents(day: day, month: month + 1, year: year)
+            let dayModel = getDayUseCase.get(forDate: date)
+            return DateData(day: day, month: month, year: year, dayModel: dayModel)
         })
     }
 }
@@ -45,6 +51,7 @@ extension SectionCalendar: Equatable {
 class CalendarTextureViewModel {
     private let currentDate: Date
     private let calendar: Calendar
+    private let getDayUseCase: GetDayUseCase
     private var defaultRange: Range<Int> {
         let currentYear = calendar.component(type(of: calendar).Component.year,
                                              from: currentDate)
@@ -55,7 +62,8 @@ class CalendarTextureViewModel {
     private(set) var todaySection: SectionCalendar!
     private(set) var currentSection = IndexPath(row: 0, section: 0)
 
-    init(currentDate: Date = Date(), calendar: Calendar = Calendar.current) {
+    init(currentDate: Date = Date(), calendar: Calendar = Calendar.current, getDayUseCase: GetDayUseCase) {
+        self.getDayUseCase = getDayUseCase
         self.currentDate = currentDate
         self.calendar = calendar
         initInitialData()
@@ -63,7 +71,7 @@ class CalendarTextureViewModel {
 
     private func initInitialData() {
         let currentDateData = DateData(date: currentDate, calendar: calendar)
-        let section = SectionCalendar(dateData: currentDateData)
+        let section = SectionCalendar(dateData: currentDateData, getDayUseCase: getDayUseCase)
         todaySection = section
         sections.append(section)
         (0...6).forEach({ _ in
@@ -74,29 +82,17 @@ class CalendarTextureViewModel {
 
     func loadPreviousMonth() {
         guard let first = sections.first else { return }
-        let sectionCalendar = SectionCalendar(dateData: first.dateData.previousMonth())
+        let dateComponents = first.dateData.previousMonth()
+        let dateData = DateData(month: dateComponents.month, year: dateComponents.year)
+        let sectionCalendar = SectionCalendar(dateData: dateData, getDayUseCase: getDayUseCase)
         sections.insert(sectionCalendar, at: 0)
     }
 
     func loadNextMonth() {
         guard let last = sections.last else { return }
-        let newSection = SectionCalendar(dateData: last.dateData.nextMonth())
+        let dateComponents = last.dateData.nextMonth()
+        let dateData = DateData(month: dateComponents.month, year: dateComponents.year)
+        let newSection = SectionCalendar(dateData: dateData, getDayUseCase: getDayUseCase)
         sections.append(newSection)
     }
-
-//    func initSections(range: Range<Int>) {
-//        let currentDateData = DateData(date: currentDate, calendar: calendar)
-//        currentSection = IndexPath(row: 0, section: ((currentDateData.year - range.lowerBound) * 12) + currentDateData.month + 1)
-//
-//        for year in [Int](range.lowerBound..<range.upperBound) {
-//            for month in 0..<calendar.monthSymbols.count {
-//                let dayCount = Date.daysCount(year: year, month: month + 1, calendar: calendar)
-//                let models = (1...dayCount).map({ (day: Int) -> DateData in
-//                    return DateData(day: day, month: month, year: year, calendar: calendar)
-//                })
-//                let section = SectionCalendar(month: month, year: year, days: models)
-//                sections.append(section)
-//            }
-//        }
-//    }
 }

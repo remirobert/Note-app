@@ -17,18 +17,22 @@ public class RMGetDayUseCase: GetDayUseCase {
         self.configuration = configuration
     }
 
-    public func get(forDate date: Date) -> Day {
+    public func get(forDate date: Date) -> Day? {
         guard let realm = try? Realm(configuration: configuration) else {
-            return Day()
+            return nil
         }
         let predicate = NSPredicate(format: "date = %@", date as NSDate)
         guard let day = realm.objects(RMDay.self).filter(predicate).first else {
-            return createNewDay(realm: realm, date: date)
+            return nil
         }
+        print("✴️ : \(day)")
         return day.toDay()
     }
 
-    private func createNewDay(realm: Realm, date: Date) -> Day {
+    public func createNewDay(date: Date) -> Day {
+        guard let realm = try? Realm(configuration: configuration) else {
+            return Day()
+        }
         let day = RMDay(date: date)
         try? realm.write {
             realm.add(day)

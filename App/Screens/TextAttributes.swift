@@ -45,7 +45,7 @@ class TextAttributes {
         titleParagraphStyle.alignment = .center
         return [NSParagraphStyleAttributeName: titleParagraphStyle,
                 NSForegroundColorAttributeName: UIColor.white,
-                NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBlack)]
+                NSFontAttributeName: UIFont.systemFont(ofSize: 15, weight: UIFontWeightBlack)]
     }
 
     static var calendarDay: [String:Any] {

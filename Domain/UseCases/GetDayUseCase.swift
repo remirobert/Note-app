@@ -7,5 +7,6 @@
 //
 
 public protocol GetDayUseCase: class {
-    func get(forDate date: Date) -> Day
+    func get(forDate date: Date) -> Day?
+    func createNewDay(date: Date) -> Day
 }

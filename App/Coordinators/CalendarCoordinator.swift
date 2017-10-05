@@ -26,9 +26,9 @@ class CalendarCoordinator {
     init(dependencies: Dependencies) {
         self.getDayUseCase = RMGetDayUseCase()
         self.dependencies = dependencies
-        let controller = CalendarTextureController()
+        let controller = dependencies.calendarViewFactory.make()
         calendarView = controller
-        navigationView = CalendarNavigationController(rootViewController: controller)
+        navigationView = CalendarNavigationController(rootViewController: controller.viewController ?? UIViewController())
     }
 
     func start() {
@@ -39,7 +39,11 @@ class CalendarCoordinator {
 
 extension CalendarCoordinator: CalendarViewDelegate {
     func didSelectDay(date: Date) {
-        let day = getDayUseCase.get(forDate: date)
+        var dayModel: Day? = getDayUseCase.get(forDate: date)
+        if dayModel == nil {
+            dayModel = getDayUseCase.createNewDay(date: date)
+        }
+        guard let day = dayModel else { return }
 
         let op = RMFetchPostOperationFactory(day: day)
         let viewModel = DayTextureViewModel(day: day, postsOperationProvider: op, subscriber: subscriber)
