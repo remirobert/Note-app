@@ -7,6 +7,7 @@
 //
 
 import AsyncDisplayKit
+import SnapKit
 
 class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarView {
     fileprivate let collectionNode: ASCollectionNode
@@ -42,9 +43,39 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        configureToolbar()
+    }
+
+    private func configureToolbar() {
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let todayButton = UIBarButtonItem(title: "Today", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.scrollToToday))
-        (navigationController as? CalendarNavigationController)?.toolBarActions.items = [space, todayButton]
+        let todayButton = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(self.scrollToToday))
+        let yearButton = UIBarButtonItem(title: "\(viewModel.currentDateData.year)", style: .done, target: self, action: #selector(self.selectYearCalendar))
+        let dateButton = UIBarButtonItem(image: #imageLiteral(resourceName: "selectDate"), style: UIBarButtonItemStyle.done, target: self, action: #selector(self.selectDateCalendar))
+        (navigationController as? CalendarNavigationController)?.toolBarActions.items = [dateButton, yearButton, space, todayButton]
+    }
+
+    @objc private func selectDateCalendar() {
+        let controller = CalendarYearPickerProvider(type: .date)
+        self.present(controller.alertViewController, animated: true, completion: nil)
+    }
+
+    @objc private func selectYearCalendar() {
+        let controller = CalendarYearPickerProvider(type: .year)
+        self.present(controller.alertViewController, animated: true, completion: nil)
+//        let vc = UIViewController()
+//        vc.preferredContentSize = CGSize(width: 250,height: 200)
+//        let controller = UIAlertController(title: "select year", message: nil, preferredStyle: .actionSheet)
+//        controller.setValue(vc, forKey: "contentViewController")
+//        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 200)
+//        let pickerData = UIDatePicker(frame: frame)
+//        pickerData.backgroundColor = UIColor.white
+//        vc.view.addSubview(pickerData)
+//        let action = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+//        controller.addAction(action)
+//        controller.isModalInPopover = true
+//        self.present(controller, animated: true) {
+////            pickerData.frame.size.width = controller.view.frame.size.width
+//        }
     }
 
     @objc private func scrollToToday() {

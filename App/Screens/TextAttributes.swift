@@ -20,7 +20,7 @@ class TextAttributes {
     }
 
     static var postCreationTitle: [String:Any] {
-        return [NSForegroundColorAttributeName: UIColor(red:0.20, green:0.84, blue:0.61, alpha:1.00),
+        return [NSForegroundColorAttributeName: UIColor.black,
                 NSFontAttributeName: UIFont.systemFont(ofSize: 22, weight: UIFontWeightBold)]
     }
 

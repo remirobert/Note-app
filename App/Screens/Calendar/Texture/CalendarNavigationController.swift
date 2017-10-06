@@ -27,7 +27,7 @@ class CalendarNavigationController: UINavigationController {
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(50)
         }
-        toolBarActions.tintColor = UIColor(red:0.20, green:0.84, blue:0.61, alpha:1.00)
+        toolBarActions.tintColor = UIColor.black
         toolBarActions.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
         toolBarActions.isTranslucent = true
     }

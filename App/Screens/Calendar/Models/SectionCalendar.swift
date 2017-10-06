@@ -6,7 +6,8 @@
 //  Copyright © 2017 Remi Robert. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import Domain
 
 class SectionCalendar {
     let month: Int

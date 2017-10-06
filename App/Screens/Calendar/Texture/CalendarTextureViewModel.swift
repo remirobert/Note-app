@@ -11,7 +11,7 @@ import Domain
 
 class CalendarTextureViewModel {
     private let currentDate: Date
-    private let currentDateData: DateData
+    let currentDateData: DateData
     private let calendar: Calendar
     private let getDayUseCase: GetDayUseCase
 
