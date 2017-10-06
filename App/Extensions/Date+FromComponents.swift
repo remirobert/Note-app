@@ -14,9 +14,14 @@ extension Date {
                                year: Int,
                                calendar: Calendar = Calendar.current) -> Date {
         var components = DateComponents()
+        components.calendar = calendar
         components.day = day
         components.month = month
         components.year = year
-        return calendar.date(from: components) ?? Date()
+        components.hour = 12
+        components.minute = 0
+        components.second = 0
+        let date = calendar.date(from: components) ?? Date()
+        return date
     }
 }

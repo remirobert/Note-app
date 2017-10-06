@@ -26,6 +26,7 @@ enum CalendarYearPickerProviderType {
 
 class CalendarSelectionViewFactory: NSObject {
     private let type: CalendarYearPickerProviderType
+    private let calendar: Calendar
     fileprivate var years = [Int]()
     private let view: UIView
 
@@ -33,6 +34,7 @@ class CalendarSelectionViewFactory: NSObject {
          calendar: Calendar = Calendar.current,
          currentDate: Date = Date()) {
         self.type = type
+        self.calendar = calendar
         let pickerFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 200)
         switch type {
         case .year:
@@ -61,7 +63,10 @@ class CalendarSelectionViewFactory: NSObject {
         case .year:
             guard let pickerView = view as? UIPickerView else { return Date() }
             let selectedYear = years[pickerView.selectedRow(inComponent: 0)]
-            return Date.fromComponents(month: 1, year: selectedYear)
+            print("selected year : \(selectedYear)")
+            let date = Date.fromComponents(day: 15, month: 1, year: selectedYear, calendar: calendar)
+            print("🅰️ date created : \(date)")
+            return date
         case .date:
             guard let pickerDate = view as? UIDatePicker else { return Date() }
             return pickerDate.date
