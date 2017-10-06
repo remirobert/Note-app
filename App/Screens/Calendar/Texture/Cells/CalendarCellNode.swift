@@ -30,10 +30,10 @@ class CalendarCellNode: ASCellNode {
     fileprivate let dayTextNode = ASTextNode()
 
     init(dateData: DateData) {
-        if dateData.dayModel == nil {
-            numberPostsNode = nil
+        if let day = dateData.dayModel {
+            numberPostsNode = NumberPostDayNode(numberPost: day.numberPosts)
         } else {
-            numberPostsNode = NumberPostDayNode(numberPost: 3)
+            numberPostsNode = nil
         }
         super.init()
         addSubnode(dayTextNode)
@@ -43,7 +43,12 @@ class CalendarCellNode: ASCellNode {
         borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         borderWidth = 1
         cornerRadius = 5
-        backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        if dateData.dayModel == nil {
+            backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        } else {
+            backgroundColor = UIColor.yellow.withAlphaComponent(0.7)
+        }
+
         dayTextNode.attributedText = NSAttributedString(string: "\(dateData.day)", attributes: TextAttributes.calendarDay)
     }
 

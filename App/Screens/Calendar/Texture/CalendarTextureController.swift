@@ -48,7 +48,8 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     }
 
     @objc private func scrollToToday() {
-
+        guard let section = viewModel.currentSection else { return }
+        collectionNode.scrollToItem(at: section, at: UICollectionViewScrollPosition.bottom, animated: true)
     }
 }
 

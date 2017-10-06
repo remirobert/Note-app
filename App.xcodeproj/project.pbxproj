@@ -95,6 +95,7 @@
 		BB77E1DC1F7E4CD400C009D6 /* DayTextureFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DB1F7E4CD400C009D6 /* DayTextureFeedController.swift */; };
 		BB77E1DE1F7E4D5600C009D6 /* PostCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DD1F7E4D5600C009D6 /* PostCellNode.swift */; };
 		BB77E1E01F7E50E700C009D6 /* DayTextureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */; };
+		BB870FD21F87AFB9004A8012 /* SectionCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB870FD11F87AFB9004A8012 /* SectionCalendar.swift */; };
 		BB8EEC041F864C480064309C /* Date+FromComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8EEC031F864C480064309C /* Date+FromComponents.swift */; };
 		BB9BF5EE1F560BA900C28C9C /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */; };
 		BB9BF5F41F574D1B00C28C9C /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */; };
@@ -347,6 +348,7 @@
 		BB77E1DB1F7E4CD400C009D6 /* DayTextureFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTextureFeedController.swift; sourceTree = "<group>"; };
 		BB77E1DD1F7E4D5600C009D6 /* PostCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellNode.swift; sourceTree = "<group>"; };
 		BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTextureViewModel.swift; sourceTree = "<group>"; };
+		BB870FD11F87AFB9004A8012 /* SectionCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCalendar.swift; sourceTree = "<group>"; };
 		BB8EEC031F864C480064309C /* Date+FromComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FromComponents.swift"; sourceTree = "<group>"; };
 		BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
@@ -721,6 +723,7 @@
 			isa = PBXGroup;
 			children = (
 				BB4812D31F70090D009C4B70 /* DateData.swift */,
+				BB870FD11F87AFB9004A8012 /* SectionCalendar.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1941,6 +1944,7 @@
 				BB252CFA1F802C95009A1818 /* SliderViewModel.swift in Sources */,
 				BBC179E01F6D106A00C0E07F /* Section.swift in Sources */,
 				BB5634B21F7004E00031228A /* Date+daysCount.swift in Sources */,
+				BB870FD21F87AFB9004A8012 /* SectionCalendar.swift in Sources */,
 				BBA808C61F710E3000567D54 /* PostNavigationViewController.swift in Sources */,
 				BBD552031F6EEE7A00828B63 /* DayFeedViewControllerFactory.swift in Sources */,
 				BBD552161F6FC75400828B63 /* CalendarController.swift in Sources */,
