@@ -56,31 +56,28 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
 
     @objc private func selectDateCalendar() {
         let controller = CalendarYearPickerProvider(type: .date)
+        controller.delegate = self
         self.present(controller.alertViewController, animated: true, completion: nil)
     }
 
     @objc private func selectYearCalendar() {
         let controller = CalendarYearPickerProvider(type: .year)
+        controller.delegate = self
         self.present(controller.alertViewController, animated: true, completion: nil)
-//        let vc = UIViewController()
-//        vc.preferredContentSize = CGSize(width: 250,height: 200)
-//        let controller = UIAlertController(title: "select year", message: nil, preferredStyle: .actionSheet)
-//        controller.setValue(vc, forKey: "contentViewController")
-//        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 200)
-//        let pickerData = UIDatePicker(frame: frame)
-//        pickerData.backgroundColor = UIColor.white
-//        vc.view.addSubview(pickerData)
-//        let action = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
-//        controller.addAction(action)
-//        controller.isModalInPopover = true
-//        self.present(controller, animated: true) {
-////            pickerData.frame.size.width = controller.view.frame.size.width
-//        }
     }
 
     @objc private func scrollToToday() {
         guard let section = viewModel.currentSection else { return }
+
         collectionNode.scrollToItem(at: section, at: UICollectionViewScrollPosition.bottom, animated: true)
+    }
+}
+
+extension CalendarTextureController: CalendarDateSelectionProviderDelegate {
+    func didSelectDate(date: Date) {
+        viewModel.loadYear(fromDate: date)
+        collectionNode.reloadData()
+        collectionNode.selectItem(at: viewModel.loadedSection, animated: true, scrollPosition: .bottom)
     }
 }
 

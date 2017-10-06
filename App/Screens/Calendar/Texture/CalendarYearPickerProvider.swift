@@ -11,7 +11,6 @@ import SnapKit
 import Wireframe
 
 protocol CalendarDateSelectionProviderDelegate: class {
-    func didSelectYear(year: Int)
     func didSelectDate(date: Date)
 }
 
@@ -25,9 +24,9 @@ enum CalendarYearPickerProviderType {
     case date
 }
 
-class CalendarSelectionViewFactory: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
+class CalendarSelectionViewFactory: NSObject {
     private let type: CalendarYearPickerProviderType
-    private var years = [Int]()
+    fileprivate var years = [Int]()
     private let view: UIView
 
     init(type: CalendarYearPickerProviderType,
@@ -57,6 +56,18 @@ class CalendarSelectionViewFactory: NSObject, UIPickerViewDataSource, UIPickerVi
         return view
     }
 
+    func selectedDate() -> Date {
+        switch type {
+        case .year:
+            guard let pickerView = view as? UIPickerView else { return Date() }
+            let selectedYear = years[pickerView.selectedRow(inComponent: 0)]
+            return Date.fromComponents(month: 1, year: selectedYear)
+        case .date:
+            guard let pickerDate = view as? UIDatePicker else { return Date() }
+            return pickerDate.date
+        }
+    }
+
     func setDate(date: Date) {
         switch type {
         case .year:
@@ -67,7 +78,9 @@ class CalendarSelectionViewFactory: NSObject, UIPickerViewDataSource, UIPickerVi
             pickerDate.setDate(date, animated: false)
         }
     }
+}
 
+extension CalendarSelectionViewFactory: UIPickerViewDataSource, UIPickerViewDelegate {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -88,7 +101,7 @@ class CalendarSelectionViewFactory: NSObject, UIPickerViewDataSource, UIPickerVi
 
 class CalendarYearPickerProvider: UIViewController, View, CalendarDateSelectionView {
     private let pickerViewFactory: CalendarSelectionViewFactory
-    private let pickerView: UIView //UIPickerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 200))
+    private let pickerView: UIView
 
     fileprivate let years: [Int]
     let alertViewController: UIAlertController
@@ -125,11 +138,11 @@ class CalendarYearPickerProvider: UIViewController, View, CalendarDateSelectionV
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         pickerViewFactory.setDate(date: Date())
-//        pickerView.selectRow(Int(years.count / 2), inComponent: 0, animated: false)
     }
 
     private func setupAlertController() {
         alertViewController.addAction(UIAlertAction(title: "select", style: .default, handler: { _ in
+            self.delegate?.didSelectDate(date: self.pickerViewFactory.selectedDate())
         }))
         alertViewController.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
         alertViewController.isModalInPopover = true
@@ -140,25 +153,3 @@ class CalendarYearPickerProvider: UIViewController, View, CalendarDateSelectionV
         parentView.viewController?.present(alertViewController, animated: true, completion: nil)
     }
 }
-
-//extension CalendarYearPickerProvider: UIPickerViewDataSource {
-//    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//
-//    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return years.count
-//    }
-//}
-//
-//extension CalendarYearPickerProvider: UIPickerViewDelegate {
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        let currentYear = years[row]
-//        return NSAttributedString(string: "\(currentYear)", attributes: TextAttributes.postCreationTitle)
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-//        return 35
-//    }
-//}
-

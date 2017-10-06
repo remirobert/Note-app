@@ -25,7 +25,6 @@ public class RMGetDayUseCase: GetDayUseCase {
         guard let day = realm.objects(RMDay.self).filter(predicate).first else {
             return nil
         }
-        print("✴️ : \(day)")
         return day.toDay()
     }
 
