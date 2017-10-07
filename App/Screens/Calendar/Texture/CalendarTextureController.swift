@@ -46,10 +46,10 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
         configureToolbar()
     }
 
-    private func configureToolbar() {
+    fileprivate func configureToolbar() {
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let todayButton = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(self.scrollToToday))
-        let yearButton = UIBarButtonItem(title: "\(viewModel.currentDateData.year)", style: .done, target: self, action: #selector(self.selectYearCalendar))
+        let yearButton = UIBarButtonItem(title: "\(viewModel.currentDisplayedYear)", style: .done, target: self, action: #selector(self.selectYearCalendar))
         let dateButton = UIBarButtonItem(image: #imageLiteral(resourceName: "selectDate"), style: UIBarButtonItemStyle.done, target: self, action: #selector(self.selectDateCalendar))
         (navigationController as? CalendarNavigationController)?.toolBarActions.items = [dateButton, yearButton, space, todayButton]
     }
@@ -68,6 +68,7 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
 
     @objc private func scrollToToday() {
         viewModel.loadYear(fromDate: Date())
+        configureToolbar()
         collectionNode.reloadData()
         guard let section = viewModel.currentSection else { return }
         collectionNode.scrollToItem(at: section, at: UICollectionViewScrollPosition.bottom, animated: true)
@@ -77,8 +78,10 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
 extension CalendarTextureController: CalendarDateSelectionProviderDelegate {
     func didSelectDate(date: Date) {
         viewModel.loadYear(fromDate: date)
+        configureToolbar()
         collectionNode.reloadData()
-        collectionNode.selectItem(at: viewModel.loadedSection, animated: true, scrollPosition: .bottom)
+        guard let section = viewModel.loadedSection else { return }
+        collectionNode.scrollToItem(at: section, at: UICollectionViewScrollPosition.bottom, animated: true)
     }
 }
 

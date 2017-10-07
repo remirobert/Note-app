@@ -12,6 +12,7 @@ import Domain
 class CalendarTextureViewModel {
     private let currentDate: Date
     let currentDateData: DateData
+    private(set) var currentDisplayedYear: Int = 0
     private let calendar: Calendar
     private let getDayUseCase: GetDayUseCase
 
@@ -35,9 +36,9 @@ class CalendarTextureViewModel {
     func loadYear(fromDate date: Date) {
         let year = calendar.component(Calendar.Component.year, from: date)
         let month = calendar.component(Calendar.Component.month, from: date)
+        currentDisplayedYear = year
         currentSection = nil
         loadedSection = nil
-        print("select : \(year) \(month)")
         sections.removeAll(keepingCapacity: true)
         calendar.monthSymbols.enumerated().forEach { index, _ in
             if currentDateData.month == index && currentDateData.year == year {

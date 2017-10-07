@@ -18,7 +18,7 @@ extension Date {
         components.day = day
         components.month = month
         components.year = year
-        components.hour = 12
+        components.hour = 0
         components.minute = 0
         components.second = 0
         let date = calendar.date(from: components) ?? Date()
