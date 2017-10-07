@@ -18,7 +18,6 @@ public class RMGetDayUseCase: GetDayUseCase {
     }
 
     public func get(forDate date: Date) -> Day? {
-        print("✴️ get day from date : \(date)")
         guard let realm = try? Realm(configuration: configuration) else {
             return nil
         }
@@ -26,7 +25,6 @@ public class RMGetDayUseCase: GetDayUseCase {
         guard let day = realm.objects(RMDay.self).filter(predicate).first else {
             return nil
         }
-        print("🅰️ get day : \(day)") 
         return day.toDay()
     }
 

@@ -56,6 +56,14 @@ class TextAttributes {
                 NSFontAttributeName: UIFont.systemFont(ofSize: 18, weight: UIFontWeightHeavy)]
     }
 
+    static var calendarDaySelected: [String:Any] {
+        let titleParagraphStyle = NSMutableParagraphStyle()
+        titleParagraphStyle.alignment = .center
+        return [NSParagraphStyleAttributeName: titleParagraphStyle,
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 18, weight: UIFontWeightHeavy)]
+    }
+
     static var sliderFooter: [String:Any] {
         let titleParagraphStyle = NSMutableParagraphStyle()
         titleParagraphStyle.alignment = .left

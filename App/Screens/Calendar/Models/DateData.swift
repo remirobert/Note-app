@@ -15,6 +15,7 @@ struct DateData {
     let day: Int
     let month: Int
     let year: Int
+    var isCurrentDay: Bool = false
 
     init(date: Date, calendar: Calendar = Calendar.current, dayModel: Day? = nil) {
         self.dayModel = dayModel

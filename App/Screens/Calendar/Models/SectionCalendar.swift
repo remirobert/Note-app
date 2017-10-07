@@ -32,6 +32,13 @@ class SectionCalendar {
         initDaysData()
     }
 
+    func setCurrentDay(day: Int) {
+        if days.count <= day {
+            return
+        }
+        days[day].isCurrentDay = true
+    }
+
     private func initDaysData() {
         let dayCount = Date.daysCount(year: year, month: month + 1)
         days = (1...dayCount).map({ (day: Int) -> DateData in

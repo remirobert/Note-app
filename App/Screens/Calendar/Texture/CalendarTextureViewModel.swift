@@ -36,19 +36,21 @@ class CalendarTextureViewModel {
     func loadYear(fromDate date: Date) {
         let year = calendar.component(Calendar.Component.year, from: date)
         let month = calendar.component(Calendar.Component.month, from: date)
+        let day = calendar.component(Calendar.Component.day, from: date)
         currentDisplayedYear = year
         currentSection = nil
         loadedSection = nil
         sections.removeAll(keepingCapacity: true)
         calendar.monthSymbols.enumerated().forEach { index, _ in
+            let dateData = DateData(month: index, year: year)
+            let sectionCalendar = SectionCalendar(dateData: dateData, getDayUseCase: getDayUseCase)
             if currentDateData.month == index && currentDateData.year == year {
                 currentSection = IndexPath(row: 0, section: index)
+                sectionCalendar.setCurrentDay(day: day)
             }
             if month == index {
                 loadedSection = IndexPath(row: 0, section: index)
             }
-            let dateData = DateData(month: index, year: year)
-            let sectionCalendar = SectionCalendar(dateData: dateData, getDayUseCase: getDayUseCase)
             sections.insert(sectionCalendar, at: 0)
         }
         sections.reverse()

@@ -10,8 +10,10 @@ import AsyncDisplayKit
 
 class HeaderCellNode: ASCellNode {
     private let textNode = ASTextNode()
+    let dateData: SectionCalendar
 
     init(dateData: SectionCalendar, calendar: Calendar = Calendar.current) {
+        self.dateData = dateData
         super.init()
         addSubnode(textNode)
         let text = "\(calendar.monthSymbols[dateData.month]) \(dateData.year)"

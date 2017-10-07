@@ -44,6 +44,8 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         configureToolbar()
+        guard let section = viewModel.currentSection else { return }
+        collectionNode.scrollToItem(at: section, at: .bottom, animated: true)
     }
 
     fileprivate func configureToolbar() {
@@ -71,7 +73,7 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
         configureToolbar()
         collectionNode.reloadData()
         guard let section = viewModel.currentSection else { return }
-        collectionNode.scrollToItem(at: section, at: UICollectionViewScrollPosition.bottom, animated: true)
+        collectionNode.scrollToItem(at: section, at: .bottom, animated: true)
     }
 }
 
@@ -81,7 +83,7 @@ extension CalendarTextureController: CalendarDateSelectionProviderDelegate {
         configureToolbar()
         collectionNode.reloadData()
         guard let section = viewModel.loadedSection else { return }
-        collectionNode.scrollToItem(at: section, at: UICollectionViewScrollPosition.bottom, animated: true)
+        collectionNode.scrollToItem(at: section, at: .bottom, animated: true)
     }
 }
 

@@ -13,10 +13,12 @@ class NumberPostDayNode: ASDisplayNode {
 
     init(numberPost: Int) {
         super.init()
-        backgroundColor = UIColor.black
+        borderWidth = 1
+        borderColor = UIColor.white.cgColor
         cornerRadius = 15
         style.preferredSize = CGSize(width: 30, height: 30)
-        numberTextNode.attributedText = NSAttributedString(string: "\(numberPost)", attributes: TextAttributes.numberPostDay)
+        numberTextNode.attributedText = NSAttributedString(string: "\(numberPost)",
+            attributes: TextAttributes.numberPostDay)
         addSubnode(numberTextNode)
     }
 
@@ -49,7 +51,17 @@ class CalendarCellNode: ASCellNode {
             backgroundColor = UIColor.yellow.withAlphaComponent(0.7)
         }
 
-        dayTextNode.attributedText = NSAttributedString(string: "\(dateData.day)", attributes: TextAttributes.calendarDay)
+        let stringDay = "\(dateData.day)"
+        if dateData.isCurrentDay {
+            backgroundColor = UIColor.black
+            numberPostsNode?.backgroundColor = UIColor.black
+            dayTextNode.attributedText = NSAttributedString(string: stringDay,
+                                                            attributes: TextAttributes.calendarDaySelected)
+        } else {
+            numberPostsNode?.backgroundColor = UIColor.black
+            dayTextNode.attributedText = NSAttributedString(string: stringDay,
+                                                            attributes: TextAttributes.calendarDay)
+        }
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
