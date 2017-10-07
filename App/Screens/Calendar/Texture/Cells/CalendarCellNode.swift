@@ -13,6 +13,7 @@ class NumberPostDayNode: ASDisplayNode {
 
     init(numberPost: Int) {
         super.init()
+        backgroundColor = UIColor.black
         borderWidth = 1
         borderColor = UIColor.white.cgColor
         cornerRadius = 15
@@ -32,7 +33,7 @@ class CalendarCellNode: ASCellNode {
     fileprivate let dayTextNode = ASTextNode()
 
     init(dateData: DateData) {
-        if let day = dateData.dayModel {
+        if let day = dateData.dayModel, day.numberPosts > 0 {
             numberPostsNode = NumberPostDayNode(numberPost: day.numberPosts)
         } else {
             numberPostsNode = nil
@@ -45,22 +46,17 @@ class CalendarCellNode: ASCellNode {
         borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         borderWidth = 1
         cornerRadius = 5
-        if dateData.dayModel == nil {
-            backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
-        } else {
+        if dateData.dayModel?.numberPosts ?? 0 > 0 {
             backgroundColor = UIColor.yellow.withAlphaComponent(0.7)
-        }
-
-        let stringDay = "\(dateData.day)"
-        if dateData.isCurrentDay {
-            backgroundColor = UIColor.black
-            numberPostsNode?.backgroundColor = UIColor.black
-            dayTextNode.attributedText = NSAttributedString(string: stringDay,
-                                                            attributes: TextAttributes.calendarDaySelected)
         } else {
-            numberPostsNode?.backgroundColor = UIColor.black
-            dayTextNode.attributedText = NSAttributedString(string: stringDay,
-                                                            attributes: TextAttributes.calendarDay)
+            backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        }
+        let stringDay = "\(dateData.day)"
+        dayTextNode.attributedText = NSAttributedString(string: stringDay,
+                                                        attributes: TextAttributes.calendarDay)
+        if dateData.isCurrentDay {
+            borderWidth = 4
+            borderColor = UIColor.black.cgColor
         }
     }
 

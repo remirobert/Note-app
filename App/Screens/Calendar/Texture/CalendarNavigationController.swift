@@ -16,19 +16,18 @@ class CalendarNavigationController: UINavigationController {
         super.viewDidLoad()
 
         navigationBar.isTranslucent = true
-        navigationBar.tintColor = UIColor.black
+        navigationBar.tintColor = UIColor.yellow
         navigationBar.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,
                                              NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)]
-        navigationBar.shadowImage = UIImage()
         view.addSubview(toolBarActions)
 
         toolBarActions.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(50)
         }
-        toolBarActions.tintColor = UIColor.black
-        toolBarActions.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
+        toolBarActions.tintColor = UIColor.yellow
+        toolBarActions.barTintColor = UIColor.black
         toolBarActions.isTranslucent = true
     }
 }

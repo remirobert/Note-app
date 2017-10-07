@@ -44,8 +44,8 @@ class CalendarTextureViewModel {
         calendar.monthSymbols.enumerated().forEach { index, _ in
             let dateData = DateData(month: index, year: year)
             let sectionCalendar = SectionCalendar(dateData: dateData, getDayUseCase: getDayUseCase)
-            if currentDateData.month == index && currentDateData.year == year {
-                currentSection = IndexPath(row: 0, section: index)
+            if currentDateData.month + 1 == index && currentDateData.year == year {
+                currentSection = IndexPath(row: 0, section: index)to
                 sectionCalendar.setCurrentDay(day: day)
             }
             if month == index {
