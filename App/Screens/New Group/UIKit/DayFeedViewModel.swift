@@ -37,7 +37,6 @@ class DayFeedViewModel {
     }
 
     func reloadSections() {
-        print("🙏 reload sections")
         let operation = postsOperationProvider.makeFetchAll()
         postsOperation = operation
         postsOperation?.delegate = self
@@ -54,8 +53,6 @@ extension DayFeedViewModel: PostUpdateSubscriberDelegate {
 
 extension DayFeedViewModel: FetchPostOperationDelegate {
     func didFetchPosts(posts: [Post]) {
-        print("🤜 post coiunt : \(posts.count)")
-        print("🎃 get posts : \(posts)")
         let models = posts.map { (post: Post) -> CellViewModel? in
             if let image = post as? PostImage {
                 return PostCellViewModel(post: image)

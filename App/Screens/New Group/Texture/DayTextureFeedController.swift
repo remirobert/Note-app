@@ -22,22 +22,6 @@ class DayTextureControllerFactory: DayFeedViewFactory {
     }
 }
 
-class DayFeedNode: ASDisplayNode {
-    let tableNode = ASTableNode()
-    private let backgroundImageNode = ASImageNode()
-
-    override init() {
-        super.init()
-        backgroundImageNode.imageModificationBlock = { image in
-            let newImage = image.applyBlurWithRadius(30, tintColor: UIColor(white: 0.5, alpha: 0.3),
-                                                     saturationDeltaFactor: 1.8,
-                                                     maskImage: nil)
-            return (newImage != nil) ? newImage : image
-        }
-        backgroundImageNode.image = #imageLiteral(resourceName: "background")
-    }
-}
-
 class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
     fileprivate let tableNode = ASTableNode()
     fileprivate let viewModel: DayTextureViewModel

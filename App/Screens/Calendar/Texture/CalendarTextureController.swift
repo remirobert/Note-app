@@ -24,6 +24,7 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
         collectionViewLayout.minimumInteritemSpacing = 10
         collectionNode = ASCollectionNode(collectionViewLayout: collectionViewLayout)
         super.init(node: collectionNode)
+        viewModel.delegate = self
         currentSectionCalendar = viewModel.todaySection
         collectionNode.registerSupplementaryNode(ofKind: UICollectionElementKindSectionHeader)
         collectionNode.dataSource = self
@@ -71,6 +72,12 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     @objc private func scrollToToday() {
         viewModel.loadYear(fromDate: Date())
         configureToolbar()
+    }
+}
+
+extension CalendarTextureController: CalendarTextureViewModelDelegate {
+    func reloadCalendarSections() {
+        print("🤠")
         collectionNode.reloadData()
         guard let section = viewModel.currentSection else { return }
         collectionNode.scrollToItem(at: section, at: .bottom, animated: true)

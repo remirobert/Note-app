@@ -33,6 +33,7 @@ public class PostUpdateSubscriber: PostSubscriber {
         tokenNotification = realm.addNotificationBlock { [weak self] notification, _ in
             switch notification {
             case .didChange:
+                print("✅ post update: [\(self?.subscribers)]")
                 self?.subscribers.forEach({
                     $0.dataDidUpdate()
                 })

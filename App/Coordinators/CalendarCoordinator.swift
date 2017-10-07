@@ -11,29 +11,25 @@ import Domain
 import RealmPlatform
 
 class CalendarCoordinator {
-    fileprivate let dependencies: Dependencies
+    fileprivate let window: Window
     fileprivate let calendarView: CalendarView
     fileprivate var dayFeedCoordinator: DayFeedCoordinator!
     fileprivate let getDayUseCase: GetDayUseCase
     fileprivate let subscriber = PostUpdateSubscriber()
     fileprivate let navigationView: NavigationView
 
-    struct Dependencies {
-        let window: Window
-        let calendarViewFactory: CalendarViewFactory
-    }
-
-    init(dependencies: Dependencies) {
+    init(window: Window) {
+        self.window = window
         self.getDayUseCase = RMGetDayUseCase()
-        self.dependencies = dependencies
-        let controller = dependencies.calendarViewFactory.make()
-        calendarView = controller
-        navigationView = CalendarNavigationController(rootViewController: controller.viewController ?? UIViewController())
+        let calendarViewModel = CalendarTextureViewModel(getDayUseCase: getDayUseCase,
+                                                         postSubscriber: subscriber)
+        calendarView = CalendarTextureControllerFactory(viewModel: calendarViewModel).make()
+        navigationView = CalendarNavigationController(rootViewController: calendarView.viewController ?? UIViewController())
     }
 
     func start() {
         calendarView.delegate = self
-        dependencies.window.rootView = navigationView
+        window.rootView = navigationView
     }
 }
 

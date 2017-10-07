@@ -23,16 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = self.window else { return false }
 
         IQKeyboardManager.sharedManager().enable = true
-
         window.makeKeyAndVisible()
-//        let navigation = PostNavigationViewController(rootViewController: PostImageViewController())
-//        window.rootViewController = navigation
 
-
-        let calendarViewModel = CalendarTextureViewModel(getDayUseCase: RMGetDayUseCase())
-        let factory = CalendarTextureControllerFactory(viewModel: calendarViewModel)
-        let deps = CalendarCoordinator.Dependencies(window: window, calendarViewFactory: factory)
-        coordinator = CalendarCoordinator(dependencies: deps)
+        coordinator = CalendarCoordinator(window: window)
         coordinator.start()
         return true
     }
