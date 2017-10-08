@@ -14,9 +14,19 @@ class TextAttributes {
                 NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)]
     }
 
+    static var postCreationContentPlaceholder: [String:Any] {
+        return [NSForegroundColorAttributeName: UIColor.lightGray,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightRegular)]
+    }
+
     static var postCreationContent: [String:Any] {
         return [NSForegroundColorAttributeName: UIColor.black,
                 NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightRegular)]
+    }
+
+    static var postCreationTitlePlaceholder: [String:Any] {
+        return [NSForegroundColorAttributeName: UIColor.lightGray,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 22, weight: UIFontWeightBold)]
     }
 
     static var postCreationTitle: [String:Any] {
