@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 import Wireframe
 
 class PostNavigationViewControllerFactory: NavigationViewFactory {
@@ -19,11 +20,22 @@ class PostNavigationViewControllerFactory: NavigationViewFactory {
 }
 
 class PostNavigationViewController: UINavigationController {
+    let toolBarActions = UIToolbar(frame: CGRect.zero)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.isTranslucent = false
         navigationBar.tintColor = UIColor.black
         navigationBar.barTintColor = UIColor.white
         navigationBar.shadowImage = UIImage()
+
+        view.addSubview(toolBarActions)
+        toolBarActions.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        toolBarActions.tintColor = UIColor.yellow
+        toolBarActions.barTintColor = UIColor.black
+        toolBarActions.isTranslucent = true
     }
 }

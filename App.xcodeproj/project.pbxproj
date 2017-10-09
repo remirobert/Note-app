@@ -22,6 +22,7 @@
 		BB252D001F8030E3009A1818 /* SliderCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CFF1F8030E3009A1818 /* SliderCoordinator.swift */; };
 		BB252D021F80314C009A1818 /* SliderViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252D011F80314C009A1818 /* SliderViewFactory.swift */; };
 		BB2E1BA91F5C0084001D7A92 /* UIImage+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E1BA81F5C0084001D7A92 /* UIImage+rounded.swift */; };
+		BB31D5D61F8B7A3F0028BF6A /* ToolbarPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB31D5D51F8B7A3F0028BF6A /* ToolbarPost.swift */; };
 		BB3B06E11F5347D70085C239 /* Wireframe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B06D81F5347D70085C239 /* Wireframe.framework */; };
 		BB3B06EA1F5347D70085C239 /* Wireframe.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3B06DA1F5347D70085C239 /* Wireframe.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB3B06ED1F5347D70085C239 /* Wireframe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B06D81F5347D70085C239 /* Wireframe.framework */; };
@@ -270,6 +271,7 @@
 		BB252CFF1F8030E3009A1818 /* SliderCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCoordinator.swift; sourceTree = "<group>"; };
 		BB252D011F80314C009A1818 /* SliderViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewFactory.swift; sourceTree = "<group>"; };
 		BB2E1BA81F5C0084001D7A92 /* UIImage+rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+rounded.swift"; sourceTree = "<group>"; };
+		BB31D5D51F8B7A3F0028BF6A /* ToolbarPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarPost.swift; sourceTree = "<group>"; };
 		BB3B06D81F5347D70085C239 /* Wireframe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Wireframe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B06DA1F5347D70085C239 /* Wireframe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wireframe.h; sourceTree = "<group>"; };
 		BB3B06DB1F5347D70085C239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -967,6 +969,7 @@
 			children = (
 				BBAE88941F65A12F003F2908 /* PhotoPickerProvider.swift */,
 				BBA808D21F717A6400567D54 /* PostImageViewController.swift */,
+				BB31D5D51F8B7A3F0028BF6A /* ToolbarPost.swift */,
 				BBC77B5B1F79266C0091DC2D /* PostImageViewControllerFactory.swift */,
 				BBC77B591F7922650091DC2D /* PostImageViewModel.swift */,
 				BB473E341F7299C900F63270 /* GalleryImage */,
@@ -1929,6 +1932,7 @@
 			files = (
 				BBC907C91F795FF5001AC9FE /* GalleryViewComponent.swift in Sources */,
 				BBA1C2561F6EDC6600B86F8E /* DayFeedCoordinator.swift in Sources */,
+				BB31D5D61F8B7A3F0028BF6A /* ToolbarPost.swift in Sources */,
 				BBAE88951F65A12F003F2908 /* PhotoPickerProvider.swift in Sources */,
 				BBC907CB1F79680D001AC9FE /* String+size.swift in Sources */,
 				BBD5520B1F6FC4FF00828B63 /* CalendarCoordinator.swift in Sources */,
