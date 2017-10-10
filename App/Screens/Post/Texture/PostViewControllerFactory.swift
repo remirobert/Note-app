@@ -9,7 +9,7 @@
 import UIKit
 import Domain
 
-class PostImageViewControllerFactory: PostViewFactory {
+class PostViewControllerFactory: PostViewFactory {
     private let addOperationProvider: AddOperationProvider
     private let photoPickerProvider: PhotoPickerProvider
 
@@ -20,7 +20,7 @@ class PostImageViewControllerFactory: PostViewFactory {
     }
 
     func make() -> PostView {
-        let viewModel = PostImageViewModel(addOperationProvider: addOperationProvider)
-        return PostImageViewController(photoPickerProvider: photoPickerProvider, viewModel: viewModel)
+        let viewModel = PostViewModel(addOperationProvider: addOperationProvider)
+        return PostViewController(photoPickerProvider: photoPickerProvider, viewModel: viewModel)
     }
 }

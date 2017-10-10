@@ -33,7 +33,7 @@ class ImageDataConvertOperation: Operation {
     }
 }
 
-class PostImageViewModel {
+class PostViewModel {
     private let addOperationProvider: AddOperationProvider
     private let operationQueue: OperationQueue
 
