@@ -12,7 +12,7 @@ import AsyncDisplayKit
 import RealmPlatform
 
 protocol ImageGalleryCellNodeDelegate: class {
-    func didSelectImage(index: Int)
+    func didSelectImage(index: Int, image: UIImage?, rect: CGRect)
 }
 
 class ImageGalleryNodeLayout: UICollectionViewFlowLayout {
@@ -31,7 +31,7 @@ class ImageGalleryNodeLayout: UICollectionViewFlowLayout {
 }
 
 class ImageGalleryCellNode: ASCellNode {
-    private let imageNode = ASImageNode()
+    let imageNode = ASImageNode()
     private let operationQueue = OperationQueue()
 
     init(image: String) {
@@ -117,6 +117,8 @@ extension ImageGalleryNode: ASCollectionDataSource {
 
 extension ImageGalleryNode: ASCollectionDelegate {
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.didSelectImage(index: indexPath.row)
+        guard let node = collectionNode.nodeForItem(at: indexPath) as? ImageGalleryCellNode else { return }
+        let rect = node.convert(node.frame, to: nil)
+        self.delegate?.didSelectImage(index: indexPath.row, image: node.imageNode.image, rect: rect)
     }
 }

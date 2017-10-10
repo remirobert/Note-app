@@ -77,8 +77,8 @@ extension DayTextureFeedController: DayFeedViewModelDelegate {
 }
 
 extension DayTextureFeedController: PostCellNodeDelegate {
-    func displaySlider(post: PostImage) {
-        delegate?.displaySlider(post: post)
+    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect) {
+        delegate?.displaySlider(post: post, index: index, image: image, rect: rect)
     }
 }
 

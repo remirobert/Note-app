@@ -7,6 +7,6 @@
 //
 
 public protocol View: class {
-    func present(view: View)
-    func dismiss()
+    func present(view: View, animated: Bool)
+    func dismiss(animated: Bool)
 }

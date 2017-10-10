@@ -25,7 +25,7 @@ class ImageDataConvertOperation: Operation {
             if isCancelled {
                 return nil
             }
-            return UIImageJPEGRepresentation($0, 1)
+            return UIImageJPEGRepresentation($0, 0.1)
             }
             .flatMap {
                 $0

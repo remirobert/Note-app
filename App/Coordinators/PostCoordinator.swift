@@ -29,16 +29,16 @@ class PostCoordinator {
     func start() {
         postView.delegate = self
         let navigationView = navigationViewFactory.make(rootView: postView)
-        parentView.present(view: navigationView)
+        parentView.present(view: navigationView, animated: true)
     }
 }
 
 extension PostCoordinator: PostViewDelegate {
     func didCancel() {
-        postView.dismiss()
+        postView.dismiss(animated: true)
     }
 
     func didPost() {
-        postView.dismiss()
+        postView.dismiss(animated: true)
     }
 }

@@ -32,18 +32,22 @@ class DayFeedCoordinator {
 
     func start() {
         dayFeedView.delegate = self
-        self.dependencies.parentView.present(view: self.navigationDayFeed)
+        self.dependencies.parentView.present(view: self.navigationDayFeed, animated: true)
     }
 }
 
 extension DayFeedCoordinator: DayFeedViewDelegate {
-    func displaySlider(post: PostImage) {
-        sliderCoordinator = SliderCoordinator(post: post, parentView: dayFeedView)
+    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect) {
+        sliderCoordinator = SliderCoordinator(post: post,
+                                              parentView: dayFeedView,
+                                              previewImage: image,
+                                              rectImage: rect,
+                                              startIndex: index)
         sliderCoordinator.start()
     }
     
     func displayCalendarView() {
-        navigationDayFeed.dismiss()
+        navigationDayFeed.dismiss(animated: true)
     }
 
     func addPost() {

@@ -18,7 +18,7 @@ class SliderCellNode: ASCellNode {
         super.init()
         addSubnode(imageNode)
         imageNode.contentMode = .scaleAspectFit
-        backgroundColor = UIColor.white
+        backgroundColor = UIColor.clear
 
         var path = DefaultFileManager.documentUrl
         path?.appendPathComponent(image)
@@ -27,6 +27,10 @@ class SliderCellNode: ASCellNode {
         }
         operationQueue.addOperation { [weak self] in
             guard let image = UIImage(contentsOfFile: pathUrl.absoluteString) else { return }
+            let ratioImage = UIScreen.main.bounds.size.width / image.size.width
+            let forcedSize = CGSize(width: UIScreen.main.bounds.size.width,
+                                    height: image.size.height * ratioImage)
+            self?.imageNode.forcedSize = forcedSize
             self?.imageNode.image = image
         }
         imageNode.imageModificationBlock = { image in

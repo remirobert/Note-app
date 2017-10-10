@@ -15,12 +15,12 @@ public extension View {
 }
 
 public extension View {
-    public func present(view: View) {
+    public func present(view: View, animated: Bool) {
         guard let controller = view.viewController else { return }
-        viewController?.present(controller, animated: true, completion: nil)
+        viewController?.present(controller, animated: animated, completion: nil)
     }
 
-    public func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
+    public func dismiss(animated: Bool) {
+        viewController?.dismiss(animated: animated, completion: nil)
     }
 }

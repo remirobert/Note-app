@@ -10,7 +10,7 @@ import AsyncDisplayKit
 import Domain
 
 protocol PostCellNodeDelegate: class {
-    func displaySlider(post: PostImage)
+    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect)
 }
 
 class BackgroundPostCellNode: ASDisplayNode {
@@ -82,8 +82,8 @@ extension PostCellNode {
 }
 
 extension PostCellNode: ImageGalleryCellNodeDelegate {
-    func didSelectImage(index: Int) {
-        self.delgate?.displaySlider(post: post)
+    func didSelectImage(index: Int, image: UIImage?, rect: CGRect) {
+        self.delgate?.displaySlider(post: post, index: index, image: image, rect: rect)
     }
 }
 

@@ -11,7 +11,7 @@ import Domain
 
 protocol DayFeedViewDelegate: class {
     func displayCalendarView()
-    func displaySlider(post: PostImage)
+    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect)
     func addPost()
 }
 

@@ -9,25 +9,34 @@
 import Wireframe
 import Domain
 
-class SliderCoordinator {
+class SliderCoordinator: NSObject {
     fileprivate let viewFactory: SliderViewFactory
     fileprivate let parentView: View
     fileprivate var sliderView: SliderView!
 
-    init(post: PostImage, parentView: View) {
-        viewFactory = SliderViewControllerFactory(post: post)
+    init(post: PostImage, parentView: View, previewImage: UIImage?, rectImage: CGRect, startIndex: Int = 0) {
+        viewFactory = SliderViewControllerFactory(post: post,
+                                                  previewImage: previewImage,
+                                                  rectImage: rectImage,
+                                                  startIndex: startIndex)
         self.parentView = parentView
+        super.init()
     }
 
     func start() {
         sliderView = viewFactory.make()
         sliderView.delegate = self
-        parentView.present(view: sliderView)
+        sliderView.viewController?.modalPresentationStyle = .overFullScreen
+//        sliderView.viewController?.transitioningDelegate = parentView as! DayTextureFeedController
+//        (sliderView.viewController as? SliderNodeController)?.ensureDisplay()
+        let sliderNavigationController = SliderNavigationController(rootViewController: sliderView.viewController ?? UIViewController())
+        sliderNavigationController.modalPresentationStyle = .overFullScreen
+        parentView.present(view: sliderNavigationController, animated: false)
     }
 }
 
 extension SliderCoordinator: SliderViewDelegate {
     func dismiss() {
-        sliderView.dismiss()
+        sliderView.dismiss(animated: false)
     }
 }

@@ -69,7 +69,7 @@ class CollectionImageCellNode: ASCellNode {
 
 class CollectionImageCellNode2: ASCellNode, ASCollectionDataSource, ASCollectionDelegate, PhotoPickerProviderDelegate {
     private let collectionNode: ASCollectionNode
-    private var images = [UIImage]()
+    private(set) var images = [UIImage]()
 
     weak var delegate: CellContentUpdateDelegate?
 
@@ -80,7 +80,6 @@ class CollectionImageCellNode2: ASCellNode, ASCollectionDataSource, ASCollection
         collectionNode = ASCollectionNode(collectionViewLayout: collectionViewLayout)
         super.init()
         addSubnode(collectionNode)
-        collectionNode.backgroundColor = UIColor.red
         collectionNode.dataSource = self
         collectionNode.delegate = self
     }
@@ -124,12 +123,14 @@ class PostImageViewController: ASViewController<ASTableNode>, ASTableDataSource,
     private let nodes: [ASCellNode]
     private let toolbar = ToolbarPost()
     private let photoPickerProvider: PhotoPickerProvider
+    private let viewModel: PostImageViewModel
 
     weak var delegate: PostViewDelegate?
 
     init(photoPickerProvider: PhotoPickerProvider,
          viewModel: PostImageViewModel) {
         self.photoPickerProvider = photoPickerProvider
+        self.viewModel = viewModel
         nodes = [titleNode, contentNode, collectionImageNode]
         super.init(node: tableNode)
         tableNode.dataSource = self
@@ -153,7 +154,7 @@ class PostImageViewController: ASViewController<ASTableNode>, ASTableDataSource,
         super.viewDidLoad()
         tableNode.view.tableFooterView = UIView()
         tableNode.view.separatorStyle = .none
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "close"), style: .done, target: self, action: #selector(self.cancelPost))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "close"), style: .done, target: self, action: #selector(self.dismissPost))
 
         titleNode.editNode.textView.inputAccessoryView = toolbar
         contentNode.editNode.textView.inputAccessoryView = toolbar
@@ -180,14 +181,23 @@ class PostImageViewController: ASViewController<ASTableNode>, ASTableDataSource,
     }
 
     @objc private func post() {
-
+        if titleNode.editNode.attributedText?.string.isEmpty ?? true &&
+            contentNode.editNode.attributedText?.string.isEmpty ?? true &&
+            collectionImageNode.images.isEmpty {
+            return
+        }
+        let title = titleNode.editNode.attributedText?.string ?? ""
+        let content = contentNode.editNode.attributedText?.string ?? ""
+        viewModel.create(images: collectionImageNode.images, titlePost: title, descriptionPost: content)
+        dismissPost()
     }
 
     @objc private func addImage() {
         self.photoPickerProvider.pick(controller: self, delegate: collectionImageNode)
     }
 
-    @objc private func cancelPost() {
+    @objc private func dismissPost() {
+        dismissKeyboard()
         self.delegate?.didCancel()
     }
 
