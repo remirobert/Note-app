@@ -69,6 +69,8 @@
 		BB4DC4DC1F5E8DE000ED73BD /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DC4DB1F5E8DE000ED73BD /* Date+.swift */; };
 		BB509F1A1F8CFBEB00644485 /* SliderNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB509F191F8CFBEB00644485 /* SliderNavigationController.swift */; };
 		BB509F1C1F8D34DC00644485 /* SliderPreviewTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB509F1B1F8D34DC00644485 /* SliderPreviewTransition.swift */; };
+		BB509F1E1F8D478900644485 /* SlideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB509F1D1F8D478900644485 /* SlideNode.swift */; };
+		BB509F201F8D47C900644485 /* SliderViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB509F1F1F8D47C900644485 /* SliderViewControllerFactory.swift */; };
 		BB528B241F535EF4000C5AD7 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B07091F5348760085C239 /* Domain.framework */; };
 		BB5634AE1F6FC99F0031228A /* CalendarViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5634AD1F6FC99F0031228A /* CalendarViewControllerFactory.swift */; };
 		BB5634B01F6FF0000031228A /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5634AF1F6FF0000031228A /* CalendarViewModel.swift */; };
@@ -321,6 +323,8 @@
 		BB4DC4DB1F5E8DE000ED73BD /* Date+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		BB509F191F8CFBEB00644485 /* SliderNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderNavigationController.swift; sourceTree = "<group>"; };
 		BB509F1B1F8D34DC00644485 /* SliderPreviewTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPreviewTransition.swift; sourceTree = "<group>"; };
+		BB509F1D1F8D478900644485 /* SlideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideNode.swift; sourceTree = "<group>"; };
+		BB509F1F1F8D47C900644485 /* SliderViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewControllerFactory.swift; sourceTree = "<group>"; };
 		BB5634AD1F6FC99F0031228A /* CalendarViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerFactory.swift; sourceTree = "<group>"; };
 		BB5634AF1F6FF0000031228A /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		BB5634B11F7004E00031228A /* Date+daysCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+daysCount.swift"; sourceTree = "<group>"; };
@@ -542,6 +546,8 @@
 			isa = PBXGroup;
 			children = (
 				BB252CF71F802C1A009A1818 /* SliderNodeController.swift */,
+				BB509F1F1F8D47C900644485 /* SliderViewControllerFactory.swift */,
+				BB509F1D1F8D478900644485 /* SlideNode.swift */,
 				BB509F1B1F8D34DC00644485 /* SliderPreviewTransition.swift */,
 				BB509F191F8CFBEB00644485 /* SliderNavigationController.swift */,
 				BB252CFB1F802D07009A1818 /* SliderCellNode.swift */,
@@ -1963,6 +1969,7 @@
 				BBC77B5E1F79467D0091DC2D /* PostCell.swift in Sources */,
 				BBA808CE1F71777B00567D54 /* StaticCellType.swift in Sources */,
 				BBA808C81F71105300567D54 /* EditPostKeyboardView.swift in Sources */,
+				BB509F201F8D47C900644485 /* SliderViewControllerFactory.swift in Sources */,
 				BBE5B09D1F73FAF900D8B112 /* PostTextView.swift in Sources */,
 				BB252CFC1F802D07009A1818 /* SliderCellNode.swift in Sources */,
 				BBA808CA1F71763C00567D54 /* ButtonPost.swift in Sources */,
@@ -1995,6 +2002,7 @@
 				BB1870D11F70277D001BA294 /* PostTextViewController.swift in Sources */,
 				BBC77B601F7947790091DC2D /* TextViewComponent.swift in Sources */,
 				BB60C97F1F82DC7E00345364 /* OverviewMonthCellNode.swift in Sources */,
+				BB509F1E1F8D478900644485 /* SlideNode.swift in Sources */,
 				BBD552141F6FC6CF00828B63 /* HeaderMonthCell.swift in Sources */,
 				BB2E1BA91F5C0084001D7A92 /* UIImage+rounded.swift in Sources */,
 				BBC77B5A1F7922650091DC2D /* PostImageViewModel.swift in Sources */,

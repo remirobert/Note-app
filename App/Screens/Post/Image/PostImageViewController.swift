@@ -23,6 +23,7 @@ class EditTextNode: ASCellNode, ASEditableTextNodeDelegate {
         super.init()
         editNode.tintColor = UIColor.black
         editNode.delegate = self
+        editNode.keyboardAppearance = .dark
         addSubnode(editNode)
         selectionStyle = .none
         inputKeyboard.buttonDismissKeyboard.addTarget(self,
@@ -156,9 +157,6 @@ class PostImageViewController: ASViewController<ASTableNode>, ASTableDataSource,
         tableNode.view.separatorStyle = .none
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "close"), style: .done, target: self, action: #selector(self.dismissPost))
 
-        titleNode.editNode.textView.inputAccessoryView = toolbar
-        contentNode.editNode.textView.inputAccessoryView = toolbar
-
         let postButton = UIBarButtonItem(title: "post", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.post))
         let imageButton = UIBarButtonItem(image: #imageLiteral(resourceName: "camera-selected"), style: .done, target: self, action: #selector(self.addImage))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
@@ -173,6 +171,8 @@ class PostImageViewController: ASViewController<ASTableNode>, ASTableDataSource,
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        titleNode.editNode.textView.inputAccessoryView = toolbar
+        contentNode.editNode.textView.inputAccessoryView = toolbar
         contentNode.editNode.becomeFirstResponder()
     }
 
@@ -210,9 +210,11 @@ class PostImageViewController: ASViewController<ASTableNode>, ASTableDataSource,
     }
 
     func didUpdateContent() {
-        nodes.forEach({ node in
-            node.invalidateCalculatedLayout()
-            node.setNeedsLayout()
-        })
+        DispatchQueue.main.async {
+            self.nodes.forEach({ node in
+                node.invalidateCalculatedLayout()
+                node.setNeedsLayout()
+            })
+        }
     }
 }

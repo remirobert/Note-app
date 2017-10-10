@@ -14,7 +14,7 @@ class DayFeedCoordinator {
     fileprivate let dependencies: Dependencies
     fileprivate let dayFeedView: DayFeedView
     fileprivate let navigationDayFeed: NavigationView
-    fileprivate var postCoordinator: PostCoordinator!
+    fileprivate var postCoordinator: PostCoordinator?
     fileprivate var sliderCoordinator: SliderCoordinator!
 
     struct Dependencies {
@@ -45,14 +45,16 @@ extension DayFeedCoordinator: DayFeedViewDelegate {
                                               startIndex: index)
         sliderCoordinator.start()
     }
-    
+
     func displayCalendarView() {
         navigationDayFeed.dismiss(animated: true)
     }
 
     func addPost() {
-        postCoordinator = PostCoordinator(day: dependencies.day,
+        self.postCoordinator = nil
+        let postCoordinator = PostCoordinator(day: dependencies.day,
                                           parentView: dayFeedView)
         postCoordinator.start()
+        self.postCoordinator = postCoordinator
     }
 }
