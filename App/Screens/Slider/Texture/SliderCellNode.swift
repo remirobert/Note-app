@@ -12,9 +12,11 @@ import Domain
 
 class SliderCellNode: ASCellNode {
     private let operationQueue = OperationQueue()
-    private let imageNode = ASImageNode()
+    let imageNode = ASImageNode()
+    let index: Int
 
-    init(image: String) {
+    init(image: String, index: Int) {
+        self.index = index
         super.init()
         addSubnode(imageNode)
         imageNode.contentMode = .scaleAspectFit

@@ -22,6 +22,7 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
         self.viewModel = viewModel
         super.init(node: sliderNode)
         sliderNode.pagerNode.setDataSource(self)
+        sliderNode.pagerNode.setDelegate(self)
         node.backgroundColor = UIColor.clear
     }
 
@@ -31,10 +32,11 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "1 / \(viewModel.images.count)"
+        title = "\(startIndex + 1) / \(viewModel.images.count)"
         sliderNode.delegate = self
         let closeImage = UIImage(named: "close")?.withRenderingMode(.alwaysTemplate)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: closeImage, style: .done, target: self, action: #selector(self.close))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -50,11 +52,21 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
         sliderNode.transitionLayout(withAnimation: true, shouldMeasureAsync: true)
     }
 
-    @objc func close() {
+    @objc private func close() {
         sliderNode.pagerNode.isHidden = true
         sliderNode.imageNode.isHidden = false
         sliderNode.transitionState = .dismissing
         sliderNode.transitionLayout(withAnimation: true, shouldMeasureAsync: true)
+    }
+
+    @objc private func share() {
+        let currentIndex = sliderNode.pagerNode.currentPageIndex
+        guard let node = sliderNode.pagerNode.nodeForPage(at: currentIndex) as? SliderCellNode,
+            let image = node.imageNode.image else {
+                return
+        }
+        let shareController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        present(shareController, animated: true, completion: nil)
     }
 
     func didFinishStateTransition(state: SliderNodeTransitionState) {
@@ -64,16 +76,21 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
     }
 }
 
-extension SliderNodeController: ASPagerDataSource {
+extension SliderNodeController: ASPagerDataSource, ASCollectionDelegate, ASPagerDelegate {
     func numberOfPages(in pagerNode: ASPagerNode) -> Int {
         return viewModel.images.count
     }
 
     func pagerNode(_ pagerNode: ASPagerNode, nodeBlockAt index: Int) -> ASCellNodeBlock {
-        title = "\(index + 1) / \(viewModel.images.count)"
         let image = viewModel.images[index]
         return {
-            SliderCellNode(image: image)
+            SliderCellNode(image: image, index: index)
         }
     }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let page = Int(scrollView.contentOffset.x / UIScreen.main.bounds.size.width)
+        title = "\(page + 1) / \(viewModel.images.count)"
+    }
 }
+
