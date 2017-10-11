@@ -58,7 +58,7 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
 
     private func setupToolbar() {
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addPost))
+        let button = UIBarButtonItem(title: "create", style: .done, target: self, action: #selector(self.addPost))
         (navigationController as? DayFeedNavigationViewController)?.toolBarActions.setItems([space, button], animated: true)
     }
 
