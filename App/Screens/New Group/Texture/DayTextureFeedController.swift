@@ -53,7 +53,10 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
         view.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "calendar"), style: .done, target: self, action: #selector(displayCalendarView))
+        setupToolbar()
+    }
 
+    private func setupToolbar() {
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addPost))
         (navigationController as? DayFeedNavigationViewController)?.toolBarActions.setItems([space, button], animated: true)

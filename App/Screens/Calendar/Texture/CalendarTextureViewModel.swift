@@ -26,6 +26,9 @@ class CalendarTextureViewModel {
     private(set) var currentSection: IndexPath?
     private(set) var loadedSection: IndexPath?
 
+    private(set) var currentDayOffset: CGFloat?
+    private(set) var loadedSectionOffset: CGFloat?
+
     weak var delegate: CalendarTextureViewModelDelegate?
 
     init(currentDate: Date = Date(),
@@ -53,21 +56,44 @@ class CalendarTextureViewModel {
         currentDisplayedYear = year
         currentSection = nil
         loadedSection = nil
+
         sections.removeAll(keepingCapacity: true)
         calendar.monthSymbols.enumerated().forEach { index, _ in
             let dateData = DateData(month: index, year: year)
             let sectionCalendar = SectionCalendar(dateData: dateData, getDayUseCase: getDayUseCase)
             if currentDateData.month == index && currentDateData.year == year {
-                currentSection = IndexPath(row: 0, section: index)
+                currentSection = IndexPath(row: 0, section: index + 1)
+            }
+            if currentDateData.month == index && currentDateData.year == year {
                 sectionCalendar.setCurrentDay(day: day)
             }
-            if month == index {
-                loadedSection = IndexPath(row: 0, section: index)
+            if month == index + 1 {
+                loadedSection = IndexPath(row: 0, section: index + 1)
             }
             sections.insert(sectionCalendar, at: 0)
         }
         sections.reverse()
+        currentDayOffset = nil
+        loadedSectionOffset = nil
+
+        if let currentSection = currentSection {
+            currentDayOffset = convertIndexPathToOffset(section: currentSection)
+        }
+        if let loadedSection = loadedSection {
+            loadedSectionOffset = month > 1 ? convertIndexPathToOffset(section: loadedSection) : -70
+        }
         delegate?.reloadCalendarSections()
+    }
+
+    private func convertIndexPathToOffset(section: IndexPath) -> CGFloat {
+        let headerHeight: CGFloat = 70
+        let offset = (1..<section.section).reduce(0, { result, index -> CGFloat in
+            let heightCell = (UIScreen.main.bounds.size.width - 70) / 5 + 10
+            let numberLines = CGFloat(ceil(Float(sections[index].days.count) / 5))
+            let currentHeightSection = heightCell * numberLines + headerHeight
+            return CGFloat(currentHeightSection + result) - 10
+        })
+        return offset - headerHeight + 10
     }
 }
 

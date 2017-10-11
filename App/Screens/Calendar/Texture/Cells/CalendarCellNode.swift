@@ -14,10 +14,10 @@ class NumberPostDayNode: ASDisplayNode {
     init(numberPost: Int) {
         super.init()
         backgroundColor = UIColor.black
-        borderWidth = 1
-        borderColor = UIColor.white.cgColor
-        cornerRadius = 15
-        style.preferredSize = CGSize(width: 30, height: 30)
+        borderWidth = 2
+        borderColor = UIColor.black.cgColor
+        cornerRadius = 12.5
+        style.preferredSize = CGSize(width: 25, height: 25)
         numberTextNode.attributedText = NSAttributedString(string: "\(numberPost)",
             attributes: TextAttributes.numberPostDay)
         addSubnode(numberTextNode)

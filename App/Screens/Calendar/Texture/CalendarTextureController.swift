@@ -14,6 +14,7 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     fileprivate let viewModel: CalendarTextureViewModel
     fileprivate var currentSectionCalendar: SectionCalendar!
     fileprivate var performUpdate = true
+    fileprivate var firstDisplay = true
 
     weak var delegate: CalendarViewDelegate?
 
@@ -39,14 +40,15 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Takagi"
-        collectionNode.view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        collectionNode.view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 70, right: 10)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         configureToolbar()
-        guard let section = viewModel.currentSection else { return }
-        collectionNode.scrollToItem(at: section, at: .bottom, animated: true)
+        if firstDisplay {
+            scrollToToday()
+        }
     }
 
     fileprivate func configureToolbar() {
@@ -77,10 +79,15 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
 
 extension CalendarTextureController: CalendarTextureViewModelDelegate {
     func reloadCalendarSections() {
-        print("🤠")
         collectionNode.reloadData()
-        guard let section = viewModel.currentSection else { return }
-        collectionNode.scrollToItem(at: section, at: .bottom, animated: true)
+        guard let offset = viewModel.loadedSectionOffset else { return }
+        let animated = !firstDisplay
+        firstDisplay = false
+        DispatchQueue.main.async {
+            self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
+                                                              y: offset),
+                                                      animated: animated)
+        }
     }
 }
 
@@ -89,8 +96,13 @@ extension CalendarTextureController: CalendarDateSelectionProviderDelegate {
         viewModel.loadYear(fromDate: date)
         configureToolbar()
         collectionNode.reloadData()
-        guard let section = viewModel.loadedSection else { return }
-        collectionNode.scrollToItem(at: section, at: .bottom, animated: true)
+
+        guard let offset = viewModel.loadedSectionOffset else { return }
+        DispatchQueue.main.async {
+            self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
+                                                              y: offset),
+                                                      animated: true)
+        }
     }
 }
 
