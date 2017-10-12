@@ -24,14 +24,16 @@ class SettingsNodeController: ASViewController<ASTableNode>, SettingsView {
     }
 
     fileprivate func configureCellNodes() {
-        let cells: [ASCellNode] = viewModel.settingsItems.map {
-            SettingsCellNode(settingItem: $0)
+        let touchIdCell = SettingsCellNode(settingItem: viewModel.touchIdSettingItem) { [weak self] value in
+            self?.viewModel.didUpdateTouchId(value: value)
         }
         cellNodes = [
             SettingHeaderCellNode(title: "Security"),
+            touchIdCell
         ]
-        cellNodes.append(contentsOf: cells)
-        tableNode.reloadData()
+        DispatchQueue.main.async {
+            self.tableNode.reloadData()
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -17,11 +17,8 @@ class SettingsViewModel {
     fileprivate let settingsUseCase: GetAppSettingsUseCase
     private var authProvider: AuthentificationProvider
     fileprivate let appSettings: AppSettings
-    private(set) var settingsItems = [SettingItem]() {
-        didSet {
-            delegate?.reloadSettingsItems()
-        }
-    }
+
+    private(set) var touchIdSettingItem = SettingItem()
 
     weak var delegate: SettingsViewModelDelegate?
 
@@ -35,15 +32,16 @@ class SettingsViewModel {
     }
 
     fileprivate func updateSettingsItem() {
-        let touchId =  SettingItem(name: "Touch ID", description: "Protect your datas with touch Id. Everytime you launch the app, touch ID will be ask to unlock it.", switchValue: appSettings.localAuthEnabled)
-        settingsItems = [touchId]
+        touchIdSettingItem = SettingItem(name: "Touch ID", description: "Protect your datas with touch Id. Everytime you launch the app, touch ID will be ask to unlock it.", switchValue: appSettings.localAuthEnabled)
     }
 
     func didUpdateTouchId(value: Bool) {
+        print("value : \(value)")
         if !value {
             appSettings.localAuthEnabled = false
             settingsUseCase.update(appSettings: appSettings)
             updateSettingsItem()
+//            delegate?.reloadSettingsItems()
             return
         }
         authProvider.authentificate()
@@ -55,7 +53,10 @@ extension SettingsViewModel: AuthentificationProviderDelegate {
         if success {
             appSettings.localAuthEnabled = true
             settingsUseCase.update(appSettings: appSettings)
-            updateSettingsItem()
+        }
+        updateSettingsItem()
+        if !success {
+            delegate?.reloadSettingsItems()
         }
     }
 }

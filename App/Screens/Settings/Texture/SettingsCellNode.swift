@@ -10,14 +10,17 @@ import AsyncDisplayKit
 import SnapKit
 
 class SettingsCellNode: ASCellNode {
-    private lazy var switchSettings = UISwitch()
+    private var switchSettings: UISwitch!
     private let switchContainer = ASDisplayNode()
     private let titleSettings = ASTextNode()
     private let descriptionSettings = ASTextNode()
     private let settingItem: SettingItem
 
-    init(settingItem: SettingItem) {
+    private let completionValueChanged: ((Bool) -> Swift.Void)
+
+    init(settingItem: SettingItem, completionValueChanged: @escaping (Bool) -> Swift.Void) {
         self.settingItem = settingItem
+        self.completionValueChanged = completionValueChanged
         super.init()
         addSubnode(titleSettings)
         addSubnode(descriptionSettings)
@@ -30,11 +33,17 @@ class SettingsCellNode: ASCellNode {
 
     override func didLoad() {
         super.didLoad()
+        switchSettings = UISwitch(frame: CGRect.zero)
+        switchSettings.addTarget(self, action: #selector(self.switchValueChanged), for: .valueChanged)
         switchSettings.isOn = settingItem.switchValue
         switchSettings.onTintColor = UIColor.black
         switchSettings.thumbTintColor = UIColor.lightGray
         switchContainer.view.addSubview(switchSettings)
         switchSettings.frame.origin = CGPoint(x: 70 - switchSettings.frame.size.width - 10, y: 0)
+    }
+
+    @objc private func switchValueChanged() {
+        self.completionValueChanged(switchSettings.isOn)
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {

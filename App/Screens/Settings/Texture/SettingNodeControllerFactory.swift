@@ -16,6 +16,7 @@ class SettingNodeControllerFactory: SettingsViewFactory {
         self.settingsViewModel = SettingsViewModel(settingsUseCase: settingsUseCase,
                                                    authProvider: authProvider)
     }
+
     func make() -> SettingsView {
         return SettingsNodeController(viewModel: settingsViewModel)
     }

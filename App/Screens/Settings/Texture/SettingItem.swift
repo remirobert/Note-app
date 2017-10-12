@@ -13,9 +13,9 @@ class SettingItem {
     let description: String
     let switchValue: Bool
 
-    init(name: String,
-        description: String,
-        switchValue: Bool) {
+    init(name: String = String(),
+        description: String = String(),
+        switchValue: Bool = false) {
         self.name = name
         self.description = description
         self.switchValue = switchValue
