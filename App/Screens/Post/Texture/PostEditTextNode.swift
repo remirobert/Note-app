@@ -16,14 +16,14 @@ class PostEditTextNode: ASCellNode, ASEditableTextNodeDelegate {
     override init() {
         super.init()
         editNode.tintColor = UIColor.black
-        editNode.delegate = self
-        editNode.keyboardAppearance = .dark
         addSubnode(editNode)
         selectionStyle = .none
     }
 
     override func didLoad() {
         super.didLoad()
+        editNode.delegate = self
+        editNode.keyboardAppearance = .dark
     }
 
     func editableTextNodeDidUpdateText(_ editableTextNode: ASEditableTextNode) {

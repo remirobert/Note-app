@@ -7,6 +7,7 @@
 //
 
 public protocol View: class {
+    var navigationView: NavigationView? { get }
     func present(view: View, animated: Bool)
     func dismiss(animated: Bool)
 }

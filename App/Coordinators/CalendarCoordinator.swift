@@ -14,6 +14,7 @@ class CalendarCoordinator {
     fileprivate let window: Window
     fileprivate let calendarView: CalendarView
     fileprivate var dayFeedCoordinator: DayFeedCoordinator!
+    fileprivate var settingsCoordinator: SettingsCoordinator!
     fileprivate let getDayUseCase: GetDayUseCase
     fileprivate let subscriber = PostUpdateSubscriber()
     fileprivate let navigationView: NavigationView
@@ -49,5 +50,10 @@ extension CalendarCoordinator: CalendarViewDelegate {
                                                    dayNavigationFactory: DayFeedNavigationViewFactory())
         dayFeedCoordinator = DayFeedCoordinator(dependencies: deps)
         dayFeedCoordinator.start()
+    }
+
+    func displaySettings() {
+        settingsCoordinator = SettingsCoordinator(parentView: calendarView)
+        settingsCoordinator.start()
     }
 }

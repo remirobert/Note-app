@@ -12,6 +12,10 @@ public extension View {
     var viewController: UIViewController? {
         return self as? UIViewController
     }
+
+    public var navigationView: NavigationView? {
+        return viewController?.navigationController
+    }
 }
 
 public extension View {

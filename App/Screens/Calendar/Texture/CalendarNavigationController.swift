@@ -9,14 +9,14 @@
 import UIKit
 import SnapKit
 
-class CalendarNavigationController: UINavigationController {
+class CalendarNavigationController: UINavigationController, UINavigationControllerDelegate {
     let toolBarActions = UIToolbar(frame: CGRect.zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationBar.isTranslucent = true
-        navigationBar.tintColor = UIColor.yellow
+        navigationBar.tintColor = UIColor.black
         navigationBar.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,
                                              NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)]

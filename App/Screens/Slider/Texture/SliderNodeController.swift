@@ -56,7 +56,7 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
         sliderNode.pagerNode.isHidden = true
         sliderNode.imageNode.isHidden = false
         sliderNode.transitionState = .dismissing
-        sliderNode.transitionLayout(withAnimation: true, shouldMeasureAsync: true)
+        sliderNode.transitionLayout(withAnimation: true,  shouldMeasureAsync: true)
     }
 
     @objc private func share() {

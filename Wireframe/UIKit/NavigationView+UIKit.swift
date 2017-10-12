@@ -9,6 +9,10 @@
 import UIKit
 
 extension UINavigationController: NavigationView {
+    public var navigationView: NavigationView? {
+        return navigationController
+    }
+
     public func push(view: View) {
         guard let viewController = view.viewController else { return }
         pushViewController(viewController, animated: true)

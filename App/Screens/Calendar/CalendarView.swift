@@ -10,6 +10,7 @@ import Wireframe
 
 protocol CalendarViewDelegate: class {
     func didSelectDay(date: Date)
+    func displaySettings()
 }
 
 protocol CalendarViewFactory {

@@ -77,7 +77,7 @@ extension PostCellNode {
         galleryNode.style.preferredSize = CGSize(width: UIScreen.main.bounds.size.width - 80, height: galleryNode.height)
         titleTextNode.attributedText = NSAttributedString(string: post.titlePost, attributes: TextAttributes.postCreationTitle)
         contentTextNode.attributedText = NSAttributedString(string: post.descriptionPost, attributes: TextAttributes.postCreationContent)
-        timeTextNode.attributedText = NSAttributedString(string: "10 mins ago", attributes: TextAttributes.footerDate)
+        timeTextNode.attributedText = NSAttributedString(string: post.date.timeAgo(), attributes: TextAttributes.footerDate)
     }
 }
 

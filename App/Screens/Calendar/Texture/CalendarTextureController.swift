@@ -39,7 +39,8 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Takagi"
+        title = "Calendar"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .done, target: self, action: #selector(self.displaySettings))
         collectionNode.view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 70, right: 10)
     }
 
@@ -74,6 +75,10 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     @objc private func scrollToToday() {
         viewModel.loadYear(fromDate: Date())
         configureToolbar()
+    }
+
+    @objc private func displaySettings() {
+        delegate?.displaySettings()
     }
 }
 

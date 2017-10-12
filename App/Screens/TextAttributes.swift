@@ -90,4 +90,14 @@ class TextAttributes {
                           NSForegroundColorAttributeName: UIColor.black,
                           NSFontAttributeName: UIFont.italicSystemFont(ofSize: 17)]
     }
+
+    static var settingsTitle: [String:Any] {
+        return [NSForegroundColorAttributeName: UIColor.black,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 22, weight: UIFontWeightBold)]
+    }
+
+    static var settingsDescription: [String:Any] {
+        return [NSForegroundColorAttributeName: UIColor.lightGray,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 12)]
+    }
 }
