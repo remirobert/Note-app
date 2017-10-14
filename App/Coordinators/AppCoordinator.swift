@@ -21,6 +21,6 @@ class AppCoordinator: NSObject {
 
     func start() {
         calendarCoordinator.start()
-        authCoordinator.start()
+//        authCoordinator.start()
     }
 }

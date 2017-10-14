@@ -13,14 +13,14 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-    private var appCoordinator: AppCoordinator!
+    private var appCoordinator: SplitCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         guard let window = self.window else { return false }
 
         IQKeyboardManager.sharedManager().enable = true
         window.makeKeyAndVisible()
-        appCoordinator = AppCoordinator(window: window)
+        appCoordinator = SplitCoordinator(window: window)
         appCoordinator.start()
         return true
     }

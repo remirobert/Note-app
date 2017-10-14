@@ -6,20 +6,19 @@
 //  Copyright © 2017 Remi Robert. All rights reserved.
 //
 
-import AsyncDisplayKit
+import UIKit
+import SnapKit
 
-class SettingsNodeController: ASViewController<ASTableNode>, SettingsView {
+class SettingsNodeController: UIViewController, SettingsView {
     private let viewModel: SettingsViewModel
-    fileprivate let tableNode = ASTableNode()
-    fileprivate var cellNodes = [ASCellNode]()
+    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    fileprivate var cells = [UITableViewCell]()
+
     weak var delegate: SettingsViewDelegate?
 
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
-        super.init(node: tableNode)
-        tableNode.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.00)
-        tableNode.dataSource = self
-        self.viewModel.delegate = self
+        super.init(nibName: nil, bundle: nil)
         configureCellNodes()
     }
 
@@ -27,13 +26,9 @@ class SettingsNodeController: ASViewController<ASTableNode>, SettingsView {
         let touchIdCell = SettingsCellNode(settingItem: viewModel.touchIdSettingItem) { [weak self] value in
             self?.viewModel.didUpdateTouchId(value: value)
         }
-        cellNodes = [
-            SettingHeaderCellNode(title: "Security"),
+        cells = [
             touchIdCell
         ]
-        DispatchQueue.main.async {
-            self.tableNode.reloadData()
-        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,8 +37,16 @@ class SettingsNodeController: ASViewController<ASTableNode>, SettingsView {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableNode.view.tableFooterView = UIView()
         title = "Settings"
+        tableView.tableFooterView = UIView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        viewModel.delegate = self
+
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 
@@ -53,12 +56,16 @@ extension SettingsNodeController: SettingsViewModelDelegate {
     }
 }
 
-extension SettingsNodeController: ASTableDataSource {
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return cellNodes.count
+extension SettingsNodeController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cells.count
     }
 
-    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        return cellNodes[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return cells[indexPath.row]
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
 }

@@ -6,14 +6,12 @@
 //  Copyright © 2017 Remi Robert. All rights reserved.
 //
 
-import AsyncDisplayKit
+import UIKit
 import SnapKit
 
-class SettingsCellNode: ASCellNode {
-    private var switchSettings: UISwitch!
-    private let switchContainer = ASDisplayNode()
-    private let titleSettings = ASTextNode()
-    private let descriptionSettings = ASTextNode()
+class SettingsCellNode: UITableViewCell {
+    private var switchSettings = UISwitch(frame: CGRect.zero)
+    private var title = UILabel(frame: CGRect.zero)
     private let settingItem: SettingItem
 
     private let completionValueChanged: ((Bool) -> Swift.Void)
@@ -21,43 +19,46 @@ class SettingsCellNode: ASCellNode {
     init(settingItem: SettingItem, completionValueChanged: @escaping (Bool) -> Swift.Void) {
         self.settingItem = settingItem
         self.completionValueChanged = completionValueChanged
-        super.init()
-        addSubnode(titleSettings)
-        addSubnode(descriptionSettings)
-        addSubnode(switchContainer)
-        backgroundColor = UIColor.white
-        selectionStyle = .none
-        titleSettings.attributedText = NSAttributedString(string: settingItem.name, attributes: TextAttributes.settingsTitle)
-        descriptionSettings.attributedText = NSAttributedString(string: settingItem.description, attributes: TextAttributes.settingsDescription)
-    }
+        super.init(style: UITableViewCellStyle.default, reuseIdentifier: nil)
 
-    override func didLoad() {
-        super.didLoad()
-        switchSettings = UISwitch(frame: CGRect.zero)
+        contentView.addSubview(title)
+        contentView.addSubview(switchSettings)
+
         switchSettings.addTarget(self, action: #selector(self.switchValueChanged), for: .valueChanged)
-        switchSettings.isOn = settingItem.switchValue
         switchSettings.onTintColor = UIColor.black
         switchSettings.thumbTintColor = UIColor.lightGray
-        switchContainer.view.addSubview(switchSettings)
-        switchSettings.frame.origin = CGPoint(x: 70 - switchSettings.frame.size.width - 10, y: 0)
+
+        switchSettings.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-10)
+        }
+        title.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(10)
+            make.height.equalToSuperview()
+            make.right.equalTo(switchSettings.snp.left)
+        }
+        selectionStyle = .none
+        switchSettings.isOn = settingItem.switchValue
+        title.text = settingItem.name
+    }
+
+//    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//
+//    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func bindSetting(settingItem: SettingItem, completionValueChanged: @escaping (Bool) -> Swift.Void) {
+//        self.settingItem = settingItem
+//        self.completionValueChanged = completionValueChanged
+
     }
 
     @objc private func switchValueChanged() {
         self.completionValueChanged(switchSettings.isOn)
-    }
-
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        switchContainer.style.preferredSize = CGSize(width: 70, height: 60)
-        let stackTextLayout = ASStackLayoutSpec.vertical()
-        stackTextLayout.children = [titleSettings, descriptionSettings]
-        stackTextLayout.verticalAlignment = .center
-
-        let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 80)
-        let textLayout = ASInsetLayoutSpec(insets: insets, child: stackTextLayout)
-
-        switchContainer.style.layoutPosition = CGPoint(x: UIScreen.main.bounds.size.width - 70, y: 10)
-        let switchLayout = ASAbsoluteLayoutSpec(children: [switchContainer])
-        return ASOverlayLayoutSpec(child: textLayout, overlay: switchLayout)
     }
 }
 

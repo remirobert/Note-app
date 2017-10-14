@@ -142,8 +142,8 @@ extension CalendarTextureController: ASCollectionDelegate, ASCollectionDelegateF
     }
 
     func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
-        let size = CGSize(width: (UIScreen.main.bounds.size.width - 70) / 5,
-                          height: (UIScreen.main.bounds.size.width - 70) / 5)
+        let size = CGSize(width: (collectionNode.frame.size.width - 70) / 5,
+                          height: (collectionNode.frame.size.width - 70) / 5)
         return ASSizeRange(min: size, max: size)
     }
 
