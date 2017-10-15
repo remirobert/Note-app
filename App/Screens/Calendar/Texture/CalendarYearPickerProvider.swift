@@ -16,7 +16,7 @@ protocol CalendarDateSelectionProviderDelegate: class {
 
 protocol CalendarDateSelectionView: View {
     weak var delegate: CalendarDateSelectionProviderDelegate? { get set }
-        func present(parentView: View)
+    func present(parentView: View, barButtonItem: UIBarButtonItem?)
 }
 
 enum CalendarYearPickerProviderType {
@@ -126,13 +126,13 @@ class CalendarYearPickerProvider: UIViewController, View, CalendarDateSelectionV
         }
         alertViewController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         super.init(nibName: nil, bundle: nil)
-        preferredContentSize = CGSize(width: 200, height: 200)
-        pickerView.backgroundColor = UIColor.white
-        view.addSubview(pickerView)
+//        preferredContentSize = CGSize(width: 200, height: 200)
+//        pickerView.backgroundColor = UIColor.white
+//        view.addSubview(pickerView)
 
-        pickerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+//        pickerView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
         setupAlertController()
     }
 
@@ -149,14 +149,38 @@ class CalendarYearPickerProvider: UIViewController, View, CalendarDateSelectionV
         alertViewController.addAction(UIAlertAction(title: "select", style: .default, handler: { _ in
             self.delegate?.didSelectDate(date: self.pickerViewFactory.selectedDate())
         }))
-        alertViewController.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
-        alertViewController.isModalInPopover = true
+        alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+                alertViewController.addAction(UIAlertAction(title: "cancel", style: .destructive, handler: nil))
+
+        alertViewController.isModalInPopover = false
         alertViewController.setValue(self, forKey: "contentViewController")
     }
 
-    func present(parentView: View) {
+    func present(parentView: View, barButtonItem: UIBarButtonItem?) {
         alertViewController.modalPresentationStyle = .popover
         parentView.viewController?.present(alertViewController, animated: true, completion: nil)
+        guard let popoverController = alertViewController.popoverPresentationController else { return }
+//        alertViewController.preferredContentSize = CGSize(width: 400, height: 400)
+        popoverController.barButtonItem = barButtonItem
+        popoverController.permittedArrowDirections = .any
     }
-
 }

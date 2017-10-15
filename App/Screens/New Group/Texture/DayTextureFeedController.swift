@@ -96,7 +96,7 @@ extension DayTextureFeedController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
         let model = viewModel.models[indexPath.row]
         return {
-            let cell = PostCellNode(post: model)
+            let cell = PostCellNode(post: model, tableNodeSize: tableNode.calculatedSize)
             cell.delgate = self
             return cell
         }

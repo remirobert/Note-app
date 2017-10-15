@@ -67,12 +67,12 @@ class ImageGalleryNode: ASDisplayNode {
 
     weak var delegate: ImageGalleryCellNodeDelegate?
 
-    init(images: [String]) {
+    init(images: [String], widthTableNode: CGFloat) {
         self.images = images
         if images.count >= 1 && images.count <= 3 {
-            height = CGFloat(UIScreen.main.bounds.size.width - 100) / 3
+            height = CGFloat(widthTableNode - 100) / 3
         } else if images.count > 3 && images.count <= 6 {
-            height = CGFloat(UIScreen.main.bounds.size.width - 100) / 3 * 2 + 10
+            height = CGFloat(widthTableNode - 100) / 3 * 2 + 10
         } else {
             height = 0
         }
@@ -116,6 +116,12 @@ extension ImageGalleryNode: ASCollectionDataSource {
 }
 
 extension ImageGalleryNode: ASCollectionDelegate {
+    func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
+        let size = CGSize(width: (collectionNode.calculatedSize.width - 100) / 3,
+                          height: (collectionNode.calculatedSize.width - 100) / 3)
+        return ASSizeRange(min: size, max: size)
+    }
+
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
         guard let node = collectionNode.nodeForItem(at: indexPath) as? ImageGalleryCellNode else { return }
         let rect = node.convert(node.frame, to: nil)

@@ -63,7 +63,9 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     @objc private func selectDateCalendar() {
         let controller = CalendarYearPickerProvider(type: .date)
         controller.delegate = self
-        self.present(controller.alertViewController, animated: true, completion: nil)
+        let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?.first
+        controller.present(parentView: self, barButtonItem: buttonItem)
+        //        self.present(controller.alertViewController, animated: true, completion: nil)
     }
 
     @objc private func selectYearCalendar() {
@@ -109,15 +111,6 @@ extension CalendarTextureController: CalendarTextureViewModelDelegate {
                                                               y: offsetSection),
                                                       animated: animated)
         }
-
-//        guard let offset = viewModel.loadedSectionOffset else { return }
-//        let animated = !firstDisplay
-//        firstDisplay = false
-//        DispatchQueue.main.async {
-//            self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
-//                                                              y: offset),
-//                                                      animated: animated)
-//        }
     }
 }
 

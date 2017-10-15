@@ -37,15 +37,17 @@ class PostCellNode: ASCellNode {
     fileprivate let galleryNode: ImageGalleryNode
     fileprivate let background = BackgroundPostCellNode()
     fileprivate let timeTextNode = ASTextNode()
+    fileprivate let tableNodeSize: CGSize
 
     fileprivate var nodes = [ASDisplayNode]()
 
     weak var delgate: PostCellNodeDelegate?
 
-    init(post: PostImage) {
+    init(post: PostImage, tableNodeSize: CGSize) {
         self.post = post
-        galleryNode = ImageGalleryNode(images: post.images)
-
+        self.tableNodeSize = tableNodeSize
+        galleryNode = ImageGalleryNode(images: post.images,
+                                       widthTableNode: tableNodeSize.width)
         if !post.titlePost.isEmpty {
             nodes.append(titleTextNode)
         }
@@ -74,7 +76,7 @@ extension PostCellNode {
     }
 
     fileprivate func setupNodes(post: PostImage) {
-        galleryNode.style.preferredSize = CGSize(width: UIScreen.main.bounds.size.width - 80, height: galleryNode.height)
+        galleryNode.style.preferredSize = CGSize(width: tableNodeSize.width - 80, height: galleryNode.height)
         titleTextNode.attributedText = NSAttributedString(string: post.titlePost, attributes: TextAttributes.postCreationTitle)
         contentTextNode.attributedText = NSAttributedString(string: post.descriptionPost, attributes: TextAttributes.postCreationContent)
         timeTextNode.attributedText = NSAttributedString(string: post.date.timeAgo(), attributes: TextAttributes.footerDate)
