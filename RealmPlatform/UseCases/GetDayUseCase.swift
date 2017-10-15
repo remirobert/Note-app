@@ -33,8 +33,12 @@ public class RMGetDayUseCase: GetDayUseCase {
             return Day()
         }
         let day = RMDay(date: date)
-        try? realm.write {
-            realm.add(day)
+        do {
+            try realm.write {
+                realm.add(day)
+            }
+        } catch {
+            NSLog("❌ error : \(error.localizedDescription)")
         }
         return day.toDay()
     }

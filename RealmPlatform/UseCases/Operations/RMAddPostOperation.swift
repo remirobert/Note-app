@@ -61,11 +61,15 @@ public class RMAddPostOperation: AddPostOperation {
 
     private func save(object: RMPost, realm: Realm, rmDay: RMDay) {
         let anyPost = AnyPost(post: object)
-        try? realm.write {
-            rmDay.numberPosts += 1
-            realm.add(object)
-            rmDay.posts.append(anyPost)
-            realm.add(rmDay, update: true)
+        do {
+            try realm.write {
+                rmDay.numberPosts += 1
+                realm.add(object)
+                rmDay.posts.append(anyPost)
+                realm.add(rmDay, update: true)
+            }
+        } catch {
+            NSLog("❌ error : \(error.localizedDescription)")
         }
     }
 }

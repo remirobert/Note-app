@@ -78,6 +78,7 @@
 		BB47151B1F92884A0058F00B /* SplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB47151A1F92884A0058F00B /* SplitView.swift */; };
 		BB47151D1F9288C70058F00B /* SplitView+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB47151C1F9288C70058F00B /* SplitView+UIKit.swift */; };
 		BB47151F1F928D840058F00B /* SplitCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB47151E1F928D840058F00B /* SplitCoordinator.swift */; };
+		BB4715211F9342EE0058F00B /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4715201F9342EE0058F00B /* SettingsNavigationController.swift */; };
 		BB4812D41F70090D009C4B70 /* DateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4812D31F70090D009C4B70 /* DateData.swift */; };
 		BB4DC4DC1F5E8DE000ED73BD /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DC4DB1F5E8DE000ED73BD /* Date+.swift */; };
 		BB509F1A1F8CFBEB00644485 /* SliderNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB509F191F8CFBEB00644485 /* SliderNavigationController.swift */; };
@@ -339,6 +340,7 @@
 		BB47151A1F92884A0058F00B /* SplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitView.swift; sourceTree = "<group>"; };
 		BB47151C1F9288C70058F00B /* SplitView+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplitView+UIKit.swift"; sourceTree = "<group>"; };
 		BB47151E1F928D840058F00B /* SplitCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitCoordinator.swift; sourceTree = "<group>"; };
+		BB4715201F9342EE0058F00B /* SettingsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
 		BB4812D31F70090D009C4B70 /* DateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateData.swift; sourceTree = "<group>"; };
 		BB4DC4DB1F5E8DE000ED73BD /* Date+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		BB509F191F8CFBEB00644485 /* SliderNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderNavigationController.swift; sourceTree = "<group>"; };
@@ -1030,6 +1032,7 @@
 			isa = PBXGroup;
 			children = (
 				BBE459F11F8E7BDF00D22B70 /* SettingsNodeController.swift */,
+				BB4715201F9342EE0058F00B /* SettingsNavigationController.swift */,
 				BB4714F61F8FB9BC0058F00B /* SettingsViewModel.swift */,
 				BBE459F51F8E811600D22B70 /* SettingsCellNode.swift */,
 				BB04EA761F8EB768002AA91C /* SettingHeaderCellNode.swift */,
@@ -1987,6 +1990,7 @@
 				BB509F201F8D47C900644485 /* SliderViewControllerFactory.swift in Sources */,
 				BB252CFC1F802D07009A1818 /* SliderCellNode.swift in Sources */,
 				BB4714E91F8F6FA30058F00B /* AuthentificationProvider.swift in Sources */,
+				BB4715211F9342EE0058F00B /* SettingsNavigationController.swift in Sources */,
 				BBE459F41F8E7C5C00D22B70 /* SettingsCoordinator.swift in Sources */,
 				BB9BF5EE1F560BA900C28C9C /* TextAttributes.swift in Sources */,
 				BBC179DE1F6D103900C0E07F /* CellViewModel.swift in Sources */,

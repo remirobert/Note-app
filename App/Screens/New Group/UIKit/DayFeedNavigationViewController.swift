@@ -31,13 +31,11 @@ class DayFeedNavigationViewController: UINavigationController {
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,
                                              NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)]
         if #available(iOS 11.0, *) {
+            navigationBar.prefersLargeTitles = true
             navigationBar.largeTitleTextAttributes = [NSForegroundColorAttributeName: UIColor.lightGray,
                                                       NSFontAttributeName: UIFont.systemFont(ofSize: 30, weight: UIFontWeightHeavy)]
         }
         navigationBar.shadowImage = UIImage()
-        if #available(iOS 11.0, *) {
-            navigationBar.prefersLargeTitles = true
-        }
 
         view.addSubview(toolBarActions)
         toolBarActions.snp.makeConstraints { make in

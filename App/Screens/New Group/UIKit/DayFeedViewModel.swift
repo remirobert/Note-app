@@ -43,6 +43,10 @@ class DayFeedViewModel {
         operationQueue.cancelAllOperations()
         operationQueue.addOperation(operation)
     }
+
+    deinit {
+        print("⚠️ deinit viewmodel")
+    }
 }
 
 extension DayFeedViewModel: PostUpdateSubscriberDelegate {
@@ -53,6 +57,7 @@ extension DayFeedViewModel: PostUpdateSubscriberDelegate {
 
 extension DayFeedViewModel: FetchPostOperationDelegate {
     func didFetchPosts(posts: [Post]) {
+        print("♨️ take update")
         let models = posts.map { (post: Post) -> CellViewModel? in
             if let image = post as? PostImage {
                 return PostCellViewModel(post: image)

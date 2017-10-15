@@ -14,11 +14,13 @@ import RealmPlatform
 extension UISplitViewController: View {}
 
 class SplitCoordinator {
+    fileprivate var currentDay: Day!
     fileprivate let splitViewController = UISplitViewController()
     fileprivate let window: Window
     fileprivate let calendarView: CalendarView
-    fileprivate var dayFeedCoordinator: DayFeedCoordinator!
+    fileprivate var feedView: DayFeedView!
     fileprivate var settingsCoordinator: SettingsCoordinator!
+    fileprivate var postCoordinator: PostCoordinator!
     fileprivate let getDayUseCase: GetDayUseCase
     fileprivate let subscriber = PostUpdateSubscriber()
     fileprivate let navigationView: NavigationView
@@ -36,12 +38,13 @@ class SplitCoordinator {
         calendarView.delegate = self
 
         let vc = UIViewController()
-        vc.view.backgroundColor = UIColor.red
+        vc.view.backgroundColor = UIColor.white
         splitViewController.preferredDisplayMode = .allVisible
 
         splitViewController.viewControllers = [navigationView.viewController!, vc]
         window.rootView = splitViewController
         print("🅰️ split : \(splitViewController.viewController)")
+        didSelectDay(date: Date())
     }
 }
 
@@ -52,19 +55,15 @@ extension SplitCoordinator: CalendarViewDelegate {
             dayModel = getDayUseCase.createNewDay(date: date)
         }
         guard let day = dayModel else { return }
+        currentDay = day
 
         let op = RMFetchPostOperationFactory(day: day)
         let viewModel = DayTextureViewModel(day: day, postsOperationProvider: op, subscriber: subscriber)
         let viewFactory = DayTextureControllerFactory(viewModel: viewModel)
-        let deps = DayFeedCoordinator.Dependencies(day: day,
-                                                   parentView: calendarView,
-                                                   dayFeedFactory: DayTextureControllerFactory(viewModel: viewModel),
-                                                   dayNavigationFactory: DayFeedNavigationViewFactory())
-
-        dayFeedCoordinator = DayFeedCoordinator(dependencies: deps)
-//        dayFeedCoordinator.start()
-        let feedView = DayFeedNavigationViewFactory().make(rootView: viewFactory.make())
-        splitViewController.showDetailViewController(feedView.viewController!, sender: nil)
+        feedView = viewFactory.make()
+        let navigationView = DayFeedNavigationViewFactory().make(rootView: feedView)
+        feedView.delegate = self
+        splitViewController.showDetailViewController(navigationView.viewController!, sender: nil)
     }
 
     private func displayDayFeed() {
@@ -74,5 +73,22 @@ extension SplitCoordinator: CalendarViewDelegate {
     func displaySettings() {
         settingsCoordinator = SettingsCoordinator(parentView: calendarView)
         settingsCoordinator.start()
+    }
+}
+
+extension SplitCoordinator: DayFeedViewDelegate {
+    func addPost() {
+        postCoordinator = nil
+        postCoordinator = PostCoordinator(day: currentDay,
+                                          parentView: feedView)
+        postCoordinator.start()
+    }
+
+    func displayCalendarView() {
+
+    }
+
+    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect) {
+
     }
 }

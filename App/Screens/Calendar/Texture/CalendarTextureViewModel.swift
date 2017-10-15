@@ -10,7 +10,7 @@ import Foundation
 import Domain
 
 protocol CalendarTextureViewModelDelegate: class {
-    func reloadCalendarSections()
+    func reloadCalendarSections(updateOffset: Bool)
 }
 
 class CalendarTextureViewModel {
@@ -48,7 +48,7 @@ class CalendarTextureViewModel {
         loadYear(fromDate: Date())
     }
 
-    func loadYear(fromDate date: Date) {
+    func loadYear(fromDate date: Date, updateOffset: Bool = true) {
         let year = calendar.component(Calendar.Component.year, from: date)
         let month = calendar.component(Calendar.Component.month, from: date)
         let day = calendar.component(Calendar.Component.day, from: date)
@@ -82,7 +82,7 @@ class CalendarTextureViewModel {
         if let loadedSection = loadedSection {
             loadedSectionOffset = month > 1 ? convertIndexPathToOffset(section: loadedSection) : -70
         }
-        delegate?.reloadCalendarSections()
+        delegate?.reloadCalendarSections(updateOffset: updateOffset)
     }
 
     private func convertIndexPathToOffset(section: IndexPath) -> CGFloat {
@@ -99,6 +99,6 @@ class CalendarTextureViewModel {
 
 extension CalendarTextureViewModel: PostUpdateSubscriberDelegate {
     func dataDidUpdate() {
-        loadYear(fromDate: dateSelected)
+        loadYear(fromDate: dateSelected, updateOffset: false)
     }
 }

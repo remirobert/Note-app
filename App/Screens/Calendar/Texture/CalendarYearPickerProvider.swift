@@ -155,6 +155,8 @@ class CalendarYearPickerProvider: UIViewController, View, CalendarDateSelectionV
     }
 
     func present(parentView: View) {
+        alertViewController.modalPresentationStyle = .popover
         parentView.viewController?.present(alertViewController, animated: true, completion: nil)
     }
+
 }

@@ -47,6 +47,11 @@ class SettingsNodeController: UIViewController, SettingsView {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "close", style: .done, target: self, action: #selector(self.close))
+    }
+
+    @objc private func close() {
+        delegate?.dismiss()
     }
 }
 

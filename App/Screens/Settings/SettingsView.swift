@@ -8,6 +8,10 @@
 
 import Wireframe
 
+protocol SettingsNavigationViewFactory: class {
+    func make(rootView: View) -> NavigationView
+}
+
 protocol SettingsViewDelegate: class {
     func dismiss()
 }

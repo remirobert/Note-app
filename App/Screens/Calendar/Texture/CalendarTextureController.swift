@@ -83,16 +83,41 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
 }
 
 extension CalendarTextureController: CalendarTextureViewModelDelegate {
-    func reloadCalendarSections() {
+    private func convertIndexPathToOffset(section: IndexPath) -> CGFloat {
+        let headerHeight: CGFloat = 70
+        let offset = (1..<section.section).reduce(0, { result, index -> CGFloat in
+            let heightCell = (collectionNode.frame.size.width - 70) / 5 + 10
+            let numberLines = CGFloat(ceil(Float(viewModel.sections[index].days.count) / 5))
+            let currentHeightSection = heightCell * numberLines + headerHeight
+            return CGFloat(currentHeightSection + result) - 10
+        })
+        return offset - headerHeight + 10
+    }
+
+    func reloadCalendarSections(updateOffset: Bool) {
+        print("🌈reload data")
         collectionNode.reloadData()
-        guard let offset = viewModel.loadedSectionOffset else { return }
+        if !updateOffset {
+            return
+        }
+        guard let section = viewModel.loadedSection else { return }
+        let offsetSection = convertIndexPathToOffset(section: section)
         let animated = !firstDisplay
         firstDisplay = false
         DispatchQueue.main.async {
             self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
-                                                              y: offset),
+                                                              y: offsetSection),
                                                       animated: animated)
         }
+
+//        guard let offset = viewModel.loadedSectionOffset else { return }
+//        let animated = !firstDisplay
+//        firstDisplay = false
+//        DispatchQueue.main.async {
+//            self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
+//                                                              y: offset),
+//                                                      animated: animated)
+//        }
     }
 }
 
@@ -148,7 +173,7 @@ extension CalendarTextureController: ASCollectionDelegate, ASCollectionDelegateF
     }
 
     func collectionNode(_ collectionNode: ASCollectionNode, sizeRangeForHeaderInSection section: Int) -> ASSizeRange {
-        let size = CGSize(width: UIScreen.main.bounds.size.width,
+        let size = CGSize(width: collectionNode.frame.size.width,
                           height: 70)
         return ASSizeRange(min: size, max: size)
     }

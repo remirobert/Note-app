@@ -28,7 +28,6 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
     fileprivate let toolBar = UIToolbar(frame: CGRect.zero)
 
     weak var delegate: DayFeedViewDelegate?
-    func reload() {}
 
     init(viewModel: DayTextureViewModel) {
         self.viewModel = viewModel
@@ -68,6 +67,10 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
 
     @objc private func addPost() {
         delegate?.addPost()
+    }
+
+    func reload() {
+        tableNode.reloadData()
     }
 }
 

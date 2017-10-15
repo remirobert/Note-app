@@ -29,6 +29,7 @@ class PostCoordinator {
     func start() {
         postView.delegate = self
         let navigationView = navigationViewFactory.make(rootView: postView)
+        navigationView.viewController?.modalPresentationStyle = .pageSheet
         parentView.present(view: navigationView, animated: true)
     }
 }

@@ -7,6 +7,17 @@
 //
 
 import Domain
+import Wireframe
+import UIKit
+
+class SettingsNavigationControllerFactory: SettingsNavigationViewFactory {
+    func make(rootView: View) -> NavigationView {
+        guard let controller = rootView.viewController else {
+            return SettingsNavigationController()
+        }
+        return SettingsNavigationController(rootViewController: controller)
+    }
+}
 
 class SettingNodeControllerFactory: SettingsViewFactory {
     private let settingsViewModel: SettingsViewModel

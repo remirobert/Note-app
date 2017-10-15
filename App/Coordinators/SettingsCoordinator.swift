@@ -12,17 +12,32 @@ import RealmPlatform
 
 class SettingsCoordinator {
     private let settingsViewFactory: SettingsViewFactory
+    private let settingsNavigationFactory: SettingsNavigationViewFactory
     private let parentView: View
+    fileprivate var settingsView: SettingsView!
 
     init(parentView: View) {
         self.parentView = parentView
         settingsViewFactory = SettingNodeControllerFactory(settingsUseCase: RMGetAppSettingsUseCase(),
                                                            authProvider: LocalAuthentification())
+        settingsNavigationFactory = SettingsNavigationControllerFactory()
     }
 
     func start() {
         guard let navigationView = parentView.navigationView else { return }
-        let settingsView = settingsViewFactory.make()
-        navigationView.push(view: settingsView)
+        settingsView = settingsViewFactory.make()
+        settingsView.delegate = self
+        let settingsNavigationView = settingsNavigationFactory.make(rootView: settingsView)
+        settingsNavigationView.viewController?.modalPresentationStyle = .popover
+        navigationView.present(view: settingsNavigationView, animated: true)
+        let popController = settingsNavigationView.viewController?.popoverPresentationController!
+        popController?.permittedArrowDirections = .any
+        popController?.barButtonItem = parentView.viewController!.navigationItem.rightBarButtonItem
+    }
+}
+
+extension SettingsCoordinator: SettingsViewDelegate {
+    func dismiss() {
+        settingsView.dismiss(animated: true)
     }
 }
