@@ -99,6 +99,7 @@ class CalendarTextureViewModel {
 
 extension CalendarTextureViewModel: PostUpdateSubscriberDelegate {
     func dataDidUpdate() {
+        print("🔰 want to update collection")
         loadYear(fromDate: dateSelected, updateOffset: false)
     }
 }

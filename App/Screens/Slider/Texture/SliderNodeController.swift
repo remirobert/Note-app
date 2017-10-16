@@ -46,17 +46,18 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        sliderNode.pagerNode.isHidden = true
+//        sliderNode.pagerNode.isHidden = true
         sliderNode.pagerNode.scrollToPage(at: startIndex, animated: false)
-        sliderNode.transitionState = .displayed
-        sliderNode.transitionLayout(withAnimation: true, shouldMeasureAsync: true)
+//        sliderNode.transitionState = .presenting
+//        sliderNode.transitionLayout(withAnimation: true, shouldMeasureAsync: true)
     }
 
     @objc private func close() {
-        sliderNode.pagerNode.isHidden = true
-        sliderNode.imageNode.isHidden = false
-        sliderNode.transitionState = .dismissing
-        sliderNode.transitionLayout(withAnimation: true,  shouldMeasureAsync: true)
+        self.delegate?.dismiss()
+//        sliderNode.pagerNode.isHidden = true
+//        sliderNode.imageNode.isHidden = false
+//        sliderNode.transitionState = .dismissing
+//        sliderNode.transitionLayout(withAnimation: true,  shouldMeasureAsync: true)
     }
 
     @objc private func share() {
@@ -83,13 +84,14 @@ extension SliderNodeController: ASPagerDataSource, ASCollectionDelegate, ASPager
 
     func pagerNode(_ pagerNode: ASPagerNode, nodeBlockAt index: Int) -> ASCellNodeBlock {
         let image = viewModel.images[index]
+        let widthPagerNode = self.sliderNode.pagerNode.calculatedSize.width
         return {
-            SliderCellNode(image: image, index: index)
+            SliderCellNode(image: image, index: index, widthPagerNode: widthPagerNode)
         }
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let page = Int(scrollView.contentOffset.x / UIScreen.main.bounds.size.width)
+        let page = Int(scrollView.contentOffset.x / sliderNode.pagerNode.calculatedSize.width)
         title = "\(page + 1) / \(viewModel.images.count)"
     }
 }

@@ -21,9 +21,11 @@ class SplitCoordinator {
     fileprivate var feedView: DayFeedView!
     fileprivate var settingsCoordinator: SettingsCoordinator!
     fileprivate var postCoordinator: PostCoordinator!
+    fileprivate var sliderCoordinator: SliderCoordinator!
     fileprivate let getDayUseCase: GetDayUseCase
     fileprivate let subscriber = PostUpdateSubscriber()
     fileprivate let navigationView: NavigationView
+    fileprivate var navigationFeedView: NavigationView!
 
     init(window: Window) {
         self.window = window
@@ -32,21 +34,26 @@ class SplitCoordinator {
                                                          postSubscriber: subscriber)
         calendarView = CalendarTextureControllerFactory(viewModel: calendarViewModel).make()
         navigationView = CalendarNavigationController(rootViewController: calendarView.viewController ?? UIViewController())
+
+        let viewFactory = DayTextureControllerFactory()
+        feedView = viewFactory.make()
+        navigationFeedView = DayFeedNavigationViewFactory().make(rootView: feedView)
     }
 
     func start() {
         calendarView.delegate = self
-
-        let vc = UIViewController()
-        vc.view.backgroundColor = UIColor.white
         splitViewController.preferredDisplayMode = .allVisible
-
-        splitViewController.viewControllers = [navigationView.viewController!, vc]
         window.rootView = splitViewController
-        print("🅰️ split : \(splitViewController.viewController)")
+        splitViewController.viewControllers = [navigationView.viewController!, navigationFeedView.viewController!]
         didSelectDay(date: Date())
     }
 }
+
+class Fake: UIViewController, View {
+
+}
+
+import AsyncDisplayKit
 
 extension SplitCoordinator: CalendarViewDelegate {
     func didSelectDay(date: Date) {
@@ -62,11 +69,9 @@ extension SplitCoordinator: CalendarViewDelegate {
 
         let op = RMFetchPostOperationFactory(day: day)
         let viewModel = DayTextureViewModel(day: day, postsOperationProvider: op, subscriber: subscriber)
-        let viewFactory = DayTextureControllerFactory(viewModel: viewModel)
-        feedView = viewFactory.make()
-        let navigationView = DayFeedNavigationViewFactory().make(rootView: feedView)
+        feedView.viewModel = viewModel
         feedView.delegate = self
-        splitViewController.showDetailViewController(navigationView.viewController!, sender: nil)
+//        feedView.viewController?.title = "\(date)"
     }
 
     private func displayDayFeed() {
@@ -92,6 +97,11 @@ extension SplitCoordinator: DayFeedViewDelegate {
     }
 
     func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect) {
-
+        sliderCoordinator = SliderCoordinator(post: post,
+                                              parentView: feedView,
+                                              previewImage: image,
+                                              rectImage: rect,
+                                              startIndex: index)
+        sliderCoordinator.start()
     }
 }

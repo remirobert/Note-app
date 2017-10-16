@@ -26,12 +26,11 @@ class SliderCoordinator: NSObject {
     func start() {
         sliderView = viewFactory.make()
         sliderView.delegate = self
-        sliderView.viewController?.modalPresentationStyle = .overFullScreen
 //        sliderView.viewController?.transitioningDelegate = parentView as! DayTextureFeedController
 //        (sliderView.viewController as? SliderNodeController)?.ensureDisplay()
         let sliderNavigationController = SliderNavigationController(rootViewController: sliderView.viewController ?? UIViewController())
-        sliderNavigationController.modalPresentationStyle = .overFullScreen
-        parentView.present(view: sliderNavigationController, animated: false)
+        sliderNavigationController.modalPresentationStyle = .formSheet
+        parentView.present(view: sliderNavigationController, animated: true)
     }
 }
 

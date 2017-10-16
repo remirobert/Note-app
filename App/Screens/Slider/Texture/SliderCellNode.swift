@@ -15,7 +15,7 @@ class SliderCellNode: ASCellNode {
     let imageNode = ASImageNode()
     let index: Int
 
-    init(image: String, index: Int) {
+    init(image: String, index: Int, widthPagerNode: CGFloat) {
         self.index = index
         super.init()
         addSubnode(imageNode)
@@ -29,8 +29,8 @@ class SliderCellNode: ASCellNode {
         }
         operationQueue.addOperation { [weak self] in
             guard let image = UIImage(contentsOfFile: pathUrl.absoluteString) else { return }
-            let ratioImage = UIScreen.main.bounds.size.width / image.size.width
-            let forcedSize = CGSize(width: UIScreen.main.bounds.size.width,
+            let ratioImage = widthPagerNode / image.size.width
+            let forcedSize = CGSize(width: widthPagerNode,
                                     height: image.size.height * ratioImage)
             self?.imageNode.forcedSize = forcedSize
             self?.imageNode.image = image

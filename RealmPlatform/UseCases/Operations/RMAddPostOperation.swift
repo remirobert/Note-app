@@ -41,9 +41,14 @@ public class RMAddPostOperation: AddPostOperation {
         if isCancelled {
             return
         }
-        guard let realm = try? Realm(configuration: configuration),
-            let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id),
-            let rmPost = (post as? PostImage)?.toRMPostImage() else {
+
+        guard let realm = try? Realm(configuration: configuration) else {
+            return
+        }
+        guard let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id) else {
+            return
+        }
+        guard let rmPost = (post as? PostImage)?.toRMPostImage() else {
             return
         }
         let filesNames = imagesData.map {
@@ -67,6 +72,7 @@ public class RMAddPostOperation: AddPostOperation {
                 realm.add(object)
                 rmDay.posts.append(anyPost)
                 realm.add(rmDay, update: true)
+                print("✅ done creating post")
             }
         } catch {
             NSLog("❌ error : \(error.localizedDescription)")

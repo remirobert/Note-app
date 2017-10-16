@@ -19,7 +19,6 @@ class ImageGalleryNodeLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
         let size = CGFloat(UIScreen.main.bounds.size.width - 100) / 3
-        print("size : \(size) : 335 : \(UIScreen.main.bounds.size.width - 40)")
         itemSize = CGSize(width: size, height: size)
         minimumLineSpacing = 10
         minimumInteritemSpacing = 0

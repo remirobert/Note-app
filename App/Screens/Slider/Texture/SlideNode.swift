@@ -36,7 +36,7 @@ class SliderNode: ASDisplayNode {
     let imageNode = ASImageNode()
     fileprivate let previewTransition: SliderPreviewTransition?
 
-    var transitionState: SliderNodeTransitionState = .presenting
+    var transitionState: SliderNodeTransitionState = .displayed
     weak var delegate: SliderNodeTransitionStateDelegate?
 
     init(post: PostImage, previewTransition: SliderPreviewTransition?) {
@@ -44,7 +44,7 @@ class SliderNode: ASDisplayNode {
         super.init()
         addSubnode(pagerNode)
         setupPreviewImageNode()
-        pagerNode.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        pagerNode.backgroundColor = UIColor.black//.withAlphaComponent(0.1)
         backgroundColor = UIColor.clear
     }
 
@@ -83,7 +83,7 @@ extension SliderNode {
             return stackLayout
         case .presenting:
             pagerNode.style.layoutPosition = CGPoint.zero
-            pagerNode.style.preferredSize = UIScreen.main.bounds.size
+            pagerNode.style.preferredSize = constrainedSize.max//UIScreen.main.bounds.size
             imageNode.style.preferredSize = self.previewTransition?.previewRect.size ?? CGSize.zero
             imageNode.style.layoutPosition = self.previewTransition?.previewRect.origin ?? CGPoint.zero
             return ASAbsoluteLayoutSpec(sizing: .sizeToFit, children: [pagerNode, imageNode])

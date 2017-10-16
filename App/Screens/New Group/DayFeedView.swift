@@ -21,5 +21,6 @@ protocol DayFeedViewFactory {
 
 protocol DayFeedView: View {
     weak var delegate: DayFeedViewDelegate? { get set }
+    var viewModel: DayTextureViewModel? { get set }
     func reload()
 }

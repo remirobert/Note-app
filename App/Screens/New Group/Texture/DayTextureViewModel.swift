@@ -9,6 +9,10 @@
 import Foundation
 import Domain
 
+protocol DayTextureViewModelDelegate: class {
+    func didLoadPosts()
+}
+
 class DayTextureViewModel {
     fileprivate(set) var models = [PostImage]()
     fileprivate let postsOperationProvider: FetchOperationProvider
@@ -17,7 +21,7 @@ class DayTextureViewModel {
     private let operationQueue: OperationQueue
     let day: Day
 
-    weak var delegate: DayFeedViewModelDelegate?
+    weak var delegate: DayTextureViewModelDelegate?
 
     init(day: Day,
          postsOperationProvider: FetchOperationProvider,

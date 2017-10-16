@@ -16,11 +16,12 @@ class PostCoordinator {
     private let viewFactory: PostViewFactory
     private let navigationViewFactory: NavigationViewFactory
     fileprivate let postView: PostView
+    private let op: RMAddPostFactory
 
     init(day: Day, parentView: View) {
         self.day = day
         self.parentView = parentView
-        let op = RMAddPostFactory(day: day)
+        op = RMAddPostFactory(day: day)
         viewFactory = PostViewControllerFactory(addOperationProvider: op)
         navigationViewFactory = PostNavigationViewControllerFactory()
         postView = viewFactory.make()

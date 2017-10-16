@@ -44,12 +44,12 @@ extension CalendarCoordinator: CalendarViewDelegate {
 
         let op = RMFetchPostOperationFactory(day: day)
         let viewModel = DayTextureViewModel(day: day, postsOperationProvider: op, subscriber: subscriber)
-        let deps = DayFeedCoordinator.Dependencies(day: day,
-                                                   parentView: calendarView,
-                                                   dayFeedFactory: DayTextureControllerFactory(viewModel: viewModel),
-                                                   dayNavigationFactory: DayFeedNavigationViewFactory())
-        dayFeedCoordinator = DayFeedCoordinator(dependencies: deps)
-        dayFeedCoordinator.start()
+//        let deps = DayFeedCoordinator.Dependencies(day: day,
+//                                                   parentView: calendarView,
+//                                                   dayFeedFactory: DayTextureControllerFactory(viewModel: viewModel),
+//                                                   dayNavigationFactory: DayFeedNavigationViewFactory())
+//        dayFeedCoordinator = DayFeedCoordinator(dependencies: deps)
+//        dayFeedCoordinator.start()
     }
 
     func displaySettings() {

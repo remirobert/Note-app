@@ -11,28 +11,24 @@ import Domain
 import SnapKit
 
 class DayTextureControllerFactory: DayFeedViewFactory {
-    private let viewModel: DayTextureViewModel
-
-    init(viewModel: DayTextureViewModel) {
-        self.viewModel = viewModel
-    }
-
     func make() -> DayFeedView {
-        return DayTextureFeedController(viewModel: viewModel)
+        return DayTextureFeedController()
     }
 }
 
 class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
     fileprivate let tableNode = ASTableNode()
-    fileprivate let viewModel: DayTextureViewModel
     fileprivate let toolBar = UIToolbar(frame: CGRect.zero)
+    var viewModel: DayTextureViewModel? {
+        didSet {
+            reload()
+        }
+    }
 
     weak var delegate: DayFeedViewDelegate?
 
-    init(viewModel: DayTextureViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(node: tableNode)
-        self.viewModel.delegate = self
         tableNode.dataSource = self
     }
 
@@ -42,16 +38,10 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .none
-        dateFormatter.dateStyle = .long
-        title = dateFormatter.string(from: viewModel.day.date)
         tableNode.view.separatorStyle = .none
         tableNode.view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         tableNode.view.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         view.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
-
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "calendar"), style: .done, target: self, action: #selector(displayCalendarView))
         setupToolbar()
     }
 
@@ -70,11 +60,17 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
     }
 
     func reload() {
+        guard let viewModel = viewModel else { return }
+        viewModel.delegate = self
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .long
+        title = dateFormatter.string(from: viewModel.day.date)
         tableNode.reloadData()
     }
 }
 
-extension DayTextureFeedController: DayFeedViewModelDelegate {
+extension DayTextureFeedController: DayTextureViewModelDelegate {
     func didLoadPosts() {
         DispatchQueue.main.async {
             self.tableNode.reloadData()
@@ -90,10 +86,13 @@ extension DayTextureFeedController: PostCellNodeDelegate {
 
 extension DayTextureFeedController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.models.count
+        return viewModel?.models.count ?? 0
     }
 
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
+        guard let viewModel = viewModel else {
+            return { ASCellNode() }
+        }
         let model = viewModel.models[indexPath.row]
         return {
             let cell = PostCellNode(post: model, tableNodeSize: tableNode.calculatedSize)

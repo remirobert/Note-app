@@ -156,7 +156,9 @@ extension CalendarTextureController: ASCollectionDataSource {
 extension CalendarTextureController: ASCollectionDelegate, ASCollectionDelegateFlowLayout {
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
         let date = viewModel.sections[indexPath.section].days[indexPath.row].toDate()
-        delegate?.didSelectDay(date: date)
+        DispatchQueue.main.async {
+            self.delegate?.didSelectDay(date: date)
+        }
     }
 
     func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
