@@ -49,10 +49,6 @@ class SplitCoordinator {
     }
 }
 
-class Fake: UIViewController, View {
-
-}
-
 import AsyncDisplayKit
 
 extension SplitCoordinator: CalendarViewDelegate {
@@ -71,7 +67,6 @@ extension SplitCoordinator: CalendarViewDelegate {
         let viewModel = DayTextureViewModel(day: day, postsOperationProvider: op, subscriber: subscriber)
         feedView.viewModel = viewModel
         feedView.delegate = self
-//        feedView.viewController?.title = "\(date)"
     }
 
     private func displayDayFeed() {

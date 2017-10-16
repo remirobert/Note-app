@@ -109,7 +109,7 @@ extension CalendarTextureController: CalendarTextureViewModelDelegate {
         DispatchQueue.main.async {
             self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
                                                               y: offsetSection),
-                                                      animated: animated)
+                                                      animated: false)
         }
     }
 }
@@ -124,7 +124,7 @@ extension CalendarTextureController: CalendarDateSelectionProviderDelegate {
         DispatchQueue.main.async {
             self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
                                                               y: offset),
-                                                      animated: true)
+                                                      animated: false)
         }
     }
 }

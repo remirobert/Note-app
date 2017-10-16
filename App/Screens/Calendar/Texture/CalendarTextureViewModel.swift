@@ -65,10 +65,11 @@ class CalendarTextureViewModel {
                 currentSection = IndexPath(row: 0, section: index + 1)
             }
             if currentDateData.month == index && currentDateData.year == year {
-                sectionCalendar.setCurrentDay(day: day)
+//                sectionCalendar.setCurrentDay(day: day)
             }
             if month == index + 1 {
                 loadedSection = IndexPath(row: 0, section: index + 1)
+                sectionCalendar.setCurrentDay(day: day)
             }
             sections.insert(sectionCalendar, at: 0)
         }
