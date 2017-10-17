@@ -84,18 +84,11 @@ extension CalendarTextureController: DatePickerViewDelegate {
     func didPickDate(date: Date) {
         viewModel.loadYear(fromDate: date)
         configureToolbar()
-        collectionNode.reloadData()
-
-        guard let section = viewModel.loadedSection else { return }
-        let offsetSection = convertIndexPathToOffset(section: section)
-        firstDisplay = false
-            self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
-                                                              y: offsetSection),
-                                                      animated: false)
+        reloadCalendarSections(updateOffset: true)
     }
 }
 
-extension CalendarTextureController: CalendarTextureViewModelDelegate {
+extension CalendarTextureController: CalendarTextureViewModelDelegate, CalendarDateSelectionProviderDelegate {
     fileprivate func convertIndexPathToOffset(section: IndexPath) -> CGFloat {
         let headerHeight: CGFloat = 70
         let offset = (1..<section.section).reduce(0, { result, index -> CGFloat in
@@ -108,7 +101,6 @@ extension CalendarTextureController: CalendarTextureViewModelDelegate {
     }
 
     func reloadCalendarSections(updateOffset: Bool) {
-        print("🌈reload data")
         collectionNode.reloadData()
         if !updateOffset {
             return
@@ -122,20 +114,9 @@ extension CalendarTextureController: CalendarTextureViewModelDelegate {
                                                       animated: false)
         }
     }
-}
 
-extension CalendarTextureController: CalendarDateSelectionProviderDelegate {
     func didSelectDate(date: Date) {
-        viewModel.loadYear(fromDate: date)
-        configureToolbar()
-        collectionNode.reloadData()
-
-        guard let offset = viewModel.loadedSectionOffset else { return }
-        DispatchQueue.main.async {
-            self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
-                                                              y: offset),
-                                                      animated: false)
-        }
+        reloadCalendarSections(updateOffset: true)
     }
 }
 
@@ -165,9 +146,9 @@ extension CalendarTextureController: ASCollectionDataSource {
 
 extension CalendarTextureController: ASCollectionDelegate, ASCollectionDelegateFlowLayout {
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        let date = viewModel.sections[indexPath.section].days[indexPath.row].toDate()
+        let day = viewModel.sections[indexPath.section].days[indexPath.row]
         DispatchQueue.main.async {
-            self.delegate?.didSelectDay(date: date)
+            self.delegate?.didSelectDay(date: day.toDate())
         }
     }
 

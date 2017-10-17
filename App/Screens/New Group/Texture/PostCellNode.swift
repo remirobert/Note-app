@@ -10,7 +10,8 @@ import AsyncDisplayKit
 import Domain
 
 protocol PostCellNodeDelegate: class {
-    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect)
+    func displaySlider(post: Post, index: Int, image: UIImage?, rect: CGRect)
+    func displayOptions(view: UIView, post: Post)
 }
 
 class BackgroundPostCellNode: ASDisplayNode {
@@ -31,19 +32,18 @@ class BackgroundPostCellNode: ASDisplayNode {
 }
 
 class PostCellNode: ASCellNode {
-    fileprivate let post: PostImage
+    fileprivate let post: Post
     fileprivate let titleTextNode = ASTextNode()
     fileprivate let contentTextNode = ASTextNode()
     fileprivate let galleryNode: ImageGalleryNode
     fileprivate let background = BackgroundPostCellNode()
-    fileprivate let timeTextNode = ASTextNode()
+    fileprivate let footerNode = FooterPostCellNode()
     fileprivate let tableNodeSize: CGSize
-
     fileprivate var nodes = [ASDisplayNode]()
 
-    weak var delgate: PostCellNodeDelegate?
+    weak var delegate: PostCellNodeDelegate?
 
-    init(post: PostImage, tableNodeSize: CGSize) {
+    init(post: Post, tableNodeSize: CGSize) {
         self.post = post
         self.tableNodeSize = tableNodeSize
         galleryNode = ImageGalleryNode(images: post.images,
@@ -57,13 +57,22 @@ class PostCellNode: ASCellNode {
         if post.images.count > 0 {
             nodes.append(galleryNode)
         }
-        nodes.append(timeTextNode)
+        nodes.append(footerNode)
 
         super.init()
         setupHierarchy()
         setupNodes(post: post)
         selectionStyle = .none
         galleryNode.delegate = self
+        footerNode.buttonOptions.addTarget(self,
+                                           action: #selector(self.optionsPost),
+                                           forControlEvents: .touchUpInside)
+    }
+
+    @objc private func optionsPost() {
+        DispatchQueue.main.async {
+            self.delegate?.displayOptions(view: self.view, post: self.post)
+        }
     }
 }
 
@@ -75,17 +84,17 @@ extension PostCellNode {
         }
     }
 
-    fileprivate func setupNodes(post: PostImage) {
+    fileprivate func setupNodes(post: Post) {
         galleryNode.style.preferredSize = CGSize(width: tableNodeSize.width - 80, height: galleryNode.height)
         titleTextNode.attributedText = NSAttributedString(string: post.titlePost, attributes: TextAttributes.postCreationTitle)
         contentTextNode.attributedText = NSAttributedString(string: post.descriptionPost, attributes: TextAttributes.postCreationContent)
-        timeTextNode.attributedText = NSAttributedString(string: post.date.timeAgo(), attributes: TextAttributes.footerDate)
+        footerNode.timeTextNode.attributedText = NSAttributedString(string: post.date.timeAgo(), attributes: TextAttributes.footerDate)
     }
 }
 
 extension PostCellNode: ImageGalleryCellNodeDelegate {
     func didSelectImage(index: Int, image: UIImage?, rect: CGRect) {
-        self.delgate?.displaySlider(post: post, index: index, image: image, rect: rect)
+        self.delegate?.displaySlider(post: post, index: index, image: image, rect: rect)
     }
 }
 

@@ -14,11 +14,12 @@
 		5DC0E0489AEF7B06FEBEBAC9 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A97766E62D95D01518FFC0FC /* Pods_App.framework */; };
 		7229221CF6D5350B852E0FE0 /* Pods_RealmPlatformTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A48C5CBDA65C8157A9EFEB /* Pods_RealmPlatformTests.framework */; };
 		BB04EA751F8EB6C8002AA91C /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB04EA741F8EB6C8002AA91C /* SettingItem.swift */; };
-		BB04EA771F8EB768002AA91C /* SettingHeaderCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB04EA761F8EB768002AA91C /* SettingHeaderCellNode.swift */; };
 		BB04EA791F8EBBFE002AA91C /* Date+displayTimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB04EA781F8EBBFE002AA91C /* Date+displayTimeAgo.swift */; };
 		BB18A1CD1F962CDD00D8A547 /* CalendarCoordinatorNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18A1CC1F962CDD00D8A547 /* CalendarCoordinatorNew.swift */; };
 		BB18A1CF1F962F8600D8A547 /* SplitViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18A1CE1F962F8500D8A547 /* SplitViewCoordinator.swift */; };
 		BB18A1D11F96306800D8A547 /* DayFeedCoordinatorNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18A1D01F96306800D8A547 /* DayFeedCoordinatorNew.swift */; };
+		BB18A1D31F963F9300D8A547 /* FooterPostCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18A1D21F963F9300D8A547 /* FooterPostCellNode.swift */; };
+		BB18A1D51F9646D800D8A547 /* RMRemoveOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18A1D41F9646D800D8A547 /* RMRemoveOperation.swift */; };
 		BB252CF81F802C1A009A1818 /* SliderNodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CF71F802C1A009A1818 /* SliderNodeController.swift */; };
 		BB252CFA1F802C95009A1818 /* SliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CF91F802C95009A1818 /* SliderViewModel.swift */; };
 		BB252CFC1F802D07009A1818 /* SliderCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CFB1F802D07009A1818 /* SliderCellNode.swift */; };
@@ -41,9 +42,6 @@
 		BB3B071E1F5348770085C239 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B07091F5348760085C239 /* Domain.framework */; };
 		BB3B071F1F5348770085C239 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B07091F5348760085C239 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB3B072D1F53489F0085C239 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07281F53489F0085C239 /* Post.swift */; };
-		BB3B072E1F53489F0085C239 /* PostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07291F53489F0085C239 /* PostImage.swift */; };
-		BB3B072F1F53489F0085C239 /* PostLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B072A1F53489F0085C239 /* PostLocation.swift */; };
-		BB3B07301F53489F0085C239 /* PostText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B072B1F53489F0085C239 /* PostText.swift */; };
 		BB3B07311F53489F0085C239 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B072C1F53489F0085C239 /* Day.swift */; };
 		BB3B07341F5348AD0085C239 /* PostEquatableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07321F5348AD0085C239 /* PostEquatableSpec.swift */; };
 		BB3B07351F5348AD0085C239 /* DayEquatableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07331F5348AD0085C239 /* DayEquatableSpec.swift */; };
@@ -52,16 +50,11 @@
 		BB3B07501F534A880085C239 /* RealmPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B073B1F534A880085C239 /* RealmPlatform.framework */; };
 		BB3B07511F534A880085C239 /* RealmPlatform.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B073B1F534A880085C239 /* RealmPlatform.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BB3B075C1F534AEB0085C239 /* RMPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07581F534AEB0085C239 /* RMPost.swift */; };
-		BB3B075D1F534AEB0085C239 /* RMPostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07591F534AEB0085C239 /* RMPostImage.swift */; };
-		BB3B075E1F534AEB0085C239 /* RMPostLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B075A1F534AEB0085C239 /* RMPostLocation.swift */; };
-		BB3B075F1F534AEB0085C239 /* RMPostText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B075B1F534AEB0085C239 /* RMPostText.swift */; };
 		BB3B07611F534B0C0085C239 /* RMPostSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07601F534B0C0085C239 /* RMPostSpec.swift */; };
 		BB3B07631F534E530085C239 /* RMPostImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07621F534E530085C239 /* RMPostImageSpec.swift */; };
 		BB3B07651F534F830085C239 /* RMPostLocationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07641F534F830085C239 /* RMPostLocationSpec.swift */; };
 		BB3B07671F5350880085C239 /* RMPostTextSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07661F5350880085C239 /* RMPostTextSpec.swift */; };
 		BB3B07691F5352BB0085C239 /* AllPostUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3B07681F5352BB0085C239 /* AllPostUseCase.swift */; };
-		BB3C24A41F80F45E0073C414 /* UIImage+applyBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C24A31F80F45E0073C414 /* UIImage+applyBlur.swift */; };
-		BB3C72871F6AD76600C90BEC /* UIKitSpikeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C72861F6AD76600C90BEC /* UIKitSpikeData.swift */; };
 		BB41DD031F7A94F000EB6A13 /* FileManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41DD021F7A94F000EB6A13 /* FileManagerProvider.swift */; };
 		BB41DD071F7A9E4500EB6A13 /* RMAddPostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41DD061F7A9E4500EB6A13 /* RMAddPostOperation.swift */; };
 		BB41DD091F7AB5D600EB6A13 /* FetchPostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41DD081F7AB5D600EB6A13 /* FetchPostOperation.swift */; };
@@ -127,10 +120,8 @@
 		BB9BF5FE1F575A4F00C28C9C /* KievitOT-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB9BF5FC1F575A4F00C28C9C /* KievitOT-Book.otf */; };
 		BB9BF6001F575AD700C28C9C /* WorkSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB9BF5FF1F575AD700C28C9C /* WorkSans-Light.ttf */; };
 		BB9BF6011F575AD700C28C9C /* WorkSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB9BF5FF1F575AD700C28C9C /* WorkSans-Light.ttf */; };
-		BBA1C2531F6ED16C00B86F8E /* InformationPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA1C2521F6ED16C00B86F8E /* InformationPostView.swift */; };
 		BBA1C2561F6EDC6600B86F8E /* DayFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA1C2551F6EDC6600B86F8E /* DayFeedCoordinator.swift */; };
 		BBA23D5F1F543C76003D4F32 /* RMDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA23D5E1F543C76003D4F32 /* RMDay.swift */; };
-		BBA23D611F543CB3003D4F32 /* AnyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA23D601F543CB3003D4F32 /* AnyPost.swift */; };
 		BBA23D631F544CA0003D4F32 /* AnyPostSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA23D621F544CA0003D4F32 /* AnyPostSpec.swift */; };
 		BBA808D31F717A6400567D54 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA808D21F717A6400567D54 /* PostViewController.swift */; };
 		BBAE88951F65A12F003F2908 /* PhotoPickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAE88941F65A12F003F2908 /* PhotoPickerProvider.swift */; };
@@ -271,11 +262,12 @@
 		B5A48C5CBDA65C8157A9EFEB /* Pods_RealmPlatformTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmPlatformTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6EEF88E4EC0D45D1CDCCEE0 /* Pods-RealmPlatformTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmPlatformTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmPlatformTests/Pods-RealmPlatformTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB04EA741F8EB6C8002AA91C /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
-		BB04EA761F8EB768002AA91C /* SettingHeaderCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderCellNode.swift; sourceTree = "<group>"; };
 		BB04EA781F8EBBFE002AA91C /* Date+displayTimeAgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+displayTimeAgo.swift"; sourceTree = "<group>"; };
 		BB18A1CC1F962CDD00D8A547 /* CalendarCoordinatorNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinatorNew.swift; sourceTree = "<group>"; };
 		BB18A1CE1F962F8500D8A547 /* SplitViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewCoordinator.swift; sourceTree = "<group>"; };
 		BB18A1D01F96306800D8A547 /* DayFeedCoordinatorNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFeedCoordinatorNew.swift; sourceTree = "<group>"; };
+		BB18A1D21F963F9300D8A547 /* FooterPostCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterPostCellNode.swift; sourceTree = "<group>"; };
+		BB18A1D41F9646D800D8A547 /* RMRemoveOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMRemoveOperation.swift; sourceTree = "<group>"; };
 		BB252CF71F802C1A009A1818 /* SliderNodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderNodeController.swift; sourceTree = "<group>"; };
 		BB252CF91F802C95009A1818 /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
 		BB252CFB1F802D07009A1818 /* SliderCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCellNode.swift; sourceTree = "<group>"; };
@@ -300,9 +292,6 @@
 		BB3B07111F5348770085C239 /* DomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B071A1F5348770085C239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB3B07281F53489F0085C239 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		BB3B07291F53489F0085C239 /* PostImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostImage.swift; sourceTree = "<group>"; };
-		BB3B072A1F53489F0085C239 /* PostLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLocation.swift; sourceTree = "<group>"; };
-		BB3B072B1F53489F0085C239 /* PostText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostText.swift; sourceTree = "<group>"; };
 		BB3B072C1F53489F0085C239 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		BB3B07321F5348AD0085C239 /* PostEquatableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEquatableSpec.swift; sourceTree = "<group>"; };
 		BB3B07331F5348AD0085C239 /* DayEquatableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEquatableSpec.swift; sourceTree = "<group>"; };
@@ -312,16 +301,11 @@
 		BB3B07431F534A880085C239 /* RealmPlatformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealmPlatformTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B074C1F534A880085C239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB3B07581F534AEB0085C239 /* RMPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPost.swift; sourceTree = "<group>"; };
-		BB3B07591F534AEB0085C239 /* RMPostImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPostImage.swift; sourceTree = "<group>"; };
-		BB3B075A1F534AEB0085C239 /* RMPostLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPostLocation.swift; sourceTree = "<group>"; };
-		BB3B075B1F534AEB0085C239 /* RMPostText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPostText.swift; sourceTree = "<group>"; };
 		BB3B07601F534B0C0085C239 /* RMPostSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPostSpec.swift; sourceTree = "<group>"; };
 		BB3B07621F534E530085C239 /* RMPostImageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPostImageSpec.swift; sourceTree = "<group>"; };
 		BB3B07641F534F830085C239 /* RMPostLocationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPostLocationSpec.swift; sourceTree = "<group>"; };
 		BB3B07661F5350880085C239 /* RMPostTextSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMPostTextSpec.swift; sourceTree = "<group>"; };
 		BB3B07681F5352BB0085C239 /* AllPostUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostUseCase.swift; sourceTree = "<group>"; };
-		BB3C24A31F80F45E0073C414 /* UIImage+applyBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+applyBlur.swift"; sourceTree = "<group>"; };
-		BB3C72861F6AD76600C90BEC /* UIKitSpikeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitSpikeData.swift; sourceTree = "<group>"; };
 		BB41DD021F7A94F000EB6A13 /* FileManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerProvider.swift; sourceTree = "<group>"; };
 		BB41DD061F7A9E4500EB6A13 /* RMAddPostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAddPostOperation.swift; sourceTree = "<group>"; };
 		BB41DD081F7AB5D600EB6A13 /* FetchPostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostOperation.swift; sourceTree = "<group>"; };
@@ -387,10 +371,8 @@
 		BB9BF5F91F5759D800C28C9C /* WorkSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Regular.ttf"; sourceTree = "<group>"; };
 		BB9BF5FC1F575A4F00C28C9C /* KievitOT-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KievitOT-Book.otf"; sourceTree = "<group>"; };
 		BB9BF5FF1F575AD700C28C9C /* WorkSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WorkSans-Light.ttf"; sourceTree = "<group>"; };
-		BBA1C2521F6ED16C00B86F8E /* InformationPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostView.swift; sourceTree = "<group>"; };
 		BBA1C2551F6EDC6600B86F8E /* DayFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFeedCoordinator.swift; sourceTree = "<group>"; };
 		BBA23D5E1F543C76003D4F32 /* RMDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMDay.swift; sourceTree = "<group>"; };
-		BBA23D601F543CB3003D4F32 /* AnyPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPost.swift; sourceTree = "<group>"; };
 		BBA23D621F544CA0003D4F32 /* AnyPostSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPostSpec.swift; sourceTree = "<group>"; };
 		BBA808D21F717A6400567D54 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BBAE88941F65A12F003F2908 /* PhotoPickerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerProvider.swift; sourceTree = "<group>"; };
@@ -592,7 +574,6 @@
 				BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */,
 				BB2E1BA81F5C0084001D7A92 /* UIImage+rounded.swift */,
 				BB7770C21F6D1130009A1B28 /* UIImage+forceLoad.swift */,
-				BB3C24A31F80F45E0073C414 /* UIImage+applyBlur.swift */,
 				BB7770C41F6D144B009A1B28 /* UICollectionView+register.swift */,
 				BB5634B11F7004E00031228A /* Date+daysCount.swift */,
 				BB8EEC031F864C480064309C /* Date+FromComponents.swift */,
@@ -696,9 +677,6 @@
 			children = (
 				BB3B072C1F53489F0085C239 /* Day.swift */,
 				BB3B07281F53489F0085C239 /* Post.swift */,
-				BB3B07291F53489F0085C239 /* PostImage.swift */,
-				BB3B072A1F53489F0085C239 /* PostLocation.swift */,
-				BB3B072B1F53489F0085C239 /* PostText.swift */,
 				BB4714EE1F8FA62A0058F00B /* AppSettings.swift */,
 			);
 			path = Entities;
@@ -744,6 +722,7 @@
 				BB41DD061F7A9E4500EB6A13 /* RMAddPostOperation.swift */,
 				BB41DD081F7AB5D600EB6A13 /* FetchPostOperation.swift */,
 				BB77E1D81F7D35D100C009D6 /* PostUpdateSubscriber.swift */,
+				BB18A1D41F9646D800D8A547 /* RMRemoveOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -815,12 +794,8 @@
 		BB63E7C91F536B060047C15A /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				BBA23D601F543CB3003D4F32 /* AnyPost.swift */,
 				BBA23D5E1F543C76003D4F32 /* RMDay.swift */,
 				BB3B07581F534AEB0085C239 /* RMPost.swift */,
-				BB3B07591F534AEB0085C239 /* RMPostImage.swift */,
-				BB3B075A1F534AEB0085C239 /* RMPostLocation.swift */,
-				BB3B075B1F534AEB0085C239 /* RMPostText.swift */,
 				BB4714F21F8FB7610058F00B /* RMAppSettings.swift */,
 			);
 			path = Entities;
@@ -897,13 +872,11 @@
 			isa = PBXGroup;
 			children = (
 				BBA1C2541F6EDC5600B86F8E /* Coordinators */,
-				BBA1C2511F6ED15E00B86F8E /* Views */,
 				BB2E1BAB1F5C017C001D7A92 /* AppRessources */,
 				BB2E1BA61F5C0052001D7A92 /* Application */,
 				BB2E1BA71F5C0073001D7A92 /* Extensions */,
 				BB2E1BAA1F5C0149001D7A92 /* Screens */,
 				BBC179D81F6C848000C0E07F /* CollectionDataSource */,
-				BB3C72861F6AD76600C90BEC /* UIKitSpikeData.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -923,6 +896,7 @@
 				BB77E1DB1F7E4CD400C009D6 /* DayTextureFeedController.swift */,
 				BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */,
 				BB77E1DD1F7E4D5600C009D6 /* PostCellNode.swift */,
+				BB18A1D21F963F9300D8A547 /* FooterPostCellNode.swift */,
 				BBD8175F1F7E7A1700C6B7C8 /* ImageGalleryNode.swift */,
 				BBD552081F6F046B00828B63 /* DayFeedNavigationViewController.swift */,
 			);
@@ -955,14 +929,6 @@
 			);
 			name = DayFeed;
 			path = "New Group";
-			sourceTree = "<group>";
-		};
-		BBA1C2511F6ED15E00B86F8E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				BBA1C2521F6ED16C00B86F8E /* InformationPostView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		BBA1C2541F6EDC5600B86F8E /* Coordinators */ = {
@@ -1037,7 +1003,6 @@
 				BB4715201F9342EE0058F00B /* SettingsNavigationController.swift */,
 				BB4714F61F8FB9BC0058F00B /* SettingsViewModel.swift */,
 				BBE459F51F8E811600D22B70 /* SettingsCellNode.swift */,
-				BB04EA761F8EB768002AA91C /* SettingHeaderCellNode.swift */,
 				BB04EA741F8EB6C8002AA91C /* SettingItem.swift */,
 				BB4714F81F8FBF5B0058F00B /* SettingNodeControllerFactory.swift */,
 			);
@@ -1896,14 +1861,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB63E7C81F536A550047C15A /* AddPostUseCase.swift in Sources */,
-				BB3B07301F53489F0085C239 /* PostText.swift in Sources */,
 				BB3B072D1F53489F0085C239 /* Post.swift in Sources */,
 				BBE5B0971F73DAD300D8B112 /* GetDayUseCase.swift in Sources */,
 				BB4714F11F8FB7040058F00B /* GetAppSettingsUseCase.swift in Sources */,
 				BB4714EF1F8FA62A0058F00B /* AppSettings.swift in Sources */,
-				BB3B072F1F53489F0085C239 /* PostLocation.swift in Sources */,
 				BB3B07311F53489F0085C239 /* Day.swift in Sources */,
-				BB3B072E1F53489F0085C239 /* PostImage.swift in Sources */,
 				BB63E7CE1F536B9A0047C15A /* PostUseCaseProvider.swift in Sources */,
 				BB3B07691F5352BB0085C239 /* AllPostUseCase.swift in Sources */,
 			);
@@ -1925,15 +1887,12 @@
 				BB77E1D91F7D35D100C009D6 /* PostUpdateSubscriber.swift in Sources */,
 				BB4714F51F8FB8680058F00B /* GetAppSettingsUseCase.swift in Sources */,
 				BB41DD091F7AB5D600EB6A13 /* FetchPostOperation.swift in Sources */,
-				BB3B075D1F534AEB0085C239 /* RMPostImage.swift in Sources */,
 				BBE5B0991F73DB1D00D8B112 /* GetDayUseCase.swift in Sources */,
 				BB41DD031F7A94F000EB6A13 /* FileManagerProvider.swift in Sources */,
-				BB3B075F1F534AEB0085C239 /* RMPostText.swift in Sources */,
+				BB18A1D51F9646D800D8A547 /* RMRemoveOperation.swift in Sources */,
 				BB63E7D21F536CC40047C15A /* AddPostUseCase.swift in Sources */,
 				BBA23D5F1F543C76003D4F32 /* RMDay.swift in Sources */,
 				BB3B075C1F534AEB0085C239 /* RMPost.swift in Sources */,
-				BBA23D611F543CB3003D4F32 /* AnyPost.swift in Sources */,
-				BB3B075E1F534AEB0085C239 /* RMPostLocation.swift in Sources */,
 				BB63E7D01F536C3E0047C15A /* PostUseCaseProvider.swift in Sources */,
 				BB41DD071F7A9E4500EB6A13 /* RMAddPostOperation.swift in Sources */,
 				BB63E7CC1F536B430047C15A /* AllPostUseCase.swift in Sources */,
@@ -1982,7 +1941,6 @@
 				BB252CF81F802C1A009A1818 /* SliderNodeController.swift in Sources */,
 				BB60C97D1F82D7B500345364 /* CalendarNavigationController.swift in Sources */,
 				BB4812D41F70090D009C4B70 /* DateData.swift in Sources */,
-				BB3C24A41F80F45E0073C414 /* UIImage+applyBlur.swift in Sources */,
 				BB252D001F8030E3009A1818 /* SliderCoordinator.swift in Sources */,
 				BBA808D31F717A6400567D54 /* PostViewController.swift in Sources */,
 				BBE459ED1F8E7B6D00D22B70 /* SettingsView.swift in Sources */,
@@ -2006,7 +1964,6 @@
 				BBE5B09B1F73FA3B00D8B112 /* PostCoordinator.swift in Sources */,
 				BB18A1CD1F962CDD00D8A547 /* CalendarCoordinatorNew.swift in Sources */,
 				BB509F1A1F8CFBEB00644485 /* SliderNavigationController.swift in Sources */,
-				BB3C72871F6AD76600C90BEC /* UIKitSpikeData.swift in Sources */,
 				BB77E1DC1F7E4CD400C009D6 /* DayTextureFeedController.swift in Sources */,
 				BBE459F21F8E7BDF00D22B70 /* SettingsNodeController.swift in Sources */,
 				BB4714F71F8FB9BC0058F00B /* SettingsViewModel.swift in Sources */,
@@ -2020,10 +1977,10 @@
 				BB4714ED1F8FA2240058F00B /* AppCoordinator.swift in Sources */,
 				BBC179D71F6C63E400C0E07F /* CollectionDataSource.swift in Sources */,
 				BB60C9721F829BEC00345364 /* CalendarTextureController.swift in Sources */,
+				BB18A1D31F963F9300D8A547 /* FooterPostCellNode.swift in Sources */,
 				BB509F261F8D4ACB00644485 /* PostNavigationViewController.swift in Sources */,
 				BB4714F91F8FBF5B0058F00B /* SettingNodeControllerFactory.swift in Sources */,
 				BBC179DC1F6D101900C0E07F /* CellType.swift in Sources */,
-				BB04EA771F8EB768002AA91C /* SettingHeaderCellNode.swift in Sources */,
 				BB509F221F8D4A1C00644485 /* PostView.swift in Sources */,
 				BB4714EB1F8F91570058F00B /* AuthentificationCoordinator.swift in Sources */,
 				BBD552011F6EEAE400828B63 /* DayFeedView.swift in Sources */,
@@ -2037,7 +1994,6 @@
 				BB60C97B1F82B80B00345364 /* CalendarTextureControllerFactory.swift in Sources */,
 				BB7770C31F6D1130009A1B28 /* UIImage+forceLoad.swift in Sources */,
 				BB4714E41F8F6EDB0058F00B /* AuthentificationView.swift in Sources */,
-				BBA1C2531F6ED16C00B86F8E /* InformationPostView.swift in Sources */,
 				BB870FD41F87BA05004A8012 /* CalendarYearPickerProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,3 +27,5 @@ public protocol PostSubscriber: class {
     func addSubscriber(object: PostUpdateSubscriberDelegate)
     func removeSubscriber(object: PostUpdateSubscriberDelegate)
 }
+
+open class RemovePostOperation: Operation {}

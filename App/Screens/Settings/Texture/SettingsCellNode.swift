@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 class SettingsCellNode: UITableViewCell {
-    private var switchSettings = UISwitch(frame: CGRect.zero)
-    private var title = UILabel(frame: CGRect.zero)
+    fileprivate var switchSettings = UISwitch(frame: CGRect.zero)
+    fileprivate var title = UILabel(frame: CGRect.zero)
     private let settingItem: SettingItem
 
     private let completionValueChanged: ((Bool) -> Swift.Void)
@@ -20,14 +20,41 @@ class SettingsCellNode: UITableViewCell {
         self.settingItem = settingItem
         self.completionValueChanged = completionValueChanged
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: nil)
+        setupHierarchy()
+        setupLayout()
+        setupViews()
+    }
 
-        contentView.addSubview(title)
-        contentView.addSubview(switchSettings)
-
+    private func setupViews() {
         switchSettings.addTarget(self, action: #selector(self.switchValueChanged), for: .valueChanged)
         switchSettings.onTintColor = UIColor.black
         switchSettings.thumbTintColor = UIColor.lightGray
 
+        selectionStyle = .none
+        switchSettings.isOn = settingItem.switchValue
+        title.text = settingItem.name
+
+        if !settingItem.availaible {
+            switchSettings.alpha = 0.5
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func switchValueChanged() {
+        self.completionValueChanged(switchSettings.isOn)
+    }
+}
+
+extension SettingsCellNode {
+    fileprivate func setupHierarchy() {
+        contentView.addSubview(title)
+        contentView.addSubview(switchSettings)
+    }
+
+    fileprivate func setupLayout() {
         switchSettings.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-10)
@@ -37,28 +64,6 @@ class SettingsCellNode: UITableViewCell {
             make.height.equalToSuperview()
             make.right.equalTo(switchSettings.snp.left)
         }
-        selectionStyle = .none
-        switchSettings.isOn = settingItem.switchValue
-        title.text = settingItem.name
-    }
-
-//    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//
-//    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func bindSetting(settingItem: SettingItem, completionValueChanged: @escaping (Bool) -> Swift.Void) {
-//        self.settingItem = settingItem
-//        self.completionValueChanged = completionValueChanged
-
-    }
-
-    @objc private func switchValueChanged() {
-        self.completionValueChanged(switchSettings.isOn)
     }
 }
 

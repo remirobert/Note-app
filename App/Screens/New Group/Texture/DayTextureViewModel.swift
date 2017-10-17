@@ -14,9 +14,10 @@ protocol DayTextureViewModelDelegate: class {
 }
 
 class DayTextureViewModel {
-    fileprivate(set) var models = [PostImage]()
+    fileprivate(set) var models = [Post]()
     fileprivate let postsOperationProvider: FetchOperationProvider
     fileprivate var postsOperation: FetchPostOperation?
+    fileprivate var removePostOperation: RemovePostOperation!
     fileprivate let subscriber: PostSubscriber
     private let operationQueue: OperationQueue
     let day: Day
@@ -43,6 +44,11 @@ class DayTextureViewModel {
         operationQueue.cancelAllOperations()
         operationQueue.addOperation(operation)
     }
+
+    func removePost(post: Post) {
+        removePostOperation = postsOperationProvider.makeRemoveOperation(post: post)
+        operationQueue.addOperation(removePostOperation)
+    }
 }
 
 extension DayTextureViewModel: PostUpdateSubscriberDelegate {
@@ -53,12 +59,7 @@ extension DayTextureViewModel: PostUpdateSubscriberDelegate {
 
 extension DayTextureViewModel: FetchPostOperationDelegate {
     func didFetchPosts(posts: [Post]) {
-        models = posts.map { (post: Post) -> PostImage? in
-            if let image = post as? PostImage {
-                return image
-            }
-            return nil
-            }.flatMap { $0 }
+        models = posts
         self.delegate?.didLoadPosts()
     }
 }

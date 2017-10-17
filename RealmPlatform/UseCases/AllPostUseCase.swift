@@ -23,17 +23,8 @@ public class RMAllPostUseCase: AllPostUseCase {
             let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id) else {
                 return []
         }
-        return Array(rmDay.posts).map { (anyPost: AnyPost) -> Post? in
-            if let image = anyPost.value(configuration: self.configuration) as? RMPostImage {
-                return image.toPostImage()
-            }
-            if let text = anyPost.value(configuration: self.configuration) as? RMPostText {
-                return text.toPostText()
-            }
-            if let location = anyPost.value(configuration: self.configuration) as? RMPostLocation {
-                return location.toPostLocation()
-            }
-            return nil
-            }.flatMap { $0 }
+        return Array(rmDay.posts).map({
+            $0.toPost()
+        })
     }
 }

@@ -17,6 +17,7 @@ protocol CalendarCoordinatorNewDelegate: class {
 class CalendarCoordinatorNew {
     fileprivate var currentDay: Day!
     fileprivate let getDayUseCase = RMGetDayUseCase()
+    fileprivate var settingsCoordinator: SettingsCoordinator!
     let calendarView: CalendarView
     let navigationView: NavigationView
 
@@ -55,7 +56,7 @@ extension CalendarCoordinatorNew: CalendarViewDelegate {
     }
 
     func displaySettings() {
-        let settingsCoordinator = SettingsCoordinator(parentView: calendarView)
+        settingsCoordinator = SettingsCoordinator(parentView: calendarView)
         settingsCoordinator.start()
     }
 }

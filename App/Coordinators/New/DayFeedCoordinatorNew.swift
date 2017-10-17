@@ -13,7 +13,8 @@ import RealmPlatform
 class DayFeedCoordinatorNew {
     fileprivate var currentDay: Day!
     fileprivate let subscriber: PostUpdateSubscriber
-    fileprivate let postCoordinator: PostCoordinator!
+    fileprivate var postCoordinator: PostCoordinator!
+    fileprivate var sliderCoordinator: SliderCoordinator!
     let feedView: DayFeedView
     let navigationView: NavigationView
 
@@ -37,8 +38,13 @@ class DayFeedCoordinatorNew {
 }
 
 extension DayFeedCoordinatorNew: DayFeedViewDelegate {
-    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect) {
-        
+    func displaySlider(post: Post, index: Int, image: UIImage?, rect: CGRect) {
+        sliderCoordinator = SliderCoordinator(post: post,
+                                              parentView: feedView,
+                                              previewImage: image,
+                                              rectImage: rect,
+                                              startIndex: index)
+        sliderCoordinator.start()
     }
 
     func displayCalendarView() {

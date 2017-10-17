@@ -9,10 +9,10 @@
 import Domain
 
 class SliderViewModel {
-    let post: PostImage
+    let post: Post
     let images: [String]
 
-    init(post: PostImage) {
+    init(post: Post) {
         self.post = post
         self.images = post.images
     }

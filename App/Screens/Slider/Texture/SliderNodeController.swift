@@ -9,7 +9,7 @@
 import AsyncDisplayKit
 import Domain
 
-class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNodeTransitionStateDelegate {
+class SliderNodeController: ASViewController<SliderNode>, SliderView {
     fileprivate let sliderNode: SliderNode
     fileprivate let viewModel: SliderViewModel
     fileprivate let startIndex: Int
@@ -18,7 +18,7 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
 
     init(viewModel: SliderViewModel, previewTransition: SliderPreviewTransition?) {
         startIndex = previewTransition?.startIndex ?? 0
-        sliderNode = SliderNode(post: viewModel.post, previewTransition: previewTransition)
+        sliderNode = SliderNode(post: viewModel.post)
         self.viewModel = viewModel
         super.init(node: sliderNode)
         sliderNode.pagerNode.setDataSource(self)
@@ -33,7 +33,6 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\(startIndex + 1) / \(viewModel.images.count)"
-        sliderNode.delegate = self
         let closeImage = UIImage(named: "close")?.withRenderingMode(.alwaysTemplate)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: closeImage, style: .done, target: self, action: #selector(self.close))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
@@ -46,18 +45,11 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        sliderNode.pagerNode.isHidden = true
         sliderNode.pagerNode.scrollToPage(at: startIndex, animated: false)
-//        sliderNode.transitionState = .presenting
-//        sliderNode.transitionLayout(withAnimation: true, shouldMeasureAsync: true)
     }
 
     @objc private func close() {
         self.delegate?.dismiss()
-//        sliderNode.pagerNode.isHidden = true
-//        sliderNode.imageNode.isHidden = false
-//        sliderNode.transitionState = .dismissing
-//        sliderNode.transitionLayout(withAnimation: true,  shouldMeasureAsync: true)
     }
 
     @objc private func share() {
@@ -67,13 +59,9 @@ class SliderNodeController: ASViewController<SliderNode>, SliderView, SliderNode
                 return
         }
         let shareController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        shareController.modalPresentationStyle = .popover
         present(shareController, animated: true, completion: nil)
-    }
-
-    func didFinishStateTransition(state: SliderNodeTransitionState) {
-        if state == .dismissing {
-            self.delegate?.dismiss()
-        }
+        shareController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
     }
 }
 

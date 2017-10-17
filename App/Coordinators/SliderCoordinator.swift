@@ -14,7 +14,7 @@ class SliderCoordinator: NSObject {
     fileprivate let parentView: View
     fileprivate var sliderView: SliderView!
 
-    init(post: PostImage, parentView: View, previewImage: UIImage?, rectImage: CGRect, startIndex: Int = 0) {
+    init(post: Post, parentView: View, previewImage: UIImage?, rectImage: CGRect, startIndex: Int = 0) {
         viewFactory = SliderViewControllerFactory(post: post,
                                                   previewImage: previewImage,
                                                   rectImage: rectImage,

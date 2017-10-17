@@ -13,6 +13,7 @@ public protocol PostUseCaseProvider {
 
 public protocol FetchOperationProvider {
     func makeFetchAll() -> FetchPostOperation
+    func makeRemoveOperation(post: Post) -> RemovePostOperation
 }
 
 public protocol AddOperationProvider {

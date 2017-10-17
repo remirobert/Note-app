@@ -29,6 +29,8 @@ class CalendarTextureViewModel {
     private(set) var currentDayOffset: CGFloat?
     private(set) var loadedSectionOffset: CGFloat?
 
+    private var currentPointedDay: Day!
+
     weak var delegate: CalendarTextureViewModelDelegate?
 
     init(currentDate: Date = Date(),
@@ -84,6 +86,10 @@ class CalendarTextureViewModel {
             loadedSectionOffset = month > 1 ? convertIndexPathToOffset(section: loadedSection) : -70
         }
         delegate?.reloadCalendarSections(updateOffset: updateOffset)
+    }
+
+    func updateSelectedDate(day: Day) {
+
     }
 
     private func convertIndexPathToOffset(section: IndexPath) -> CGFloat {

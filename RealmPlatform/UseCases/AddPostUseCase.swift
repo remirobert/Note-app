@@ -23,24 +23,15 @@ public class RMAddPostUseCase: AddPostUseCase {
             let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id) else {
             return
         }
-
-        switch post {
-        case is PostText:
-            if let rmPost = (post as? PostText)?.toRMPostText() {
-                save(object: rmPost, realm: realm, rmDay: rmDay)
-            }
-        default: break
-        }
     }
 
     public func addPostImage(images: [Data], title: String, description: String) {
     }
 
     private func save(object: RMPost, realm: Realm, rmDay: RMDay) {
-        let anyPost = AnyPost(post: object)
         try? realm.write {
             realm.add(object)
-            rmDay.posts.append(anyPost)
+            rmDay.posts.append(object)
             realm.add(rmDay, update: true)
         }
     }

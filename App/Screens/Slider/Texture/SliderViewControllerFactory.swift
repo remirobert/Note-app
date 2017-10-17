@@ -11,12 +11,12 @@ import UIKit
 import Domain
 
 class SliderViewControllerFactory: SliderViewFactory {
-    let post: PostImage
+    let post: Post
     private let previewImage: UIImage?
     private let rectImage: CGRect
     private let startIndex: Int
 
-    init(post: PostImage, previewImage: UIImage?, rectImage: CGRect, startIndex: Int) {
+    init(post: Post, previewImage: UIImage?, rectImage: CGRect, startIndex: Int) {
         self.post = post
         self.previewImage = previewImage
         self.rectImage = rectImage

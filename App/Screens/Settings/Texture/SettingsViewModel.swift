@@ -41,7 +41,7 @@ class SettingsViewModel {
             appSettings.localAuthEnabled = false
             settingsUseCase.update(appSettings: appSettings)
             updateSettingsItem()
-//            delegate?.reloadSettingsItems()
+            delegate?.reloadSettingsItems()
             return
         }
         authProvider.authentificate()

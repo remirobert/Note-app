@@ -37,7 +37,7 @@ class DayFeedCoordinator {
 }
 
 extension DayFeedCoordinator: DayFeedViewDelegate {
-    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect) {
+    func displaySlider(post: Post, index: Int, image: UIImage?, rect: CGRect) {
         sliderCoordinator = SliderCoordinator(post: post,
                                               parentView: dayFeedView,
                                               previewImage: image,

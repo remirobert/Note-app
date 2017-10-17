@@ -10,10 +10,21 @@ import Foundation
 import RealmSwift
 import Domain
 
+public class RMPathImage: Object {
+    public dynamic var url = String()
+
+    public convenience init(url: String) {
+        self.init()
+        self.url = url
+    }
+}
+
 public class RMPost: Object {
     public dynamic var date: Date = Date()
     public dynamic var id: String = UUID().uuidString
-    public var type: Int = 0
+    public var images = List<RMPathImage>()
+    public dynamic var titlePost = String()
+    public dynamic var descriptionPost = String()
 
     public func name() -> String {
         return "RMPost"
@@ -21,11 +32,15 @@ public class RMPost: Object {
 
     public convenience init(date: Date = Date(),
                             id: String = UUID().uuidString,
-                            type: PostType) {
+                            images: [String],
+                            titlePost: String = String(),
+                            descriptionPost: String = String()) {
         self.init()
         self.date = date
         self.id = id
-        self.type = type.rawValue
+        self.images = List(images.map({ return RMPathImage(url: $0) }))
+        self.descriptionPost = descriptionPost
+        self.titlePost = titlePost
     }
 
     public override class func primaryKey() -> String? {
@@ -37,14 +52,19 @@ extension Post {
     public func toRMPost() -> RMPost {
         return RMPost(date: self.date,
                       id: self.id,
-                      type: self.type)
+                      images: self.images,
+                      titlePost: self.titlePost,
+                      descriptionPost: self.descriptionPost)
     }
 }
 
 extension RMPost {
     public func toPost() -> Post {
+        let imagesUrls = Array(self.images.map { return $0.url })
         return Post(date: self.date,
                     id: self.id,
-                    type: PostType(rawValue: self.type) ?? .text)
+                    images: imagesUrls,
+                    titlePost: self.titlePost,
+                    descriptionPost: self.descriptionPost)
     }
 }

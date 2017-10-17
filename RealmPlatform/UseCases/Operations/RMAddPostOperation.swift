@@ -48,9 +48,7 @@ public class RMAddPostOperation: AddPostOperation {
         guard let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id) else {
             return
         }
-        guard let rmPost = (post as? PostImage)?.toRMPostImage() else {
-            return
-        }
+        guard let rmPost = post?.toRMPost() else { return }
         let filesNames = imagesData.map {
             fileManagerProvider.saveFile(data: $0)
             }
@@ -65,12 +63,11 @@ public class RMAddPostOperation: AddPostOperation {
     }
 
     private func save(object: RMPost, realm: Realm, rmDay: RMDay) {
-        let anyPost = AnyPost(post: object)
         do {
             try realm.write {
                 rmDay.numberPosts += 1
                 realm.add(object)
-                rmDay.posts.append(anyPost)
+                rmDay.posts.append(object)
                 realm.add(rmDay, update: true)
                 print("✅ done creating post")
             }

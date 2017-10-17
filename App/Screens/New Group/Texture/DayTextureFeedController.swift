@@ -79,8 +79,24 @@ extension DayTextureFeedController: DayTextureViewModelDelegate {
 }
 
 extension DayTextureFeedController: PostCellNodeDelegate {
-    func displaySlider(post: PostImage, index: Int, image: UIImage?, rect: CGRect) {
+    func displaySlider(post: Post, index: Int, image: UIImage?, rect: CGRect) {
         delegate?.displaySlider(post: post, index: index, image: image, rect: rect)
+    }
+
+    func displayOptions(view: UIView, post: Post) {
+        let optionsController = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
+        optionsController.addAction(UIAlertAction(title: "edit", style: .default, handler: { _ in
+
+        }))
+        optionsController.addAction(UIAlertAction(title: "delete", style: .destructive, handler: { [weak self] _ in
+            self?.viewModel?.removePost(post: post)
+        }))
+        optionsController.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
+        optionsController.modalPresentationStyle = .popover
+        present(optionsController, animated: true, completion: nil)
+        optionsController.popoverPresentationController?.sourceView = view
+        optionsController.popoverPresentationController?.sourceRect = view.frame
+        optionsController.popoverPresentationController?.permittedArrowDirections = .any
     }
 }
 
@@ -96,7 +112,7 @@ extension DayTextureFeedController: ASTableDataSource {
         let model = viewModel.models[indexPath.row]
         return {
             let cell = PostCellNode(post: model, tableNodeSize: tableNode.calculatedSize)
-            cell.delgate = self
+            cell.delegate = self
             return cell
         }
     }

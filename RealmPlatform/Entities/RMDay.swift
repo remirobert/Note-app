@@ -13,7 +13,7 @@ public class RMDay: Object {
     public dynamic var date: Date = Date()
     public dynamic var id: String = UUID().uuidString
     public dynamic var numberPosts: Int = 0
-    public var posts = List<AnyPost>()
+    public var posts = List<RMPost>()
 
     public convenience init(id: String = UUID().uuidString,
                             date: Date = Date(),

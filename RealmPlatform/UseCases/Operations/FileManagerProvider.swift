@@ -10,6 +10,7 @@ import UIKit
 
 public protocol FileManagerProvider {
     func saveFile(data: Data) -> String?
+    func removeFile(filename: String)
 }
 
 public class DefaultFileManager: FileManagerProvider {
@@ -31,17 +32,17 @@ public class DefaultFileManager: FileManagerProvider {
         guard let documentUrl = DefaultFileManager.documentUrl else { return nil }
         let filename = UUID().uuidString
         let filepath = documentUrl.appendingPathComponent(filename)
-        print("🌈 try to save url : \(filename)")
         let success = fileManager.createFile(atPath: filepath.absoluteString, contents: data, attributes: nil)
         return success ? filename : nil
+    }
 
-//        do {
-//            try data.write(to: filename, options: Data.WritingOptions.atomic)
-//        } catch {
-//            print("🐓 catch error : \(error.localizedDescription)")
-//            return nil
-//        }
-        print("🐓 create file successed : \(filename)")
-        return filename
+    public func removeFile(filename: String) {
+        guard let documentUrl = DefaultFileManager.documentUrl else { return }
+        let filepath = documentUrl.appendingPathComponent(filename)
+        do {
+            try fileManager.removeItem(at: filepath)
+        } catch {
+            print("⁉️ error remove file : \(error.localizedDescription)")
+        }
     }
 }
