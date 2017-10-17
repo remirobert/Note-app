@@ -63,33 +63,11 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     @objc private func selectDateCalendar() {
         let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?.first
         delegate?.displayDatePicker(type: .date, barButtonItem: buttonItem)
-//        let dateController = DatePickerViewController(type: .date)
-//        dateController.modalPresentationStyle = .popover
-//        present(dateController, animated: true, completion: nil)
-//        let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?.first
-//        dateController.popoverPresentationController?.barButtonItem = buttonItem
-//        dateController.popoverPresentationController?.permittedArrowDirections = .any
-//        dateController.preferredContentSize = CGSize(width: 300, height: 220)
-//        let controller = CalendarYearPickerProvider(type: .date)
-//        controller.delegate = self
-//        let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?.first
-//        controller.present(parentView: self, barButtonItem: buttonItem)
-        //        self.present(controller.alertViewController, animated: true, completion: nil)
     }
 
     @objc private func selectYearCalendar() {
         let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?[1]
         delegate?.displayDatePicker(type: .year, barButtonItem: buttonItem)
-//        let dateController = DatePickerViewController(type: .year)
-//        dateController.modalPresentationStyle = .popover
-//        present(dateController, animated: true, completion: nil)
-//        let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?[1]
-//        dateController.popoverPresentationController?.barButtonItem = buttonItem
-//        dateController.popoverPresentationController?.permittedArrowDirections = .any
-//        dateController.preferredContentSize = CGSize(width: 300, height: 220)
-//        let controller = CalendarYearPickerProvider(type: .year)
-//        controller.delegate = self
-//        self.present(controller.alertViewController, animated: true, completion: nil)
     }
 
     @objc private func scrollToToday() {

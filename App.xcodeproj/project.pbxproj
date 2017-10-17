@@ -16,6 +16,9 @@
 		BB04EA751F8EB6C8002AA91C /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB04EA741F8EB6C8002AA91C /* SettingItem.swift */; };
 		BB04EA771F8EB768002AA91C /* SettingHeaderCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB04EA761F8EB768002AA91C /* SettingHeaderCellNode.swift */; };
 		BB04EA791F8EBBFE002AA91C /* Date+displayTimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB04EA781F8EBBFE002AA91C /* Date+displayTimeAgo.swift */; };
+		BB18A1CD1F962CDD00D8A547 /* CalendarCoordinatorNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18A1CC1F962CDD00D8A547 /* CalendarCoordinatorNew.swift */; };
+		BB18A1CF1F962F8600D8A547 /* SplitViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18A1CE1F962F8500D8A547 /* SplitViewCoordinator.swift */; };
+		BB18A1D11F96306800D8A547 /* DayFeedCoordinatorNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18A1D01F96306800D8A547 /* DayFeedCoordinatorNew.swift */; };
 		BB252CF81F802C1A009A1818 /* SliderNodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CF71F802C1A009A1818 /* SliderNodeController.swift */; };
 		BB252CFA1F802C95009A1818 /* SliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CF91F802C95009A1818 /* SliderViewModel.swift */; };
 		BB252CFC1F802D07009A1818 /* SliderCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB252CFB1F802D07009A1818 /* SliderCellNode.swift */; };
@@ -270,6 +273,9 @@
 		BB04EA741F8EB6C8002AA91C /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		BB04EA761F8EB768002AA91C /* SettingHeaderCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderCellNode.swift; sourceTree = "<group>"; };
 		BB04EA781F8EBBFE002AA91C /* Date+displayTimeAgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+displayTimeAgo.swift"; sourceTree = "<group>"; };
+		BB18A1CC1F962CDD00D8A547 /* CalendarCoordinatorNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinatorNew.swift; sourceTree = "<group>"; };
+		BB18A1CE1F962F8500D8A547 /* SplitViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewCoordinator.swift; sourceTree = "<group>"; };
+		BB18A1D01F96306800D8A547 /* DayFeedCoordinatorNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFeedCoordinatorNew.swift; sourceTree = "<group>"; };
 		BB252CF71F802C1A009A1818 /* SliderNodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderNodeController.swift; sourceTree = "<group>"; };
 		BB252CF91F802C95009A1818 /* SliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewModel.swift; sourceTree = "<group>"; };
 		BB252CFB1F802D07009A1818 /* SliderCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCellNode.swift; sourceTree = "<group>"; };
@@ -535,6 +541,17 @@
 				BB509F251F8D4ACA00644485 /* PostNavigationViewController.swift */,
 			);
 			path = Post;
+			sourceTree = "<group>";
+		};
+		BB18A1CB1F962CC800D8A547 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				BB47151E1F928D840058F00B /* SplitCoordinator.swift */,
+				BB18A1CE1F962F8500D8A547 /* SplitViewCoordinator.swift */,
+				BB18A1CC1F962CDD00D8A547 /* CalendarCoordinatorNew.swift */,
+				BB18A1D01F96306800D8A547 /* DayFeedCoordinatorNew.swift */,
+			);
+			path = New;
 			sourceTree = "<group>";
 		};
 		BB252CF51F802BCB009A1818 /* Slider */ = {
@@ -952,7 +969,7 @@
 			isa = PBXGroup;
 			children = (
 				BB4714EC1F8FA2240058F00B /* AppCoordinator.swift */,
-				BB47151E1F928D840058F00B /* SplitCoordinator.swift */,
+				BB18A1CB1F962CC800D8A547 /* New */,
 				BBD5520A1F6FC4FF00828B63 /* CalendarCoordinator.swift */,
 				BBA1C2551F6EDC6600B86F8E /* DayFeedCoordinator.swift */,
 				BBE5B09A1F73FA3B00D8B112 /* PostCoordinator.swift */,
@@ -1957,6 +1974,7 @@
 				BBE459EF1F8E7BBC00D22B70 /* SettingsViewFactory.swift in Sources */,
 				BBC179E01F6D106A00C0E07F /* Section.swift in Sources */,
 				BB5634B21F7004E00031228A /* Date+daysCount.swift in Sources */,
+				BB18A1D11F96306800D8A547 /* DayFeedCoordinatorNew.swift in Sources */,
 				BBE214231F951B8500DC436A /* DatePickerView.swift in Sources */,
 				BB47151F1F928D840058F00B /* SplitCoordinator.swift in Sources */,
 				BB4714E71F8F6F770058F00B /* AuthentificationViewController.swift in Sources */,
@@ -1975,6 +1993,7 @@
 				BB4714E91F8F6FA30058F00B /* AuthentificationProvider.swift in Sources */,
 				BB4715211F9342EE0058F00B /* SettingsNavigationController.swift in Sources */,
 				BBE459F41F8E7C5C00D22B70 /* SettingsCoordinator.swift in Sources */,
+				BB18A1CF1F962F8600D8A547 /* SplitViewCoordinator.swift in Sources */,
 				BB9BF5EE1F560BA900C28C9C /* TextAttributes.swift in Sources */,
 				BBC179DE1F6D103900C0E07F /* CellViewModel.swift in Sources */,
 				BBD817601F7E7A1700C6B7C8 /* ImageGalleryNode.swift in Sources */,
@@ -1985,6 +2004,7 @@
 				BB77E1E01F7E50E700C009D6 /* DayTextureViewModel.swift in Sources */,
 				BBC77B5C1F79266C0091DC2D /* PostViewControllerFactory.swift in Sources */,
 				BBE5B09B1F73FA3B00D8B112 /* PostCoordinator.swift in Sources */,
+				BB18A1CD1F962CDD00D8A547 /* CalendarCoordinatorNew.swift in Sources */,
 				BB509F1A1F8CFBEB00644485 /* SliderNavigationController.swift in Sources */,
 				BB3C72871F6AD76600C90BEC /* UIKitSpikeData.swift in Sources */,
 				BB77E1DC1F7E4CD400C009D6 /* DayTextureFeedController.swift in Sources */,

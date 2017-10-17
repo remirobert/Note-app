@@ -12,12 +12,15 @@ class SettingItem {
     let name: String
     let description: String
     let switchValue: Bool
+    let availaible: Bool
 
     init(name: String = String(),
         description: String = String(),
-        switchValue: Bool = false) {
+        switchValue: Bool = false,
+        availaible: Bool = true) {
         self.name = name
         self.description = description
         self.switchValue = switchValue
+        self.availaible = availaible
     }
 }
