@@ -56,4 +56,8 @@ extension CalendarCoordinator: CalendarViewDelegate {
         settingsCoordinator = SettingsCoordinator(parentView: calendarView)
         settingsCoordinator.start()
     }
+
+    func displayDatePicker(type: DatePickerType, barButtonItem: UIBarButtonItem?) {
+        
+    }
 }

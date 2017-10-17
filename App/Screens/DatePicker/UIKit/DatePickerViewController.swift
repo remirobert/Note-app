@@ -36,21 +36,29 @@ class DatePickerViewController: UIViewController, DatePickerView {
         setupViews()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        datePicker.setDate(date: Date())
+    }
+
     private func setupViews() {
         view.backgroundColor = UIColor.clear
         datePicker.backgroundColor = UIColor.white
-        let cancelButton = UIBarButtonItem(title: "cancel", style: .done, target: self, action: nil)
+        toolbar.tintColor = UIColor.yellow
+        toolbar.barTintColor = UIColor.black
+        let cancelButton = UIBarButtonItem(title: "cancel", style: .done, target: self, action: #selector(self.cancel))
         let spaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let selectButton = UIBarButtonItem(title: "select", style: UIBarButtonItemStyle.done, target: self, action: nil)
+        let selectButton = UIBarButtonItem(title: "select", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.selectDate))
         toolbar.items = [cancelButton, spaceItem, selectButton]
     }
 
     @objc private func cancel() {
-        delegate?.didCancel()
+        dismiss(animated: true)
     }
 
-    @objc private func select() {
+    @objc private func selectDate() {
         delegate?.didPickDate(date: datePicker.selectedDate)
+        dismiss(animated: true)
     }
 }
 

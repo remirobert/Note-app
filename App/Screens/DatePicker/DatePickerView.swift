@@ -10,7 +10,6 @@ import Wireframe
 
 protocol DatePickerViewDelegate: class {
     func didPickDate(date: Date)
-    func didCancel()
 }
 
 protocol DatePickerView: View {

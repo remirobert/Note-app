@@ -11,6 +11,7 @@ import Wireframe
 protocol CalendarViewDelegate: class {
     func didSelectDay(date: Date)
     func displaySettings()
+    func displayDatePicker(type: DatePickerType, barButtonItem: UIBarButtonItem?)
 }
 
 protocol CalendarViewFactory {

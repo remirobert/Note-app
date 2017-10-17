@@ -73,6 +73,16 @@ extension SplitCoordinator: CalendarViewDelegate {
         
     }
 
+    func displayDatePicker(type: DatePickerType, barButtonItem: UIBarButtonItem?) {
+        let dateController = DatePickerViewController(type: type)
+        dateController.delegate = calendarView.viewController as? CalendarTextureController
+        dateController.modalPresentationStyle = .popover
+        calendarView.present(view: dateController, animated: true)
+        dateController.popoverPresentationController?.barButtonItem = barButtonItem
+        dateController.popoverPresentationController?.permittedArrowDirections = .any
+        dateController.preferredContentSize = CGSize(width: 300, height: 220)
+    }
+
     func displaySettings() {
         settingsCoordinator = SettingsCoordinator(parentView: calendarView)
         settingsCoordinator.start()

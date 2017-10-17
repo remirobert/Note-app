@@ -61,17 +61,35 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     }
 
     @objc private func selectDateCalendar() {
-        let controller = CalendarYearPickerProvider(type: .date)
-        controller.delegate = self
         let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?.first
-        controller.present(parentView: self, barButtonItem: buttonItem)
+        delegate?.displayDatePicker(type: .date, barButtonItem: buttonItem)
+//        let dateController = DatePickerViewController(type: .date)
+//        dateController.modalPresentationStyle = .popover
+//        present(dateController, animated: true, completion: nil)
+//        let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?.first
+//        dateController.popoverPresentationController?.barButtonItem = buttonItem
+//        dateController.popoverPresentationController?.permittedArrowDirections = .any
+//        dateController.preferredContentSize = CGSize(width: 300, height: 220)
+//        let controller = CalendarYearPickerProvider(type: .date)
+//        controller.delegate = self
+//        let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?.first
+//        controller.present(parentView: self, barButtonItem: buttonItem)
         //        self.present(controller.alertViewController, animated: true, completion: nil)
     }
 
     @objc private func selectYearCalendar() {
-        let controller = CalendarYearPickerProvider(type: .year)
-        controller.delegate = self
-        self.present(controller.alertViewController, animated: true, completion: nil)
+        let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?[1]
+        delegate?.displayDatePicker(type: .year, barButtonItem: buttonItem)
+//        let dateController = DatePickerViewController(type: .year)
+//        dateController.modalPresentationStyle = .popover
+//        present(dateController, animated: true, completion: nil)
+//        let buttonItem = (navigationController as? CalendarNavigationController)?.toolBarActions.items?[1]
+//        dateController.popoverPresentationController?.barButtonItem = buttonItem
+//        dateController.popoverPresentationController?.permittedArrowDirections = .any
+//        dateController.preferredContentSize = CGSize(width: 300, height: 220)
+//        let controller = CalendarYearPickerProvider(type: .year)
+//        controller.delegate = self
+//        self.present(controller.alertViewController, animated: true, completion: nil)
     }
 
     @objc private func scrollToToday() {
@@ -84,8 +102,23 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
     }
 }
 
+extension CalendarTextureController: DatePickerViewDelegate {
+    func didPickDate(date: Date) {
+        viewModel.loadYear(fromDate: date)
+        configureToolbar()
+        collectionNode.reloadData()
+
+        guard let section = viewModel.loadedSection else { return }
+        let offsetSection = convertIndexPathToOffset(section: section)
+        firstDisplay = false
+            self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
+                                                              y: offsetSection),
+                                                      animated: false)
+    }
+}
+
 extension CalendarTextureController: CalendarTextureViewModelDelegate {
-    private func convertIndexPathToOffset(section: IndexPath) -> CGFloat {
+    fileprivate func convertIndexPathToOffset(section: IndexPath) -> CGFloat {
         let headerHeight: CGFloat = 70
         let offset = (1..<section.section).reduce(0, { result, index -> CGFloat in
             let heightCell = (collectionNode.frame.size.width - 70) / 5 + 10
@@ -104,7 +137,6 @@ extension CalendarTextureController: CalendarTextureViewModelDelegate {
         }
         guard let section = viewModel.loadedSection else { return }
         let offsetSection = convertIndexPathToOffset(section: section)
-        let animated = !firstDisplay
         firstDisplay = false
         DispatchQueue.main.async {
             self.collectionNode.view.setContentOffset(CGPoint(x: self.collectionNode.view.contentOffset.x,
