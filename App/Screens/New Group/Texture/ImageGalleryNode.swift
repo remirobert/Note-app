@@ -116,8 +116,8 @@ extension ImageGalleryNode: ASCollectionDataSource {
 
 extension ImageGalleryNode: ASCollectionDelegate {
     func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
-        let size = CGSize(width: (collectionNode.calculatedSize.width - 100) / 3,
-                          height: (collectionNode.calculatedSize.width - 100) / 3)
+        let size = CGSize(width: (collectionNode.calculatedSize.width - 20) / 3,
+                          height: (collectionNode.calculatedSize.width - 20) / 3)
         return ASSizeRange(min: size, max: size)
     }
 

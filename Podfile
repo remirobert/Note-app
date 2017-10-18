@@ -17,6 +17,7 @@ def shared_pods
     pod 'SnapKit'
     pod 'IQKeyboardManagerSwift'
     pod 'Texture'
+    pod 'ImagePicker'
 end
 
 def shared_tests_pods

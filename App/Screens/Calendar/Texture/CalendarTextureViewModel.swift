@@ -29,7 +29,7 @@ class CalendarTextureViewModel {
     private(set) var currentDayOffset: CGFloat?
     private(set) var loadedSectionOffset: CGFloat?
 
-    private var currentPointedDay: Day!
+    private var currentPointedDay: IndexPath!
 
     weak var delegate: CalendarTextureViewModelDelegate?
 
@@ -59,6 +59,8 @@ class CalendarTextureViewModel {
         currentSection = nil
         loadedSection = nil
 
+        print("🌎 year : \(year) month : \(month) day : \(day) 💛")
+
         sections.removeAll(keepingCapacity: true)
         calendar.monthSymbols.enumerated().forEach { index, _ in
             let dateData = DateData(month: index, year: year)
@@ -71,7 +73,8 @@ class CalendarTextureViewModel {
             }
             if month == index + 1 {
                 loadedSection = IndexPath(row: 0, section: index + 1)
-                sectionCalendar.setCurrentDay(day: day)
+                currentPointedDay =  IndexPath(row: day - 1, section: index)
+                sectionCalendar.setCurrentDay(day: day - 1)
             }
             sections.insert(sectionCalendar, at: 0)
         }
@@ -88,8 +91,18 @@ class CalendarTextureViewModel {
         delegate?.reloadCalendarSections(updateOffset: updateOffset)
     }
 
-    func updateSelectedDate(day: Day) {
-
+    func updateSelectedDate(indexPath: IndexPath) -> [IndexPath] {
+        if indexPath == currentPointedDay {
+            return []
+        }
+        sections[currentPointedDay.section].unsetCurrentDay(day: currentPointedDay.row)
+        sections[indexPath.section].setCurrentDay(day: indexPath.row)
+        print("currentpointday : \(currentPointedDay)")
+        let indexesPath = [IndexPath(row: currentPointedDay.row,
+                                     section: currentPointedDay.section),
+                           indexPath]
+        currentPointedDay = indexPath
+        return indexesPath
     }
 
     private func convertIndexPathToOffset(section: IndexPath) -> CGFloat {

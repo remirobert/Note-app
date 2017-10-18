@@ -44,6 +44,12 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
         collectionNode.view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 70, right: 10)
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        UIView.animate(withDuration: 2, animations: {}) { _ in
+            self.reloadCalendarSections(updateOffset: true)
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         configureToolbar()
@@ -91,6 +97,7 @@ extension CalendarTextureController: DatePickerViewDelegate {
 extension CalendarTextureController: CalendarTextureViewModelDelegate, CalendarDateSelectionProviderDelegate {
     fileprivate func convertIndexPathToOffset(section: IndexPath) -> CGFloat {
         let headerHeight: CGFloat = 70
+        print("🤠 collection frame : \(collectionNode.frame.size.width)")
         let offset = (1..<section.section).reduce(0, { result, index -> CGFloat in
             let heightCell = (collectionNode.frame.size.width - 70) / 5 + 10
             let numberLines = CGFloat(ceil(Float(viewModel.sections[index].days.count) / 5))
@@ -146,7 +153,9 @@ extension CalendarTextureController: ASCollectionDataSource {
 
 extension CalendarTextureController: ASCollectionDelegate, ASCollectionDelegateFlowLayout {
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        let indexesPath = viewModel.updateSelectedDate(indexPath: indexPath)
         let day = viewModel.sections[indexPath.section].days[indexPath.row]
+        collectionNode.reloadItems(at: indexesPath)
         DispatchQueue.main.async {
             self.delegate?.didSelectDay(date: day.toDate())
         }

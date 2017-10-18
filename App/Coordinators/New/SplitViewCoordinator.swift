@@ -37,5 +37,6 @@ class SplitViewCoordinator {
 extension SplitViewCoordinator: CalendarCoordinatorNewDelegate {
     func loadNewDetailDay(day: Day) {
         dayFeedCoordinator.loadDay(day: day)
+        splitViewController.showDetailViewController(dayFeedCoordinator.navigationView.viewController!, sender: nil)
     }
 }

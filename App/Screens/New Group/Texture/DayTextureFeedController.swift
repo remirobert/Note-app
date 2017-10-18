@@ -45,6 +45,12 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
         setupToolbar()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        UIView.animate(withDuration: 2, animations: {}) { _ in
+            self.tableNode.reloadData()
+        }
+    }
+
     private func setupToolbar() {
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let button = UIBarButtonItem(title: "create", style: .done, target: self, action: #selector(self.addPost))

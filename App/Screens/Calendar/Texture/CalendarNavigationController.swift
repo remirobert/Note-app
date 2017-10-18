@@ -20,6 +20,7 @@ class CalendarNavigationController: UINavigationController, UINavigationControll
         navigationBar.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,
                                              NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)]
+        navigationBar.shadowImage = UIImage()
         view.addSubview(toolBarActions)
 
         toolBarActions.snp.makeConstraints { make in
