@@ -22,6 +22,10 @@ public class RMAddPostFactory: AddOperationProvider {
     public func makeAdd() -> AddPostOperation {
         return RMAddPostOperation(day: day, fileManagerProvider: fileManagerProvider)
     }
+
+    public func makeUpdate(post: Post, oldFiles: [String]) -> UpdatePostOperation {
+        return RMUpdatePostOperation(post: post, files: oldFiles)
+    }
 }
 
 public class RMAddPostOperation: AddPostOperation {

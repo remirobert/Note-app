@@ -109,4 +109,8 @@ extension SplitCoordinator: DayFeedViewDelegate {
                                               startIndex: index)
         sliderCoordinator.start()
     }
+
+    func updatePost(post: Post) {
+        
+    }
 }

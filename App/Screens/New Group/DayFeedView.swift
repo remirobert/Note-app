@@ -13,6 +13,7 @@ protocol DayFeedViewDelegate: class {
     func displayCalendarView()
     func displaySlider(post: Post, index: Int, image: UIImage?, rect: CGRect)
     func addPost()
+    func updatePost(post: Post)
 }
 
 protocol DayFeedViewFactory {

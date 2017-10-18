@@ -25,12 +25,12 @@ class SplitViewCoordinator {
     }
 
     func start() {
-        window.rootView = splitViewController
         splitViewController.preferredDisplayMode = .allVisible
         calendarCoordinator.delegate = self
         splitViewController.viewControllers = [calendarCoordinator.navigationView.viewController!,
                                                dayFeedCoordinator.navigationView.viewController!]
         calendarCoordinator.didSelectDay(date: Date())
+        window.rootView = splitViewController
     }
 }
 

@@ -16,6 +16,10 @@ open class AddPostOperation: Operation {
     public var post: Post?
 }
 
+open class UpdatePostOperation: Operation {
+    public var imagesData = [Data]()
+}
+
 public protocol AddPostOperationFactory {
     func make() -> AddPostOperation
 }

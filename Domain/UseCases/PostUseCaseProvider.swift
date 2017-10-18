@@ -18,4 +18,5 @@ public protocol FetchOperationProvider {
 
 public protocol AddOperationProvider {
     func makeAdd() -> AddPostOperation
+    func makeUpdate(post: Post, oldFiles: [String]) -> UpdatePostOperation
 }

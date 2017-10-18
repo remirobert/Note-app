@@ -57,4 +57,12 @@ extension DayFeedCoordinator: DayFeedViewDelegate {
         postCoordinator.start()
         self.postCoordinator = postCoordinator
     }
+
+    func updatePost(post: Post) {
+        self.postCoordinator = nil
+        let postCoordinator = PostCoordinator(day: dependencies.day,
+                                              parentView: dayFeedView)
+        postCoordinator.start()
+        self.postCoordinator = postCoordinator
+    }
 }

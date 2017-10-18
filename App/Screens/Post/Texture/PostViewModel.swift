@@ -36,15 +36,20 @@ class ImageDataConvertOperation: Operation {
 class PostViewModel {
     private let addOperationProvider: AddOperationProvider
     private let operationQueue: OperationQueue
+    let postUpdate: Post?
 
-    init(addOperationProvider: AddOperationProvider,
+    init(postUpdate: Post? = nil,
+         addOperationProvider: AddOperationProvider,
          operationQueue: OperationQueue = OperationQueue()) {
+        self.postUpdate = postUpdate
         self.addOperationProvider = addOperationProvider
         self.operationQueue = operationQueue
         self.operationQueue.qualityOfService = .background
     }
 
-    func create(images: [UIImage], titlePost: String, descriptionPost: String) {
+    func create(images: [UIImage],
+                titlePost: String,
+                descriptionPost: String) {
         let convertOperation = ImageDataConvertOperation(images: images)
         let imagePost = Post(images: [],
                              titlePost: titlePost,
@@ -61,6 +66,31 @@ class PostViewModel {
         adapterOperation.addDependency(convertOperation)
         addOperation.addDependency(adapterOperation)
 
-        operationQueue.addOperations([convertOperation, adapterOperation, addOperation], waitUntilFinished: false)
+        operationQueue.addOperations([convertOperation, adapterOperation, addOperation],
+                                     waitUntilFinished: false)
+    }
+
+    func update(images: [UIImage],
+                titlePost: String,
+                descriptionPost: String) {
+        guard let post = postUpdate else { return }
+        let convertOperation = ImageDataConvertOperation(images: images)
+        let newPost = Post(date: post.date,
+                           id: post.id,
+                           images: [],
+                           titlePost: titlePost,
+                           descriptionPost: descriptionPost)
+        let updateOperation = addOperationProvider.makeUpdate(post: newPost, oldFiles: post.images)
+
+        let adapterOperation = BlockOperation() {
+            [unowned convertOperation, unowned updateOperation] in
+            updateOperation.imagesData = convertOperation.imagesData
+        }
+
+        adapterOperation.addDependency(convertOperation)
+        updateOperation.addDependency(adapterOperation)
+
+        operationQueue.addOperations([convertOperation, adapterOperation, updateOperation],
+                                     waitUntilFinished: false)
     }
 }

@@ -111,6 +111,7 @@
 		BB77E1E01F7E50E700C009D6 /* DayTextureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */; };
 		BB870FD21F87AFB9004A8012 /* SectionCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB870FD11F87AFB9004A8012 /* SectionCalendar.swift */; };
 		BB870FD41F87BA05004A8012 /* CalendarYearPickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB870FD31F87BA05004A8012 /* CalendarYearPickerProvider.swift */; };
+		BB8DC81B1F973EB6008DBF00 /* RMUpdatePostOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8DC81A1F973EB5008DBF00 /* RMUpdatePostOperation.swift */; };
 		BB8EEC041F864C480064309C /* Date+FromComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8EEC031F864C480064309C /* Date+FromComponents.swift */; };
 		BB9BF5EE1F560BA900C28C9C /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */; };
 		BB9BF5F41F574D1B00C28C9C /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */; };
@@ -365,6 +366,7 @@
 		BB77E1DF1F7E50E700C009D6 /* DayTextureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTextureViewModel.swift; sourceTree = "<group>"; };
 		BB870FD11F87AFB9004A8012 /* SectionCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCalendar.swift; sourceTree = "<group>"; };
 		BB870FD31F87BA05004A8012 /* CalendarYearPickerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarYearPickerProvider.swift; sourceTree = "<group>"; };
+		BB8DC81A1F973EB5008DBF00 /* RMUpdatePostOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMUpdatePostOperation.swift; sourceTree = "<group>"; };
 		BB8EEC031F864C480064309C /* Date+FromComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FromComponents.swift"; sourceTree = "<group>"; };
 		BB9BF5ED1F560BA900C28C9C /* TextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		BB9BF5F31F574D1B00C28C9C /* UIFont+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 			children = (
 				BB41DD021F7A94F000EB6A13 /* FileManagerProvider.swift */,
 				BB41DD061F7A9E4500EB6A13 /* RMAddPostOperation.swift */,
+				BB8DC81A1F973EB5008DBF00 /* RMUpdatePostOperation.swift */,
 				BB41DD081F7AB5D600EB6A13 /* FetchPostOperation.swift */,
 				BB77E1D81F7D35D100C009D6 /* PostUpdateSubscriber.swift */,
 				BB18A1D41F9646D800D8A547 /* RMRemoveOperation.swift */,
@@ -1887,6 +1890,7 @@
 				BB77E1D91F7D35D100C009D6 /* PostUpdateSubscriber.swift in Sources */,
 				BB4714F51F8FB8680058F00B /* GetAppSettingsUseCase.swift in Sources */,
 				BB41DD091F7AB5D600EB6A13 /* FetchPostOperation.swift in Sources */,
+				BB8DC81B1F973EB6008DBF00 /* RMUpdatePostOperation.swift in Sources */,
 				BBE5B0991F73DB1D00D8B112 /* GetDayUseCase.swift in Sources */,
 				BB41DD031F7A94F000EB6A13 /* FileManagerProvider.swift in Sources */,
 				BB18A1D51F9646D800D8A547 /* RMRemoveOperation.swift in Sources */,

@@ -86,7 +86,7 @@ extension DayTextureFeedController: PostCellNodeDelegate {
     func displayOptions(view: UIView, post: Post) {
         let optionsController = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
         optionsController.addAction(UIAlertAction(title: "edit", style: .default, handler: { _ in
-
+            self.delegate?.updatePost(post: post)
         }))
         optionsController.addAction(UIAlertAction(title: "delete", style: .destructive, handler: { [weak self] _ in
             self?.viewModel?.removePost(post: post)

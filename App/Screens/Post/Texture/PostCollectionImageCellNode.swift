@@ -29,7 +29,11 @@ class PostImageCellNode: ASCellNode {
 
 class PostCollectionImageCellNode: ASCellNode, ASCollectionDataSource, ASCollectionDelegate, PhotoPickerProviderDelegate {
     private let collectionNode: ASCollectionNode
-    private(set) var images = [UIImage]()
+    var images = [UIImage]() {
+        didSet {
+            collectionNode.reloadData()
+        }
+    }
 
     weak var delegate: CellContentUpdateDelegate?
 

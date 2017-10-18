@@ -6,22 +6,25 @@
 //  Copyright © 2017 Remi Robert. All rights reserved.
 //
 
-import UIKit
+import Domain
 import AsyncDisplayKit
+import RealmPlatform
 
 protocol CellContentUpdateDelegate: class {
     func didUpdateContent()
 }
 
-class PostViewController: ASViewController<ASTableNode>, ASTableDataSource, PostView, CellContentUpdateDelegate {
+class PostViewController: ASViewController<ASTableNode>, PostView, CellContentUpdateDelegate {
     private let tableNode = ASTableNode()
-    private let titleNode = PostEditTextNode()
-    private let contentNode = PostEditTextNode()
-    private let collectionImageNode = PostCollectionImageCellNode()
-    private let nodes: [ASCellNode]
     private let toolbar = ToolbarPost()
-    private let photoPickerProvider: PhotoPickerProvider
-    private let viewModel: PostViewModel
+    fileprivate let photoPickerProvider: PhotoPickerProvider
+    fileprivate let viewModel: PostViewModel
+    fileprivate lazy var operationQueue: OperationQueue = OperationQueue()
+
+    fileprivate let titleNode = PostEditTextNode()
+    fileprivate let contentNode = PostEditTextNode()
+    fileprivate let collectionImageNode = PostCollectionImageCellNode()
+    fileprivate let nodes: [ASCellNode]
 
     weak var delegate: PostViewDelegate?
 
@@ -42,6 +45,10 @@ class PostViewController: ASViewController<ASTableNode>, ASTableDataSource, Post
 
         contentNode.editNode.attributedPlaceholderText = NSAttributedString(string: "What's on your mind...", attributes: TextAttributes.postCreationContentPlaceholder)
         contentNode.editNode.typingAttributes = TextAttributes.postCreationContent
+
+        if let post = viewModel.postUpdate {
+            initWithExistantPost(post: post)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -57,14 +64,15 @@ class PostViewController: ASViewController<ASTableNode>, ASTableDataSource, Post
     }
 
     private func setupToolbarActions() {
-        let postButton = UIBarButtonItem(title: "post", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.post))
+        let postButtonTitle = viewModel.postUpdate == nil ? "post" : "udpate"
+        let postButton = UIBarButtonItem(title: postButtonTitle, style: UIBarButtonItemStyle.done, target: self, action: #selector(self.post))
         let imageButton = UIBarButtonItem(image: #imageLiteral(resourceName: "camera-selected"), style: .done, target: self, action: #selector(self.addImage))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let dismissButton = UIBarButtonItem(image: #imageLiteral(resourceName: "dismiss-keyboard"), landscapeImagePhone: nil, style: UIBarButtonItemStyle.done, target: self, action: #selector(self.dismissKeyboard))
         toolbar.items = [dismissButton, spaceButton, imageButton, postButton]
 
         guard let postNavigationController = navigationController as? PostNavigationViewController else { return }
-        let postButton2 = UIBarButtonItem(title: "post", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.post))
+        let postButton2 = UIBarButtonItem(title: postButtonTitle, style: UIBarButtonItemStyle.done, target: self, action: #selector(self.post))
         let imageButton2 = UIBarButtonItem(image: #imageLiteral(resourceName: "camera-selected"), style: .done, target: self, action: #selector(self.addImage))
         postNavigationController.toolBarActions.items = [spaceButton, imageButton2, postButton2]
     }
@@ -76,11 +84,34 @@ class PostViewController: ASViewController<ASTableNode>, ASTableDataSource, Post
         contentNode.editNode.becomeFirstResponder()
     }
 
-    @objc private func dismissKeyboard() {
+    private func initWithExistantPost(post: Post) {
+        titleNode.editNode.attributedText = NSAttributedString(string: post.titlePost,
+                                                               attributes: TextAttributes.postCreationTitle)
+        contentNode.editNode.attributedText = NSAttributedString(string: post.descriptionPost,
+                                                                 attributes: TextAttributes.postCreationContent)
+        print("🚾 display images : \(post.images)")
+        operationQueue.addOperation { [weak self] in
+            let images = post.images.map({ (image: String) -> UIImage? in
+                var path = DefaultFileManager.documentUrl
+                path?.appendPathComponent(image)
+                guard let pathUrl = path else {
+                    return nil
+                }
+                return UIImage(contentsOfFile: pathUrl.absoluteString)
+            }).flatMap({ $0 })
+            OperationQueue.main.addOperation {
+                self?.collectionImageNode.images = images
+            }
+        }
+    }
+}
+
+extension PostViewController {
+    @objc fileprivate func dismissKeyboard() {
         view.endEditing(true)
     }
 
-    @objc private func post() {
+    @objc fileprivate func post() {
         if titleNode.editNode.attributedText?.string.isEmpty ?? true &&
             contentNode.editNode.attributedText?.string.isEmpty ?? true &&
             collectionImageNode.images.isEmpty {
@@ -88,19 +119,30 @@ class PostViewController: ASViewController<ASTableNode>, ASTableDataSource, Post
         }
         let title = titleNode.editNode.attributedText?.string ?? ""
         let content = contentNode.editNode.attributedText?.string ?? ""
-        viewModel.create(images: collectionImageNode.images, titlePost: title, descriptionPost: content)
+
+        if let _ = viewModel.postUpdate {
+            viewModel.update(images: collectionImageNode.images,
+                             titlePost: title,
+                             descriptionPost: content)
+        } else {
+            viewModel.create(images: collectionImageNode.images,
+                             titlePost: title,
+                             descriptionPost: content)
+        }
         dismissPost()
     }
 
-    @objc private func addImage() {
+    @objc fileprivate func addImage() {
         self.photoPickerProvider.pick(controller: self, delegate: collectionImageNode)
     }
 
-    @objc private func dismissPost() {
+    @objc fileprivate func dismissPost() {
         dismissKeyboard()
         self.delegate?.didCancel()
     }
+}
 
+extension PostViewController: ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return nodes.count
     }
