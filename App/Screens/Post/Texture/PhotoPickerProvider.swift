@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Photos
+import DKImagePickerController
 
-typealias PhotoPickerCompletion = (UIImage?) -> Void
+typealias PhotoPickerCompletion = ([UIImage]?) -> Void
 
 protocol PhotoPickerProvider {
     weak var delegate: PhotoPickerProviderDelegate? { get set }
@@ -17,69 +19,40 @@ protocol PhotoPickerProvider {
 }
 
 protocol PhotoPickerProviderDelegate: class {
-    func pickedPhoto(image: UIImage?)
+    func pickedPhoto(images: [UIImage]?)
 }
 
-class UIImagePicker: NSObject, UINavigationControllerDelegate, PhotoPickerProvider, UIImagePickerControllerDelegate {
-    fileprivate let pickerController: UIImagePickerController
-    fileprivate var rootViewController: UIViewController?
+class UIImagePicker: PhotoPickerProvider {
+    fileprivate let pickerController = DKImagePickerController()
     fileprivate var completion: PhotoPickerCompletion?
 
     weak var delegate: PhotoPickerProviderDelegate?
 
-    override init() {
-        pickerController = UIImagePickerController()
-        super.init()
-    }
-
-    func pick(controller: UIViewController, completion: @escaping (UIImage?) -> Void) {
+    func pick(controller: UIViewController, completion: @escaping PhotoPickerCompletion) {
         self.completion = completion
-        rootViewController = controller
-        showSourceActionSheet()
+        controller.present(pickerController, animated: true, completion: nil)
     }
 
     func pick(controller: UIViewController, delegate: PhotoPickerProviderDelegate) {
         self.delegate = delegate
-        rootViewController = controller
-        showSourceActionSheet()
-    }
-}
+        controller.present(pickerController, animated: true, completion: nil)
+        pickerController.maxSelectableCount = 6
+        pickerController.assetType = .allPhotos
+        pickerController.sourceType = .photo
 
-extension UIImagePicker {
-    fileprivate func showSourceActionSheet() {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Gallery", style: UIAlertActionStyle.default, handler: { _ in
-            self.pickerController.sourceType = .photoLibrary
-            self.showPhotoPicker()
-        }))
-        alertController.addAction(UIAlertAction(title: "Camera", style: UIAlertActionStyle.default, handler: { _ in
-            if !UIImagePickerController.isCameraDeviceAvailable(.rear) {
-                self.completion?(nil)
-                return
-            }
-            self.pickerController.sourceType = .camera
-            self.showPhotoPicker()
-        }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        rootViewController?.present(alertController, animated: true, completion: nil)
-    }
-}
+        let options = PHImageRequestOptions()
+        options.resizeMode = .exact
 
-extension UIImagePicker {
-    fileprivate func showPhotoPicker() {
-        pickerController.delegate = self
-        rootViewController?.present(pickerController, animated: true, completion: nil)
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        delegate?.pickedPhoto(image: info[UIImagePickerControllerOriginalImage] as? UIImage)
-        completion?(info[UIImagePickerControllerOriginalImage] as? UIImage)
-    }
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-        delegate?.pickedPhoto(image: nil)
-        completion?(nil)
+        pickerController.didSelectAssets = { (assets: [DKAsset]) in
+            var images = [UIImage]()
+            assets.forEach({ asset in
+                asset.fetchOriginalImage(true, completeBlock: { image, _ in
+                    if let image = image {
+                        images.append(image)
+                    }
+                })
+            })
+            self.delegate?.pickedPhoto(images: images)
+        }
     }
 }

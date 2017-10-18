@@ -102,8 +102,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/DKImagePickerController/DKImagePickerController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework"
@@ -116,8 +116,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Quick/Quick.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/DKImagePickerController/DKImagePickerController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework"

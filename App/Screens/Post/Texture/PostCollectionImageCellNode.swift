@@ -65,9 +65,9 @@ class PostCollectionImageCellNode: ASCellNode, ASCollectionDataSource, ASCollect
         }
     }
 
-    func pickedPhoto(image: UIImage?) {
-        guard let image = image else { return }
-        images.append(image)
+    func pickedPhoto(images: [UIImage]?) {
+        guard let images = images else { return }
+        self.images.append(contentsOf: images)
         collectionNode.reloadData()
         delegate?.didUpdateContent()
     }
