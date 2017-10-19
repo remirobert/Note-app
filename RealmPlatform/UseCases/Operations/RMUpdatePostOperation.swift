@@ -42,6 +42,7 @@ public class RMUpdatePostOperation: UpdatePostOperation {
                 realm.delete(rmPost.images)
                 rmPost.titlePost = post.titlePost
                 rmPost.descriptionPost = post.descriptionPost
+                rmPost.colorHexString = post.color.toHexString()
                 let images = List<RMPathImage>(filesNames)
                 images.forEach({
                     realm.add($0)

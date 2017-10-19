@@ -36,7 +36,8 @@ class ImageGalleryCellNode: ASCellNode {
     init(image: String) {
         super.init()
         addSubnode(imageNode)
-
+        backgroundColor = UIColor.clear
+        
         var path = DefaultFileManager.documentUrl
         path?.appendPathComponent(image)
         guard let pathUrl = path else {
@@ -78,6 +79,8 @@ class ImageGalleryNode: ASDisplayNode {
         super.init()
         setupHierarchy()
         setupNodes()
+        backgroundColor = UIColor.clear
+        collectionNode.backgroundColor = UIColor.clear
     }
 
     override func didLoad() {

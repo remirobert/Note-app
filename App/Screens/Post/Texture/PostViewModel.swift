@@ -74,14 +74,16 @@ class PostViewModel {
 
     func update(images: [UIImage],
                 titlePost: String,
-                descriptionPost: String) {
+                descriptionPost: String,
+                color: UIColor) {
         guard let post = postUpdate else { return }
         let convertOperation = ImageDataConvertOperation(images: images)
         let newPost = Post(date: post.date,
                            id: post.id,
                            images: [],
                            titlePost: titlePost,
-                           descriptionPost: descriptionPost)
+                           descriptionPost: descriptionPost,
+                           color: color)
         let updateOperation = addOperationProvider.makeUpdate(post: newPost, oldFiles: post.images)
 
         let adapterOperation = BlockOperation() {

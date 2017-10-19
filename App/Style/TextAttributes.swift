@@ -38,7 +38,7 @@ class TextAttributes {
         let titleParagraphStyle = NSMutableParagraphStyle()
         titleParagraphStyle.alignment = .left
         return [NSParagraphStyleAttributeName: titleParagraphStyle,
-                NSForegroundColorAttributeName: UIColor.lightGray,
+                NSForegroundColorAttributeName: UIColor.darkGray,
                 NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15)]
     }
 

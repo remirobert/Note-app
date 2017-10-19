@@ -65,12 +65,17 @@ class PostViewController: ASViewController<ASTableNode>, PostView, CellContentUp
         super.viewDidLoad()
         tableNode.view.tableFooterView = UIView()
         tableNode.view.separatorStyle = .none
+        colorPost = viewModel.postUpdate?.color ?? UIColor.white
+        setupNavigationItems()
+        setupToolbarActions()
+    }
+    
+    private func setupNavigationItems() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "close"), style: .done, target: self, action: #selector(self.dismissPost))
         let colorBarButton = ColorBarButtonItem(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        colorBarButton.color = UIColor.white
+        colorBarButton.color = colorPost
         colorBarButton.addTarget(self, action: #selector(self.displayColorPicker), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: colorBarButton)
-        setupToolbarActions()
     }
 
     private func setupToolbarActions() {
@@ -133,7 +138,8 @@ extension PostViewController {
         if let _ = viewModel.postUpdate {
             viewModel.update(images: collectionImageNode.images,
                              titlePost: title,
-                             descriptionPost: content)
+                             descriptionPost: content,
+                             color: colorPost)
         } else {
             viewModel.create(images: collectionImageNode.images,
                              titlePost: title,
