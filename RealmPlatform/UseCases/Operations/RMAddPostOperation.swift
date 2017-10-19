@@ -49,9 +49,7 @@ public class RMAddPostOperation: AddPostOperation {
         guard let realm = try? Realm(configuration: configuration) else {
             return
         }
-        guard let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id) else {
-            return
-        }
+        let rmDay = realm.object(ofType: RMDay.self, forPrimaryKey: day.id) ?? day.toRMDay()
         guard let rmPost = post?.toRMPost() else { return }
         let filesNames = imagesData.map {
             fileManagerProvider.saveFile(data: $0)

@@ -37,10 +37,7 @@ extension CalendarCoordinatorNew: CalendarViewDelegate {
         if let currentDay = self.currentDay, currentDay.date == date {
             return
         }
-        var dayModel: Day! = getDayUseCase.get(forDate: date)
-        if dayModel == nil {
-            dayModel = getDayUseCase.createNewDay(date: date)
-        }
+        let dayModel = getDayUseCase.get(forDate: date)
         currentDay = dayModel
         delegate?.loadNewDetailDay(day: dayModel)
     }

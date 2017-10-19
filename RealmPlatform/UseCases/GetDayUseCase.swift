@@ -12,18 +12,18 @@ import RealmSwift
 
 public class RMGetDayUseCase: GetDayUseCase {
     private let configuration: Realm.Configuration
-
+    
     public init(configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) {
         self.configuration = configuration
     }
 
-    public func get(forDate date: Date) -> Day? {
+    public func get(forDate date: Date) -> Day {
         guard let realm = try? Realm(configuration: configuration) else {
-            return nil
+            return Day(date: date)
         }
         let predicate = NSPredicate(format: "date = %@", date as NSDate)
         guard let day = realm.objects(RMDay.self).filter(predicate).first else {
-            return nil
+            return Day(date: date)
         }
         return day.toDay()
     }
