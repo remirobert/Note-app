@@ -15,7 +15,7 @@ class TextAttributes {
     }
 
     static var postCreationContentPlaceholder: [String:Any] {
-        return [NSForegroundColorAttributeName: UIColor.lightGray,
+        return [NSForegroundColorAttributeName: UIColor.darkGray,
                 NSFontAttributeName: UIFont.systemFont(ofSize: 20, weight: UIFontWeightRegular)]
     }
 
@@ -25,7 +25,7 @@ class TextAttributes {
     }
 
     static var postCreationTitlePlaceholder: [String:Any] {
-        return [NSForegroundColorAttributeName: UIColor.lightGray,
+        return [NSForegroundColorAttributeName: UIColor.darkGray,
                 NSFontAttributeName: UIFont.systemFont(ofSize: 22, weight: UIFontWeightBold)]
     }
 

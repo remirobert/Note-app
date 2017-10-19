@@ -137,7 +137,8 @@ extension PostViewController {
         } else {
             viewModel.create(images: collectionImageNode.images,
                              titlePost: title,
-                             descriptionPost: content)
+                             descriptionPost: content,
+                             color: colorPost)
         }
         dismissPost()
     }
@@ -148,13 +149,14 @@ extension PostViewController {
 
     @objc fileprivate func dismissPost() {
         dismissKeyboard()
-        self.delegate?.didCancel()
+        dismiss(animated: true)
     }
     
     @objc fileprivate func displayColorPicker() {
         let colorController = ColorPickerPostController()
         colorController.completionColor = { [weak self] color in
             self?.colorPost = color
+            (self?.navigationItem.rightBarButtonItem?.customView as? ColorBarButtonItem)?.color = color
         }
         colorController.modalPresentationStyle = .popover
         colorController.preferredContentSize = CGSize(width: 300, height: 60)

@@ -49,14 +49,16 @@ class PostViewModel {
 
     func create(images: [UIImage],
                 titlePost: String,
-                descriptionPost: String) {
+                descriptionPost: String,
+                color: UIColor) {
         let convertOperation = ImageDataConvertOperation(images: images)
-        let imagePost = Post(images: [],
-                             titlePost: titlePost,
-                             descriptionPost: descriptionPost)
+        let post = Post(images: [],
+                        titlePost: titlePost,
+                        descriptionPost: descriptionPost,
+                        color: color)
 
         let addOperation = addOperationProvider.makeAdd()
-        addOperation.post = imagePost
+        addOperation.post = post
 
         let adapterOperation = BlockOperation() {
             [unowned convertOperation, unowned addOperation] in

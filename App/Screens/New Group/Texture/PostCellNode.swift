@@ -89,6 +89,7 @@ extension PostCellNode {
         titleTextNode.attributedText = NSAttributedString(string: post.titlePost, attributes: TextAttributes.postCreationTitle)
         contentTextNode.attributedText = NSAttributedString(string: post.descriptionPost, attributes: TextAttributes.postCreationContent)
         footerNode.timeTextNode.attributedText = NSAttributedString(string: post.date.timeAgo(), attributes: TextAttributes.footerDate)
+        background.backgroundColor = post.color
     }
 }
 

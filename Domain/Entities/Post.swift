@@ -12,17 +12,20 @@ public class Post {
     public let images: [String]
     public let titlePost: String
     public let descriptionPost: String
+    public let color: UIColor
 
     public init(date: Date = Date(),
                 id: String = UUID().uuidString,
                 images: [String] = [],
                 titlePost: String = "",
-                descriptionPost: String = "") {
+                descriptionPost: String = "",
+                color: UIColor = UIColor.white) {
         self.date = date
         self.id = id
         self.images = images
         self.titlePost = titlePost
         self.descriptionPost = descriptionPost
+        self.color = color
     }
 }
 
