@@ -25,6 +25,12 @@ class PostViewController: ASViewController<ASTableNode>, PostView, CellContentUp
     fileprivate let contentNode = PostEditTextNode()
     fileprivate let collectionImageNode = PostCollectionImageCellNode()
     fileprivate let nodes: [ASCellNode]
+    
+    fileprivate var colorPost: UIColor = AppColors.postColors[0] {
+        didSet {
+            tableNode.backgroundColor = colorPost
+        }
+    }
 
     weak var delegate: PostViewDelegate?
 
@@ -60,6 +66,10 @@ class PostViewController: ASViewController<ASTableNode>, PostView, CellContentUp
         tableNode.view.tableFooterView = UIView()
         tableNode.view.separatorStyle = .none
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "close"), style: .done, target: self, action: #selector(self.dismissPost))
+        let colorBarButton = ColorBarButtonItem(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        colorBarButton.color = UIColor.white
+        colorBarButton.addTarget(self, action: #selector(self.displayColorPicker), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: colorBarButton)
         setupToolbarActions()
     }
 
@@ -139,6 +149,18 @@ extension PostViewController {
     @objc fileprivate func dismissPost() {
         dismissKeyboard()
         self.delegate?.didCancel()
+    }
+    
+    @objc fileprivate func displayColorPicker() {
+        let colorController = ColorPickerPostController()
+        colorController.completionColor = { [weak self] color in
+            self?.colorPost = color
+        }
+        colorController.modalPresentationStyle = .popover
+        colorController.preferredContentSize = CGSize(width: 300, height: 60)
+        present(colorController, animated: true, completion: nil)
+        colorController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        colorController.popoverPresentationController?.permittedArrowDirections = .any
     }
 }
 

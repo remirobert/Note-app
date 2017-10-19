@@ -46,6 +46,7 @@ class PostCollectionImageCellNode: ASCellNode, ASCollectionDataSource, ASCollect
         addSubnode(collectionNode)
         collectionNode.dataSource = self
         collectionNode.delegate = self
+        collectionNode.backgroundColor = UIColor.clear
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
