@@ -15,12 +15,3 @@ open class FetchPostOperation: Operation {
     public weak var delegate: FetchPostOperationDelegate?
 }
 
-public protocol PostUpdateSubscriberDelegate: class {
-    func dataDidUpdate()
-}
-
-public protocol PostSubscriber: class {
-    func addSubscriber(object: PostUpdateSubscriberDelegate)
-    func removeSubscriber(object: PostUpdateSubscriberDelegate)
-}
-

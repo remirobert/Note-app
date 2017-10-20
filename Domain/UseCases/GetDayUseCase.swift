@@ -10,3 +10,7 @@ public protocol GetDayUseCase: class {
     func get(forDate date: Date) -> Day
     func createNewDay(date: Date) -> Day
 }
+
+public protocol GetDayUseCaseFactory: class {
+    func make() -> GetDayUseCase
+}

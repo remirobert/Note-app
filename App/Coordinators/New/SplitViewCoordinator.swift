@@ -29,8 +29,8 @@ class SplitViewCoordinator {
         calendarCoordinator.delegate = self
         splitViewController.viewControllers = [calendarCoordinator.navigationView.viewController!,
                                                dayFeedCoordinator.navigationView.viewController!]
-        calendarCoordinator.didSelectDay(date: Date())
         window.rootView = splitViewController
+        calendarCoordinator.didSelectDay(date: Date().truncate())
     }
 }
 

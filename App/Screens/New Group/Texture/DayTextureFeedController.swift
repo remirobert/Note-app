@@ -53,7 +53,7 @@ class DayTextureFeedController: ASViewController<ASTableNode>, DayFeedView {
 
     private func setupToolbar() {
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let button = UIBarButtonItem(title: "Take a note...", style: .done, target: self, action: #selector(self.addPost))
+        let button = UIBarButtonItem(title: "New", style: .done, target: self, action: #selector(self.addPost))
         (navigationController as? DayFeedNavigationViewController)?.toolBarActions.setItems([space, button], animated: true)
     }
 
@@ -91,6 +91,8 @@ extension DayTextureFeedController: PostCellNodeDelegate {
 
     func displayOptions(view: UIView, post: Post) {
         let optionsController = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
+        let attributedTitle = NSAttributedString(string: "Options", attributes: TextAttributes.postCreationTitle)
+        optionsController.setValue(attributedTitle, forKey: "attributedTitle")
         optionsController.addAction(UIAlertAction(title: "edit", style: .default, handler: { _ in
             self.delegate?.updatePost(post: post)
         }))
@@ -101,7 +103,6 @@ extension DayTextureFeedController: PostCellNodeDelegate {
         optionsController.modalPresentationStyle = .popover
         present(optionsController, animated: true, completion: nil)
         optionsController.popoverPresentationController?.sourceView = view
-        optionsController.popoverPresentationController?.sourceRect = view.frame
         optionsController.popoverPresentationController?.permittedArrowDirections = .any
     }
 }

@@ -15,7 +15,7 @@ protocol DayTextureViewModelDelegate: class {
 
 class DayTextureViewModel {
     fileprivate(set) var models = [Post]()
-    fileprivate let postsOperationProvider: FetchOperationProvider
+    fileprivate let postsOperationProvider: PostOperationFactory
     fileprivate var postsOperation: FetchPostOperation?
     fileprivate var removePostOperation: RemovePostOperation!
     fileprivate let subscriber: PostSubscriber
@@ -25,7 +25,7 @@ class DayTextureViewModel {
     weak var delegate: DayTextureViewModelDelegate?
 
     init(day: Day,
-         postsOperationProvider: FetchOperationProvider,
+         postsOperationProvider: PostOperationFactory,
          operationQueue: OperationQueue = OperationQueue(),
          subscriber: PostSubscriber) {
         self.day = day
@@ -38,7 +38,7 @@ class DayTextureViewModel {
     }
 
     func reloadSections() {
-        let operation = postsOperationProvider.makeFetchAll()
+        let operation = postsOperationProvider.makeFetch()
         postsOperation = operation
         postsOperation?.delegate = self
         operationQueue.cancelAllOperations()
@@ -46,7 +46,7 @@ class DayTextureViewModel {
     }
 
     func removePost(post: Post) {
-        removePostOperation = postsOperationProvider.makeRemoveOperation(post: post)
+        removePostOperation = postsOperationProvider.makeRemove(post: post)
         operationQueue.addOperation(removePostOperation)
     }
 }

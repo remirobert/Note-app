@@ -34,12 +34,12 @@ class ImageDataConvertOperation: Operation {
 }
 
 class PostViewModel {
-    private let addOperationProvider: AddOperationProvider
+    private let addOperationProvider: PostOperationFactory
     private let operationQueue: OperationQueue
     let postUpdate: Post?
 
     init(postUpdate: Post? = nil,
-         addOperationProvider: AddOperationProvider,
+         addOperationProvider: PostOperationFactory,
          operationQueue: OperationQueue = OperationQueue()) {
         self.postUpdate = postUpdate
         self.addOperationProvider = addOperationProvider

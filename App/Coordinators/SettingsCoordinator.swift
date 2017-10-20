@@ -29,6 +29,7 @@ class SettingsCoordinator {
         settingsView.delegate = self
         let settingsNavigationView = settingsNavigationFactory.make(rootView: settingsView)
         settingsNavigationView.viewController?.modalPresentationStyle = .popover
+        settingsNavigationView.viewController?.preferredContentSize = CGSize(width: 350, height: 200)
         navigationView.present(view: settingsNavigationView, animated: true)
         let popController = settingsNavigationView.viewController?.popoverPresentationController!
         popController?.permittedArrowDirections = .any

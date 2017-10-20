@@ -43,6 +43,7 @@ class PostCollectionImageCellNode: ASCellNode, ASCollectionDataSource, ASCollect
         collectionViewLayout.minimumInteritemSpacing = 10
         collectionNode = ASCollectionNode(collectionViewLayout: collectionViewLayout)
         super.init()
+        selectionStyle = .none
         addSubnode(collectionNode)
         collectionNode.dataSource = self
         collectionNode.delegate = self

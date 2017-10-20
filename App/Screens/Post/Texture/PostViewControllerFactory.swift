@@ -13,7 +13,7 @@ class PostViewControllerFactory: PostViewFactory {
     private let photoPickerProvider: PhotoPickerProvider
     private let postViewModel: PostViewModel
 
-    init(addOperationProvider: AddOperationProvider,
+    init(addOperationProvider: PostOperationFactory,
          photoPickerProvider: PhotoPickerProvider = UIImagePicker(),
         postUpdate: Post? = nil) {
         self.photoPickerProvider = photoPickerProvider

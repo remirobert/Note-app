@@ -15,7 +15,11 @@ open class UpdatePostOperation: Operation {
     public var imagesData = [Data]()
 }
 
+open class RemovePostOperation: Operation {}
+
 public protocol PostOperationFactory {
+    func makeFetch() -> FetchPostOperation
     func makeAdd() -> AddPostOperation
     func makeUpdate(post: Post, oldFiles: [String]) -> UpdatePostOperation
+    func makeRemove(post: Post) -> RemovePostOperation
 }

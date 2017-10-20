@@ -63,7 +63,7 @@ extension SplitCoordinator: CalendarViewDelegate {
         guard let day = dayModel else { return }
         currentDay = day
 
-        let op = RMFetchPostOperationFactory(day: day)
+        let op = RMPostOperationFactory(day: day)
         let viewModel = DayTextureViewModel(day: day, postsOperationProvider: op, subscriber: subscriber)
         feedView.viewModel = viewModel
         feedView.delegate = self

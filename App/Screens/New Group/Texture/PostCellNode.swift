@@ -71,7 +71,7 @@ class PostCellNode: ASCellNode {
 
     @objc private func optionsPost() {
         DispatchQueue.main.async {
-            self.delegate?.displayOptions(view: self.view, post: self.post)
+            self.delegate?.displayOptions(view: self.footerNode.buttonOptions.view, post: self.post)
         }
     }
 }

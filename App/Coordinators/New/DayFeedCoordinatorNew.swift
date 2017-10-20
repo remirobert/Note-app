@@ -28,7 +28,7 @@ class DayFeedCoordinatorNew {
 
     func loadDay(day: Day) {
         self.currentDay = day
-        let fetchOperation = RMFetchPostOperationFactory(day: day)
+        let fetchOperation = RMPostOperationFactory(day: day)
         let viewModel = DayTextureViewModel(day: day,
                                             postsOperationProvider: fetchOperation,
                                             subscriber: subscriber)
@@ -52,6 +52,7 @@ extension DayFeedCoordinatorNew: DayFeedViewDelegate {
     }
 
     func addPost() {
+        print("🅰️ post : \(currentDay)")
         postCoordinator = PostCoordinator(day: currentDay,
                                           parentView: feedView)
         postCoordinator.start()

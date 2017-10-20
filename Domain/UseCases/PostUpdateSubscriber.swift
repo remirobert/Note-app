@@ -6,8 +6,11 @@
 //  Copyright © 2017 Remi Robert. All rights reserved.
 //
 
-import UIKit
+public protocol PostUpdateSubscriberDelegate: class {
+    func dataDidUpdate()
+}
 
-class PostUpdateSubscriber: NSObject {
-
+public protocol PostSubscriber: class {
+    func addSubscriber(object: PostUpdateSubscriberDelegate)
+    func removeSubscriber(object: PostUpdateSubscriberDelegate)
 }

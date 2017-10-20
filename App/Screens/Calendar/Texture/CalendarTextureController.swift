@@ -42,6 +42,7 @@ class CalendarTextureController: ASViewController<ASCollectionNode>, CalendarVie
         title = "Calendar"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .done, target: self, action: #selector(self.displaySettings))
         collectionNode.view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 70, right: 10)
+        view.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

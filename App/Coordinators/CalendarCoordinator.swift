@@ -42,7 +42,7 @@ extension CalendarCoordinator: CalendarViewDelegate {
         }
         guard let day = dayModel else { return }
 
-        let op = RMFetchPostOperationFactory(day: day)
+        let op = RMPostOperationFactory(day: day)
         let viewModel = DayTextureViewModel(day: day, postsOperationProvider: op, subscriber: subscriber)
 //        let deps = DayFeedCoordinator.Dependencies(day: day,
 //                                                   parentView: calendarView,

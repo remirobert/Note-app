@@ -10,3 +10,7 @@ public protocol GetAppSettingsUseCase: class {
     func get() -> AppSettings
     func update(appSettings: AppSettings)
 }
+
+public protocol GetAppSettingsUseCaseFactory: class {
+    func make() -> GetAppSettingsUseCase
+}
