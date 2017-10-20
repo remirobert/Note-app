@@ -32,6 +32,10 @@
 		BB3235271F9A7246000E6D05 /* RMAddPostOPerationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3235261F9A7246000E6D05 /* RMAddPostOPerationSpec.swift */; };
 		BB3235291F9A773E000E6D05 /* RMUpdatePostOperationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3235281F9A773E000E6D05 /* RMUpdatePostOperationSpec.swift */; };
 		BB32352B1F9A7D79000E6D05 /* StubFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32352A1F9A7D79000E6D05 /* StubFileManager.swift */; };
+		BB32352D1F9A954D000E6D05 /* RMFetchPostOperationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32352C1F9A954D000E6D05 /* RMFetchPostOperationSpec.swift */; };
+		BB32352F1F9A978B000E6D05 /* RMRemovePostOperationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB32352E1F9A978B000E6D05 /* RMRemovePostOperationSpec.swift */; };
+		BB3235311F9A99E7000E6D05 /* RMGetDayUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3235301F9A99E7000E6D05 /* RMGetDayUseCaseSpec.swift */; };
+		BB3235331F9A9D5F000E6D05 /* PostUpdateSubscriberSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3235321F9A9D5F000E6D05 /* PostUpdateSubscriberSpec.swift */; };
 		BB3B06E11F5347D70085C239 /* Wireframe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B06D81F5347D70085C239 /* Wireframe.framework */; };
 		BB3B06EA1F5347D70085C239 /* Wireframe.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3B06DA1F5347D70085C239 /* Wireframe.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB3B06ED1F5347D70085C239 /* Wireframe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3B06D81F5347D70085C239 /* Wireframe.framework */; };
@@ -282,6 +286,10 @@
 		BB3235261F9A7246000E6D05 /* RMAddPostOPerationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAddPostOPerationSpec.swift; sourceTree = "<group>"; };
 		BB3235281F9A773E000E6D05 /* RMUpdatePostOperationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMUpdatePostOperationSpec.swift; sourceTree = "<group>"; };
 		BB32352A1F9A7D79000E6D05 /* StubFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubFileManager.swift; sourceTree = "<group>"; };
+		BB32352C1F9A954D000E6D05 /* RMFetchPostOperationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMFetchPostOperationSpec.swift; sourceTree = "<group>"; };
+		BB32352E1F9A978B000E6D05 /* RMRemovePostOperationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMRemovePostOperationSpec.swift; sourceTree = "<group>"; };
+		BB3235301F9A99E7000E6D05 /* RMGetDayUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMGetDayUseCaseSpec.swift; sourceTree = "<group>"; };
+		BB3235321F9A9D5F000E6D05 /* PostUpdateSubscriberSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUpdateSubscriberSpec.swift; sourceTree = "<group>"; };
 		BB3B06D81F5347D70085C239 /* Wireframe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Wireframe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3B06DA1F5347D70085C239 /* Wireframe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wireframe.h; sourceTree = "<group>"; };
 		BB3B06DB1F5347D70085C239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -826,6 +834,10 @@
 			children = (
 				BB3235281F9A773E000E6D05 /* RMUpdatePostOperationSpec.swift */,
 				BB3235261F9A7246000E6D05 /* RMAddPostOPerationSpec.swift */,
+				BB32352C1F9A954D000E6D05 /* RMFetchPostOperationSpec.swift */,
+				BB32352E1F9A978B000E6D05 /* RMRemovePostOperationSpec.swift */,
+				BB3235301F9A99E7000E6D05 /* RMGetDayUseCaseSpec.swift */,
+				BB3235321F9A9D5F000E6D05 /* PostUpdateSubscriberSpec.swift */,
 				BB32352A1F9A7D79000E6D05 /* StubFileManager.swift */,
 			);
 			path = UseCasesTests;
@@ -1929,10 +1941,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB32352F1F9A978B000E6D05 /* RMRemovePostOperationSpec.swift in Sources */,
 				BB3235251F9A711F000E6D05 /* RMDaySpec.swift in Sources */,
 				BB32352B1F9A7D79000E6D05 /* StubFileManager.swift in Sources */,
 				BB3B07611F534B0C0085C239 /* RMPostSpec.swift in Sources */,
 				BB3235291F9A773E000E6D05 /* RMUpdatePostOperationSpec.swift in Sources */,
+				BB3235331F9A9D5F000E6D05 /* PostUpdateSubscriberSpec.swift in Sources */,
+				BB3235311F9A99E7000E6D05 /* RMGetDayUseCaseSpec.swift in Sources */,
+				BB32352D1F9A954D000E6D05 /* RMFetchPostOperationSpec.swift in Sources */,
 				BB3235271F9A7246000E6D05 /* RMAddPostOPerationSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

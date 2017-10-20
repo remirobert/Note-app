@@ -30,7 +30,7 @@ class RMUpdatePostOperationSpec: QuickSpec {
                 self.operationQueue = OperationQueue()
                 self.operationQueue.maxConcurrentOperationCount = 1
             }
-            it("should update an existant post") {
+            it("the operation should update an existant post") {
                 let postFiles = ["1", "2", "3"]
                 let rmPost = RMPost(date: Date(), id: "1234", images: postFiles, titlePost: "title", descriptionPost: "description", colorHexString: UIColor.red.toHexString())
                 let rmDay = RMDay(id: "5678", date: Date(), numberPosts: 1)

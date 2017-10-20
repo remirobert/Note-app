@@ -31,7 +31,6 @@ public class RMFetchPostOperation: FetchPostOperation {
         posts = Array(rmDay.posts).map({
             $0.toPost()
         })
-        print("✅ get post : \(posts)")
         delegate?.didFetchPosts(posts: posts)
     }
 }
