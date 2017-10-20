@@ -66,9 +66,7 @@ extension Post {
 extension RMPost {
     public func toPost() -> Post {
         let imagesUrls = Array(self.images.map { return $0.url })
-        let color = UIColor(hexString: colorHexString) ?? UIColor.white
-        print("color base : \(colorHexString)")
-        print("🖌 transform color : \(UIColor(hexString: colorHexString))")
+        let color = UIColor(hexString: colorHexString)
         return Post(date: self.date,
                     id: self.id,
                     images: imagesUrls,

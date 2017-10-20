@@ -131,6 +131,7 @@
 		BBA23D5F1F543C76003D4F32 /* RMDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA23D5E1F543C76003D4F32 /* RMDay.swift */; };
 		BBA808D31F717A6400567D54 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA808D21F717A6400567D54 /* PostViewController.swift */; };
 		BBAE88951F65A12F003F2908 /* PhotoPickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAE88941F65A12F003F2908 /* PhotoPickerProvider.swift */; };
+		BBB575351F9A9FDB005F1931 /* UIColorToStringSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB575341F9A9FDB005F1931 /* UIColorToStringSpec.swift */; };
 		BBC179D71F6C63E400C0E07F /* CollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC179D61F6C63E400C0E07F /* CollectionDataSource.swift */; };
 		BBC179DA1F6D0FFE00C0E07F /* VerticalCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC179D91F6D0FFE00C0E07F /* VerticalCollectionViewLayout.swift */; };
 		BBC179DC1F6D101900C0E07F /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC179DB1F6D101900C0E07F /* CellType.swift */; };
@@ -388,6 +389,7 @@
 		BBA23D5E1F543C76003D4F32 /* RMDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMDay.swift; sourceTree = "<group>"; };
 		BBA808D21F717A6400567D54 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BBAE88941F65A12F003F2908 /* PhotoPickerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerProvider.swift; sourceTree = "<group>"; };
+		BBB575341F9A9FDB005F1931 /* UIColorToStringSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorToStringSpec.swift; sourceTree = "<group>"; };
 		BBC179D61F6C63E400C0E07F /* CollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataSource.swift; sourceTree = "<group>"; };
 		BBC179D91F6D0FFE00C0E07F /* VerticalCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCollectionViewLayout.swift; sourceTree = "<group>"; };
 		BBC179DB1F6D101900C0E07F /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
@@ -839,6 +841,7 @@
 				BB3235301F9A99E7000E6D05 /* RMGetDayUseCaseSpec.swift */,
 				BB3235321F9A9D5F000E6D05 /* PostUpdateSubscriberSpec.swift */,
 				BB32352A1F9A7D79000E6D05 /* StubFileManager.swift */,
+				BBB575341F9A9FDB005F1931 /* UIColorToStringSpec.swift */,
 			);
 			path = UseCasesTests;
 			sourceTree = "<group>";
@@ -1949,6 +1952,7 @@
 				BB3235331F9A9D5F000E6D05 /* PostUpdateSubscriberSpec.swift in Sources */,
 				BB3235311F9A99E7000E6D05 /* RMGetDayUseCaseSpec.swift in Sources */,
 				BB32352D1F9A954D000E6D05 /* RMFetchPostOperationSpec.swift in Sources */,
+				BBB575351F9A9FDB005F1931 /* UIColorToStringSpec.swift in Sources */,
 				BB3235271F9A7246000E6D05 /* RMAddPostOPerationSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
