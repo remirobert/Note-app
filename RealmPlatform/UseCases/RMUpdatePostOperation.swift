@@ -17,7 +17,7 @@ public class RMUpdatePostOperation: UpdatePostOperation {
 
     public init(post: Post,
                 files: [String],
-                configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration,
+                configuration: Realm.Configuration = RMConfiguration.shared.configuration,
                 fileManagerProvider: FileManagerProvider = DefaultFileManager()) {
         self.post = post
         self.files = files

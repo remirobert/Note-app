@@ -10,28 +10,12 @@ import Foundation
 import RealmSwift
 import Domain
 
-public class RMFetchPostOperationFactory: FetchOperationProvider {
-    private let day: Day
-
-    public init(day: Day) {
-        self.day = day
-    }
-
-    public func makeFetchAll() -> FetchPostOperation {
-        return RMFetchPostOperation(day: day)
-    }
-
-    public func makeRemoveOperation(post: Post) -> RemovePostOperation {
-        return RMRemoveOperation(day: day, post: post)
-    }
-}
-
 public class RMFetchPostOperation: FetchPostOperation {
     private let day: Day
     private let configuration: Realm.Configuration
 
     public init(day: Day,
-                configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) {
+                configuration: Realm.Configuration = RMConfiguration.shared.configuration) {
         self.day = day
         self.configuration = configuration
     }
@@ -47,6 +31,7 @@ public class RMFetchPostOperation: FetchPostOperation {
         posts = Array(rmDay.posts).map({
             $0.toPost()
         })
+        print("✅ get post : \(posts)")
         delegate?.didFetchPosts(posts: posts)
     }
 }

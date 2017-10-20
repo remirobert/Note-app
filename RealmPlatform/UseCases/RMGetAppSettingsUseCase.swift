@@ -12,7 +12,7 @@ import RealmSwift
 public class RMGetAppSettingsUseCase: GetAppSettingsUseCase {
     private let configuration: Realm.Configuration
 
-    public init(configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) {
+    public init(configuration: Realm.Configuration = RMConfiguration.shared.configuration) {
         self.configuration = configuration
     }
 

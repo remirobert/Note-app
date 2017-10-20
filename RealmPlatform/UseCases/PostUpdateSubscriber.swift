@@ -14,7 +14,7 @@ public class PostUpdateSubscriber: PostSubscriber {
     private var subscribers = [PostUpdateSubscriberDelegate]()
     private var tokenNotification: NotificationToken?
 
-    public init(configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) {
+    public init(configuration: Realm.Configuration = RMConfiguration.shared.configuration) {
         self.configuration = configuration
         getNotification()
     }

@@ -13,7 +13,7 @@ import RealmSwift
 public class RMGetDayUseCase: GetDayUseCase {
     private let configuration: Realm.Configuration
     
-    public init(configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) {
+    public init(configuration: Realm.Configuration = RMConfiguration.shared.configuration) {
         self.configuration = configuration
     }
 
@@ -29,6 +29,11 @@ public class RMGetDayUseCase: GetDayUseCase {
     }
 
     public func createNewDay(date: Date) -> Day {
+        do {
+            let _ = try Realm(configuration: configuration)
+        } catch {
+            NSLog("❌ error realm : \(error.localizedDescription)")
+        }
         guard let realm = try? Realm(configuration: configuration) else {
             return Day()
         }

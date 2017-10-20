@@ -6,10 +6,6 @@
 //  Copyright © 2017 Remi Robert. All rights reserved.
 //
 
-public protocol AllPostUseCase {
-    func get() -> [Post]
-}
-
 public protocol FetchPostOperationDelegate: class {
     func didFetchPosts(posts: [Post])
 }
@@ -28,4 +24,3 @@ public protocol PostSubscriber: class {
     func removeSubscriber(object: PostUpdateSubscriberDelegate)
 }
 
-open class RemovePostOperation: Operation {}
